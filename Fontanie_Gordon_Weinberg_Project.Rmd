@@ -43,7 +43,8 @@ library(ggplot2)
 # Rationale and Research Questions
 
 > Research question: How does air quality in various Ukrainian cities differ before and after the Ukraine-Russia dispute? 
-> Rationale: On February 24, 2022, Russia attacked Ukraine. The first city 
+> Rationale: On February 24, 2022, Russia attacked Ukraine. The first city attacked was
+Lviv and Dnipro. 
 > Kyiv was hit February 24th.  
 
 
