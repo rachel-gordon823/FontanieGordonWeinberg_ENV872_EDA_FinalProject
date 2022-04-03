@@ -34,30 +34,82 @@ library(ggplot2)
 
 # Set your ggplot theme
 
-
+ourtheme <- theme_classic(base_size = 14)+ 
+  theme(axis.text = element_text(color="black"), 
+        legend.position = "top")
+theme_set(ourtheme)
+  
 # Load your datasets
+
+UkraineData <- read.csv("./Data/RawData/Ukraine_AQIData.csv", stringsAsFactors = TRUE)
 
 ```
 
-
 # Rationale and Research Questions
 
-> Research question: How does air quality in various Ukrainian cities differ before and after the Ukraine-Russia dispute? 
+> Research question: How does air quality in various Ukrainian cities differ before and after the Ukraine-Russia dispute?  
+*******
 > Rationale: On February 24, 2022, Russia attacked Ukraine. The first city attacked was
 Lviv and Dnipro. 
 > Kyiv was hit February 24th.  
 
+\newpage
 
+# Dataset Information 
+
+> Describe sources of data here (input Julia paragraph)
+
+```{r Data wrangling}  
+# Initial wrangling 
+
+Ukraine_Processed <- UkraineData %>% 
+  drop_na(pm10) %>% 
+  drop_na(pm25) 
+
+# Setting Date 
+
+Ukraine_Processed$date <- as.Date(Ukraine_Processed$date, "%m/%d/%y")
+
+# Creating subsets by city  
+
+Dnipro <- Ukraine_Processed %>% 
+  filter(City %in% "Dnipro")
+
+Lviv <- Ukraine_Processed %>% 
+  filter(City %in% "Lviv")
+
+```
+
+> Explain data wrangling process here (shirley do this) 
+
+Data Used | Brief Description 
+----------|------------------
+UkraineData | (Raw) Ukraine air quality data 
+Ukraine_Processed | (Processed) Ukraine air quality data, with no missing values 
+Dnipro | (Processed) Dnipro air quality data, showing PM2.5 and PM10 values 
+Lviv | (Processed) Lviv air quality data, showing PM2.5 and PM10 values 
 
 \newpage
 
-# Dataset Information
+# Exploratory Analysis  
+
+```{r Plotting PM2.5, fig.cap = "Comparing PM2.5 in Dnipro and Lviv, Ukraine} 
+
+PM25_PLOT <- ggplot(Dnipro, aes(x = date, y = pm25)) + 
+              geom_line()+ 
+  scale_x_date(limits = as.Date(c("2022-03-01", "2022-03-31")))+ 
+  
+print(PM25_PLOT)
+  
 
 
+```
 
-\newpage
+```{r Plotting PM10, fig.cap= "Comparing PM10 in Dnipro and Lviv, Ukraine} 
 
-# Exploratory Analysis 
+PM10_PLOT <-ggplot()
+
+```
 
 
 
