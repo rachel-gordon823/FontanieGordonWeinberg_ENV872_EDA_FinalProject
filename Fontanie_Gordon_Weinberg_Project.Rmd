@@ -72,11 +72,21 @@ Ukraine_Processed$date <- as.Date(Ukraine_Processed$date, "%m/%d/%y")
 
 # Creating subsets by city  
 
-Dnipro <- Ukraine_Processed %>% 
-  filter(City %in% "Dnipro")
+Dnipro_2021 <- Ukraine_Processed %>% 
+  filter(City %in% "Dnipro")%>%
+  subset(date > "2021-2-28" & date < "2021-04-01")
 
-Lviv <- Ukraine_Processed %>% 
-  filter(City %in% "Lviv")
+Dnipro_2022 <- Ukraine_Processed %>%
+  filter(City %in% "Dnipro")%>%
+  subset(date > "2022-2-28" & date < "2022-04-01")
+
+Lviv_2021 <- Ukraine_Processed %>% 
+  filter(City %in% "Lviv") %>%
+  subset(date > "2021-2-28" & date < "2021-04-01")
+
+Lviv_2022 <- Ukraine_Processed %>% 
+  filter(City %in% "Lviv") %>%
+  subset(date > "2022-2-28" & date < "2022-04-01")
 
 ```
 
@@ -95,7 +105,7 @@ Lviv | (Processed) Lviv air quality data, showing PM2.5 and PM10 values
 
 ```{r Plotting PM2.5, fig.cap = "Comparing PM2.5 in Dnipro and Lviv, Ukraine} 
 # DNIPRO PM2.5
-PM25_Dnipro_PLOT <- ggplot(Dnipro, aes(x = date, y = pm25)) + 
+PM25_Dnipro_PLOT <- ggplot(Dnipro_2021, aes(x = date, y = pm25)) + 
               geom_line()+  
   geom_point()+
   scale_x_date(limits = as.Date(c("2022-03-01", "2022-03-31")))+ 
