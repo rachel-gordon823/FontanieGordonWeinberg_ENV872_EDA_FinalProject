@@ -94,20 +94,66 @@ Lviv | (Processed) Lviv air quality data, showing PM2.5 and PM10 values
 # Exploratory Analysis  
 
 ```{r Plotting PM2.5, fig.cap = "Comparing PM2.5 in Dnipro and Lviv, Ukraine} 
-
-PM25_PLOT <- ggplot(Dnipro, aes(x = date, y = pm25)) + 
-              geom_line()+ 
+# DNIPRO PM2.5
+PM25_Dnipro_PLOT <- ggplot(Dnipro, aes(x = date, y = pm25)) + 
+              geom_line()+  
+  geom_point()+
   scale_x_date(limits = as.Date(c("2022-03-01", "2022-03-31")))+ 
-  
-print(PM25_PLOT)
-  
+  xlab("Date")+ 
+  ylab("PM2.5")+ 
+  labs(title = "        Observing PM2.5 Values in Dnipro, Ukraine")+
+  ylim(0,75)+ 
+  annotate(geom = "text", x = as.Date("2022-03-11"), y = 50, label ="March 11, 2022:")+ 
+  annotate(geom = "text", x = as.Date("2022-03-11"), y = 45, label ="Missile Attack")
+print(PM25_Dnipro_PLOT) 
 
 
+# LVIV PM2.5
+PM25_Lviv_PLOT <- ggplot(Lviv, aes(x = date, y = pm25)) + 
+              geom_line()+  
+  geom_point()+
+  scale_x_date(limits = as.Date(c("2022-03-01", "2022-03-31")))+ 
+  xlab("Date")+ 
+  ylab("PM2.5")+ 
+  labs(title = "        Observing PM2.5 Values in Lviv, Ukraine")+
+  ylim(0,180)+
+  annotate(geom = "text", x = as.Date("2022-03-18"), y = 165, label ="March 18, 2022:")+ 
+  annotate(geom = "text", x = as.Date("2022-03-18"), y = 155, label ="1st Missile Attack")+ 
+  annotate(geom = "text", x = as.Date("2022-03-26"), y = 110, label ="March 26, 2022:")+ 
+  annotate(geom = "text", x = as.Date("2022-03-26"), y = 100, label ="2nd Missile Attack")
+print(PM25_Lviv_PLOT)
 ```
 
 ```{r Plotting PM10, fig.cap= "Comparing PM10 in Dnipro and Lviv, Ukraine} 
 
-PM10_PLOT <-ggplot()
+#DNIPRO PM2.5
+PM10_Dnipro_PLOT <- ggplot(Dnipro, aes(x = date, y = pm10)) + 
+              geom_line()+  
+  geom_point()+
+  scale_x_date(limits = as.Date(c("2022-03-01", "2022-03-31")))+ 
+  xlab("Date")+ 
+  ylab("PM10")+ 
+  labs(title = "        Observing PM10 Values in Dnipro, Ukraine")+
+  ylim(0,40)+
+  annotate(geom = "text", x = as.Date("2022-03-11"), y = 25, label ="March 11, 2022:")+ 
+  annotate(geom = "text", x = as.Date("2022-03-11"), y = 23, label ="Missile Attack")
+print(PM10_Dnipro_PLOT)   
+
+
+#LVIV PM10
+PM10_Lviv_PLOT <- ggplot(Lviv, aes(x = date, y = pm10)) + 
+              geom_line()+  
+  geom_point()+
+  scale_x_date(limits = as.Date(c("2022-03-01", "2022-03-31")))+ 
+  xlab("Date")+ 
+  ylab("PM10")+ 
+  labs(title = "        Observing PM10 Values in Lviv, Ukraine")+
+  ylim(0,75)+
+  annotate(geom = "text", x = as.Date("2022-03-18"), y = 70, label ="March 18, 2022:")+ 
+  annotate(geom = "text", x = as.Date("2022-03-18"), y = 66, label ="1st Missile Attack")+ 
+  annotate(geom = "text", x = as.Date("2022-03-26"), y = 60, label ="March 26, 2022:")+ 
+  annotate(geom = "text", x = as.Date("2022-03-26"), y = 56, label ="2nd Missile Attack")
+print(PM10_Lviv_PLOT)
 
 ```
 
