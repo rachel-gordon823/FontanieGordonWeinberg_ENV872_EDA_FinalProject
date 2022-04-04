@@ -32,6 +32,11 @@ library(tidyverse)
 library(lubridate)
 library(ggplot2)
 library(zoo)
+library(sf)
+library(mapview)
+library(leaflet)
+
+mapviewOptions(fgb = FALSE)
 
 # Set your ggplot theme
 
@@ -238,6 +243,8 @@ print(PM10_Lviv_and_Dnipro_PLOT)
 # Analysis
 ```{r anova analysis}
 
+#after doing all these anovas i realized im not sure what this is really telling us and i think they might be super uncessary so i did an lm analysis in the code chunk below
+
 lviv.pm25.anova <- aov(data = FULL_LVIV , pm25 ~ Year)
 summary(lviv.pm25.anova)
 
@@ -278,6 +285,12 @@ dnipro.lviv.pm10.lm <- lm(data = FULL_Air_quality, pm10 ~ City)
 summary(dnipro.lviv.pm10.lm)
 ```
 
+```{r mapping lviv and dnipro}
+#I'm confused if we need to upload a shapefile of ukraine so that we can make a map but maybe im really overthinking this - just wanted to put it as a comment here so i dont forget 
+
+#https://simplemaps.com/data/ua-cities
+#we can download a csv of all the cities with lat and long from this link and we could make a map but idk if thats what you guys were thinking
+```
 
 ## Question 1: <insert specific question here and add additional subsections for additional questions below, if needed>
 
