@@ -75,25 +75,36 @@ Ukraine_Processed$date <- as.Date(Ukraine_Processed$date, "%m/%d/%y")
 
 Dnipro_2021 <- Ukraine_Processed %>% 
   filter(City %in% "Dnipro")%>%
-  subset(date > "2021-2-28" & date < "2021-04-01") 
-Dnipro_2021$date = as.yearmon(Dnipro_2021$date)
+  subset(date > "2021-2-28" & date < "2021-04-01") %>%
+  mutate(Month = month(date), 
+         Day = day(date), 
+          Year = as.factor(year(date)))
 
+                
 Dnipro_2022 <- Ukraine_Processed %>%
   filter(City %in% "Dnipro")%>%
-  subset(date > "2022-2-28" & date < "2022-04-01") 
-Dnipro_2022$date = as.yearmon(Dnipro_2022$date)
+  subset(date > "2022-2-28" & date < "2022-04-01") %>%
+   mutate(Month = month(date), 
+         Day = day(date), 
+          Year = as.factor(year(date)))
 
 Lviv_2021 <- Ukraine_Processed %>% 
   filter(City %in% "Lviv") %>%
-  subset(date > "2021-2-28" & date < "2021-04-01")
+  subset(date > "2021-2-28" & date < "2021-04-01") %>%
+  mutate(Month = month(date), 
+         Day = day(date), 
+          Year = as.factor(year(date)))
 
 Lviv_2022 <- Ukraine_Processed %>% 
   filter(City %in% "Lviv") %>%
-  subset(date > "2022-2-28" & date < "2022-04-01") 
+  subset(date > "2022-2-28" & date < "2022-04-01") %>%
+  mutate(Month = month(date), 
+         Day = day(date), 
+          Year = as.factor(year(date)))
 
-#FULL_DNIPRO <- bind_rows(Dnipro_2021,Dnipro_2022)
+FULL_DNIPRO <- bind_rows(Dnipro_2021,Dnipro_2022)
 
-#FULL_LVIV <- bind_rows(Lviv_2021,Lviv_2022)
+FULL_LVIV <- bind_rows(Lviv_2021,Lviv_2022)
 
 ```
 
@@ -110,21 +121,23 @@ Lviv | (Processed) Lviv air quality data, showing PM2.5 and PM10 values
 
 # Exploratory Analysis  
 
-```{r Plotting PM2.5, fig.cap = "Comparing PM2.5 in Dnipro and Lviv, Ukraine} 
+```{r Plotting.PM25, fig.cap = "Comparing PM2.5 in Dnipro and Lviv, Ukraine"} 
 # DNIPRO PM2.5
-PM25_Dnipro_PLOT <- ggplot(rbind(Dnipro_2021,Dnipro_2022), aes(month(date, label = TRUE, abbr = TRUE)), value, group=as.Date(year(Dnipro_2021$date)), color =as.Date(year(Dnipro_2021$date)))+ 
-  #(x = date, y = pm25, color = date))+ 
+
+#group=as.Date(year(Dnipro_2021$date)), color =as.Date(year(Dnipro_2021$date)))
+#aes(month(date, label = TRUE, abbr = TRUE)) 
+
+PM25_Dnipro_PLOT <- 
+  ggplot(FULL_DNIPRO) + 
+  (aes(x = Day, y = pm25, color = Year))+ 
   geom_line()+  
   geom_point()+
-  scale_x_date(limits = as.Date(c("2022-03-01", "2022-03-31")))+ 
-  xlab("Date")+ 
-  ylab("PM2.5")+ 
-  labs(title = "        Observing PM2.5 Values in Dnipro, Ukraine")+
-  ylim(0,75)+ 
-  annotate(geom = "text", x = as.Date("2022-03-11"), y = 50, label ="March 11, 2022:")+ 
-  annotate(geom = "text", x = as.Date("2022-03-11"), y = 45, label ="Missile Attack") 
+  labs(x= "Date", y = "PM2.5",
+       title = " Observing PM2.5 Values in Dnipro, Ukraine")
+  #annotate(geom = "text", x = as.Date("2022-03-11"), y = 50, label ="March 11, 2022:")+ 
+  #annotate(geom = "text", x = as.Date("2022-03-11"), y = 45, label ="Missile Attack")
 
-print(PM25_Dnipro_PLOT) 
+print(PM25_Dnipro_PLOT)
 
 
 # LVIV PM2.5
