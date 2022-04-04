@@ -236,7 +236,47 @@ print(PM10_Lviv_and_Dnipro_PLOT)
 \newpage
 
 # Analysis
+```{r anova analysis}
 
+lviv.pm25.anova <- aov(data = FULL_LVIV , pm25 ~ Year)
+summary(lviv.pm25.anova)
+
+lviv.pm10.anova <- aov(data = FULL_LVIV , pm10 ~ Year)
+summary(lviv.pm10.anova)
+
+dnipro.pm25.anova <- aov(data = FULL_DNIPRO , pm25 ~ Year)
+summary(dnipro.pm25.anova)
+
+dnipro.pm10.anova <- aov(data = FULL_DNIPRO , pm10 ~ Year)
+summary(dnipro.pm10.anova)
+
+dnipro.lviv.pm25.anova <- aov(data = FULL_Air_quality , pm25 ~ City)
+summary(dnipro.lviv.pm25.anova)
+
+dnipro.lviv.pm10.anova <- aov(data = FULL_Air_quality , pm10 ~ City)
+summary(dnipro.lviv.pm10.anova)
+```
+
+```{r lm analysis}
+
+lviv.25.lm <- lm(data = FULL_LVIV, pm25 ~ Year) 
+summary(lviv.25.lm) 
+
+lviv.10.lm <- lm(data = FULL_LVIV, pm10 ~ Year) 
+summary(lviv.10.lm) 
+
+dnipro.25.lm <- lm(data = FULL_DNIPRO, pm25 ~ Year) 
+summary(dnipro.25.lm) 
+
+dnipro.10.lm <- lm(data = FULL_DNIPRO, pm10 ~ Year) 
+summary(dnipro.10.lm) 
+
+dnipro.lviv.pm25.lm <- lm(data = FULL_Air_quality, pm25 ~ City) 
+summary(dnipro.lviv.pm25.lm)
+
+dnipro.lviv.pm10.lm <- lm(data = FULL_Air_quality, pm10 ~ City) 
+summary(dnipro.lviv.pm10.lm)
+```
 
 
 ## Question 1: <insert specific question here and add additional subsections for additional questions below, if needed>
