@@ -180,7 +180,7 @@ Full_air_quality_21_22 <-Full_air_quality_21_22 %>%
   mutate(City_Year=(paste(City,"-",Year)))
 
 PM25_heatmap <- ggplot(Full_air_quality_21_22, aes(x = City_Year, y = pm25, color = pm25))+
-geom_tile() + scale_fill_gradient()
+geom_point(aes(color = )) 
 
 print(PM25_heatmap) 
 
