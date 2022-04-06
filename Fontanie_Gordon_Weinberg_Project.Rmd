@@ -136,6 +136,39 @@ FULL_LVIV | Dnipro_2021 + Dnipro_2022 combined
 \newpage
 
 # Exploratory Analysis  
+```{r summary statistics, echo = FALSE}
+
+#summary statistics PM2.5
+air.quality.summary.PM25 <- Ukraine_Processed %>%
+  group_by(City) %>%
+  summarize(
+    mean_PM2.5 = mean(pm25),
+    min_PM2.5 = min(pm25),
+    max_PM2.5 = max(pm25),
+    sd_PM2.5 = sd(pm25)
+)
+
+#summary statistics PM10
+air.quality.summary.PM10 <- Ukraine_Processed %>%
+  group_by(City) %>%
+  summarize(
+    mean_PM10 = mean(pm10),
+    min_PM10 = min(pm10),
+    max_PM10 = max(pm10),
+    sd_PM10 = sd(pm10)
+)
+
+```
+
+```{r PM2.5 + PM10, echo = FALSE}
+#PM2.5
+knitr::kable(air.quality.summary.PM25, caption = "PM2.5 Levels by City", 
+             col.names = c("City", "Mean", "Min", "Max", "Std Dev"))
+
+#PM10
+knitr::kable(air.quality.summary.PM10, caption = "PM10 Levels by City", 
+             col.names = c("City", "Mean", "Min", "Max", "Std Dev"))
+```
 
 ```{r Plotting.PM25, fig.cap = "Comparing PM2.5 in Dnipro and Lviv, Ukraine"} 
 # DNIPRO PM2.5

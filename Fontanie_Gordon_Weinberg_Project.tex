@@ -167,10 +167,10 @@ Describe sources of data here (input Julia paragraph)
   \FunctionTok{drop\_na}\NormalTok{(pm25) }
 
 \CommentTok{\# Setting Date }
-
 \NormalTok{Ukraine\_Processed}\SpecialCharTok{$}\NormalTok{date }\OtherTok{\textless{}{-}} \FunctionTok{as.Date}\NormalTok{(Ukraine\_Processed}\SpecialCharTok{$}\NormalTok{date, }\StringTok{"\%m/\%d/\%y"}\NormalTok{)}
+\FunctionTok{write.csv}\NormalTok{(Ukraine\_Processed, }\AttributeTok{row.names =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{file =} \StringTok{"./Data/Processed/Ukraine\_Processed.csv"}\NormalTok{)}
 
-\CommentTok{\# Creating subsets by city  }
+\CommentTok{\# Creating subsets by city, month, and year}
 
 \NormalTok{Dnipro\_2021 }\OtherTok{\textless{}{-}}\NormalTok{ Ukraine\_Processed }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{filter}\NormalTok{(City }\SpecialCharTok{\%in\%} \StringTok{"Dnipro"}\NormalTok{)}\SpecialCharTok{\%\textgreater{}\%}
@@ -178,6 +178,7 @@ Describe sources of data here (input Julia paragraph)
   \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Month =} \FunctionTok{month}\NormalTok{(date), }
          \AttributeTok{Day =} \FunctionTok{day}\NormalTok{(date), }
           \AttributeTok{Year =} \FunctionTok{as.factor}\NormalTok{(}\FunctionTok{year}\NormalTok{(date)))}
+\FunctionTok{write.csv}\NormalTok{(Dnipro\_2021, }\AttributeTok{row.names =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{file =} \StringTok{"./Data/Processed/Dnipro\_2021.csv"}\NormalTok{)}
 
                 
 \NormalTok{Dnipro\_2022 }\OtherTok{\textless{}{-}}\NormalTok{ Ukraine\_Processed }\SpecialCharTok{\%\textgreater{}\%}
@@ -187,12 +188,15 @@ Describe sources of data here (input Julia paragraph)
          \AttributeTok{Day =} \FunctionTok{day}\NormalTok{(date), }
           \AttributeTok{Year =} \FunctionTok{as.factor}\NormalTok{(}\FunctionTok{year}\NormalTok{(date)))}
 
+\FunctionTok{write.csv}\NormalTok{(Dnipro\_2022, }\AttributeTok{row.names =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{file =} \StringTok{"./Data/Processed/Dnipro\_2022.csv"}\NormalTok{)}
+
 \NormalTok{Lviv\_2021 }\OtherTok{\textless{}{-}}\NormalTok{ Ukraine\_Processed }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{filter}\NormalTok{(City }\SpecialCharTok{\%in\%} \StringTok{"Lviv"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{subset}\NormalTok{(date }\SpecialCharTok{\textgreater{}} \StringTok{"2021{-}2{-}28"} \SpecialCharTok{\&}\NormalTok{ date }\SpecialCharTok{\textless{}} \StringTok{"2021{-}04{-}01"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Month =} \FunctionTok{month}\NormalTok{(date), }
          \AttributeTok{Day =} \FunctionTok{day}\NormalTok{(date), }
           \AttributeTok{Year =} \FunctionTok{as.factor}\NormalTok{(}\FunctionTok{year}\NormalTok{(date)))}
+\FunctionTok{write.csv}\NormalTok{(Lviv\_2021, }\AttributeTok{row.names =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{file =} \StringTok{"./Data/Processed/Lviv\_2021.csv"}\NormalTok{)}
 
 \NormalTok{Lviv\_2022 }\OtherTok{\textless{}{-}}\NormalTok{ Ukraine\_Processed }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{filter}\NormalTok{(City }\SpecialCharTok{\%in\%} \StringTok{"Lviv"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
@@ -200,10 +204,14 @@ Describe sources of data here (input Julia paragraph)
   \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Month =} \FunctionTok{month}\NormalTok{(date), }
          \AttributeTok{Day =} \FunctionTok{day}\NormalTok{(date), }
           \AttributeTok{Year =} \FunctionTok{as.factor}\NormalTok{(}\FunctionTok{year}\NormalTok{(date)))}
+\FunctionTok{write.csv}\NormalTok{(Lviv\_2022, }\AttributeTok{row.names =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{file =} \StringTok{"./Data/Processed/Lviv\_2022.csv"}\NormalTok{)}
 
+\CommentTok{\#creating subsets by city}
 \NormalTok{FULL\_DNIPRO }\OtherTok{\textless{}{-}} \FunctionTok{bind\_rows}\NormalTok{(Dnipro\_2021,Dnipro\_2022)}
+\FunctionTok{write.csv}\NormalTok{(FULL\_DNIPRO, }\AttributeTok{row.names =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{file =} \StringTok{"./Data/Processed/FULL\_DNIPRO.csv"}\NormalTok{)}
 
 \NormalTok{FULL\_LVIV }\OtherTok{\textless{}{-}} \FunctionTok{bind\_rows}\NormalTok{(Lviv\_2021,Lviv\_2022)}
+\FunctionTok{write.csv}\NormalTok{(FULL\_LVIV, }\AttributeTok{row.names =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{file =} \StringTok{"./Data/Processed/FULL\_LVIV.csv"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -218,8 +226,12 @@ Data File Name & Description \\
 \endhead
 UkraineData & (Raw) Ukraine air quality data \\
 Ukraine\_Processed & (Processed) Ukraine air quality data, w/o na's \\
-Dnipro & (Processed) Dnipro air quality data, w/ PM2.5 and PM10 \\
-Lviv & (Processed) Lviv air quality data w/ PM2.5 and PM10 \\
+Dnipro\_2021 & Dnipro PM2.5 + PM10, Mar 2021 \\
+Dnipro\_2022 & Dnipro PM2.5+ PM10, Mar 2022 \\
+Lviv\_2021 & Lviv PM 2.5 + PM10, Mar 2021 \\
+Lviv\_2022 & Lviv PM 2.5 + PM10, Mar 2022 \\
+FULL\_DNIPRO & Lviv\_2021 + Lviv\_2022 combined \\
+FULL\_LVIV & Dnipro\_2021 + Dnipro\_2022 combined \\
 \bottomrule
 \end{longtable}
 
@@ -227,6 +239,36 @@ Lviv & (Processed) Lviv air quality data w/ PM2.5 and PM10 \\
 
 \hypertarget{exploratory-analysis}{%
 \section{Exploratory Analysis}\label{exploratory-analysis}}
+
+\begin{longtable}[]{@{}lrrrr@{}}
+\caption{PM2.5 Levels by City}\tabularnewline
+\toprule
+City & Mean & Min & Max & Std Dev \\
+\midrule
+\endfirsthead
+\toprule
+City & Mean & Min & Max & Std Dev \\
+\midrule
+\endhead
+Dnipro & 49.41546 & 4 & 160 & 25.91608 \\
+Lviv & 60.51086 & 8 & 518 & 34.79405 \\
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}lrrrr@{}}
+\caption{PM10 Levels by City}\tabularnewline
+\toprule
+City & Mean & Min & Max & Std Dev \\
+\midrule
+\endfirsthead
+\toprule
+City & Mean & Min & Max & Std Dev \\
+\midrule
+\endhead
+Dnipro & 24.73309 & 2 & 120 & 15.82186 \\
+Lviv & 30.29246 & 4 & 606 & 26.78330 \\
+\bottomrule
+\end{longtable}
 
 \begin{Shaded}
 \begin{Highlighting}[]
