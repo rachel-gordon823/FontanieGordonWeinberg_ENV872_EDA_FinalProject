@@ -192,6 +192,12 @@ FULL\_LVIV & Dnipro\_2021 + Dnipro\_2022 combined \\
 \end{Highlighting}
 \end{Shaded}
 
+\begin{figure}
+\centering
+\includegraphics{Fontanie_Gordon_Weinberg_Project_files/figure-latex/heat map of air pollution-1.pdf}
+\caption{Air Pollution Heat Map}
+\end{figure}
+
 \begin{longtable}[]{@{}lrrrr@{}}
 \caption{PM2.5 Levels by City}\tabularnewline
 \toprule
@@ -222,139 +228,14 @@ Lviv & 30.29246 & 4 & 606 & 26.78330 \\
 \bottomrule
 \end{longtable}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# DNIPRO PM2.5}
-
-\CommentTok{\#group=as.Date(year(Dnipro\_2021$date)), color =as.Date(year(Dnipro\_2021$date)))}
-\CommentTok{\#aes(month(date, label = TRUE, abbr = TRUE)) }
-
-\NormalTok{PM25\_Dnipro\_PLOT }\OtherTok{\textless{}{-}} 
-  \FunctionTok{ggplot}\NormalTok{(FULL\_DNIPRO) }\SpecialCharTok{+} 
-\NormalTok{  (}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Day, }\AttributeTok{y =}\NormalTok{ pm25, }\AttributeTok{color =}\NormalTok{ Year))}\SpecialCharTok{+} 
-  \FunctionTok{geom\_line}\NormalTok{()}\SpecialCharTok{+}  
-  \FunctionTok{geom\_point}\NormalTok{()}\SpecialCharTok{+}
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x=} \StringTok{"Days in March"}\NormalTok{, }\AttributeTok{y =} \StringTok{"PM2.5"}\NormalTok{,}
-  \AttributeTok{title =} \StringTok{"          Observing PM2.5 Values in Dnipro, Ukraine"}\NormalTok{)}\SpecialCharTok{+} 
-  \FunctionTok{annotate}\NormalTok{(}\AttributeTok{geom =} \StringTok{"text"}\NormalTok{, }\AttributeTok{x =} \DecValTok{11}\NormalTok{, }\AttributeTok{y =} \DecValTok{68}\NormalTok{, }\AttributeTok{label =}\StringTok{"March 11, 2022:"}\NormalTok{)}\SpecialCharTok{+} 
-  \FunctionTok{annotate}\NormalTok{(}\AttributeTok{geom =} \StringTok{"text"}\NormalTok{, }\AttributeTok{x =} \DecValTok{11}\NormalTok{, }\AttributeTok{y =} \DecValTok{59}\NormalTok{, }\AttributeTok{label =}\StringTok{"Missile Attack"}\NormalTok{)}
-\FunctionTok{print}\NormalTok{(PM25\_Dnipro\_PLOT)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-\centering
 \includegraphics{Fontanie_Gordon_Weinberg_Project_files/figure-latex/Plotting.PM25-1.pdf}
-\caption{Comparing PM2.5 in Dnipro and Lviv, Ukraine}
-\end{figure}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# LVIV PM2.5}
-\NormalTok{PM25\_Lviv\_PLOT }\OtherTok{\textless{}{-}} 
-  \FunctionTok{ggplot}\NormalTok{(FULL\_LVIV) }\SpecialCharTok{+} 
-\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Day, }\AttributeTok{y =}\NormalTok{ pm25, }\AttributeTok{color =}\NormalTok{ Year)) }\SpecialCharTok{+} 
-              \FunctionTok{geom\_line}\NormalTok{()}\SpecialCharTok{+}  
-  \FunctionTok{geom\_point}\NormalTok{()}\SpecialCharTok{+}
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Days in March"}\NormalTok{, }\AttributeTok{y=} \StringTok{"PM2.5"}\NormalTok{,}
-  \AttributeTok{title =} \StringTok{"          Observing PM2.5 Values in Lviv, Ukraine"}\NormalTok{)}\SpecialCharTok{+} 
-  \FunctionTok{annotate}\NormalTok{(}\AttributeTok{geom =} \StringTok{"text"}\NormalTok{, }\AttributeTok{x =} \DecValTok{18}\NormalTok{, }\AttributeTok{y =} \DecValTok{150}\NormalTok{, }\AttributeTok{label =}\StringTok{"March 18, 2022:"}\NormalTok{)}\SpecialCharTok{+} 
-  \FunctionTok{annotate}\NormalTok{(}\AttributeTok{geom =} \StringTok{"text"}\NormalTok{, }\AttributeTok{x =} \DecValTok{18}\NormalTok{, }\AttributeTok{y =} \DecValTok{142}\NormalTok{, }\AttributeTok{label =}\StringTok{"1st Missile Attack"}\NormalTok{)}\SpecialCharTok{+} 
-  \FunctionTok{annotate}\NormalTok{(}\AttributeTok{geom =} \StringTok{"text"}\NormalTok{, }\AttributeTok{x =} \DecValTok{26}\NormalTok{, }\AttributeTok{y =} \DecValTok{106}\NormalTok{, }\AttributeTok{label =}\StringTok{"March 26, 2022:"}\NormalTok{)}\SpecialCharTok{+} 
-  \FunctionTok{annotate}\NormalTok{(}\AttributeTok{geom =} \StringTok{"text"}\NormalTok{, }\AttributeTok{x =} \DecValTok{26}\NormalTok{, }\AttributeTok{y =} \DecValTok{98}\NormalTok{, }\AttributeTok{label =}\StringTok{"2nd Missile Attack"}\NormalTok{)}
-\FunctionTok{print}\NormalTok{(PM25\_Lviv\_PLOT)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-\centering
 \includegraphics{Fontanie_Gordon_Weinberg_Project_files/figure-latex/Plotting.PM25-2.pdf}
-\caption{Comparing PM2.5 in Dnipro and Lviv, Ukraine}
-\end{figure}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\#DNIPRO PM2.5}
-\NormalTok{PM10\_Dnipro\_PLOT }\OtherTok{\textless{}{-}}\FunctionTok{ggplot}\NormalTok{(FULL\_DNIPRO) }\SpecialCharTok{+} 
-\NormalTok{  (}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Day, }\AttributeTok{y =}\NormalTok{ pm10, }\AttributeTok{color =}\NormalTok{ Year))}\SpecialCharTok{+} 
-  \FunctionTok{geom\_line}\NormalTok{()}\SpecialCharTok{+}  
-  \FunctionTok{geom\_point}\NormalTok{()}\SpecialCharTok{+}
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x=} \StringTok{"Days in March"}\NormalTok{, }\AttributeTok{y =} \StringTok{"PM10"}\NormalTok{,}
-  \AttributeTok{title =} \StringTok{"         Observing PM10 Values in Dnipro, Ukraine"}\NormalTok{)}\SpecialCharTok{+} 
-  \FunctionTok{annotate}\NormalTok{(}\AttributeTok{geom =} \StringTok{"text"}\NormalTok{, }\AttributeTok{x =} \DecValTok{11}\NormalTok{, }\AttributeTok{y =} \DecValTok{39}\NormalTok{, }\AttributeTok{label =}\StringTok{"March 11, 2022:"}\NormalTok{)}\SpecialCharTok{+} 
-  \FunctionTok{annotate}\NormalTok{(}\AttributeTok{geom =} \StringTok{"text"}\NormalTok{, }\AttributeTok{x =} \DecValTok{11}\NormalTok{, }\AttributeTok{y =} \DecValTok{35}\NormalTok{, }\AttributeTok{label =}\StringTok{"Missile Attack"}\NormalTok{)}
-\FunctionTok{print}\NormalTok{(PM10\_Dnipro\_PLOT) }
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-\centering
 \includegraphics{Fontanie_Gordon_Weinberg_Project_files/figure-latex/Plotting PM10-1.pdf}
-\caption{Comparing PM10 in Dnipro and Lviv, Ukraine}
-\end{figure}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\#LVIV PM10}
-\NormalTok{PM10\_Lviv\_PLOT }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(FULL\_LVIV) }\SpecialCharTok{+} 
-\NormalTok{  (}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Day, }\AttributeTok{y =}\NormalTok{ pm10, }\AttributeTok{color =}\NormalTok{ Year)) }\SpecialCharTok{+} 
-  \FunctionTok{geom\_line}\NormalTok{()}\SpecialCharTok{+}  
-  \FunctionTok{geom\_point}\NormalTok{()}\SpecialCharTok{+}
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Days in March"}\NormalTok{, }\AttributeTok{y=} \StringTok{"PM10"}\NormalTok{,}
-  \AttributeTok{title =} \StringTok{"         Observing PM10 Values in Lviv, Ukraine"}\NormalTok{)}\SpecialCharTok{+}    
-  \FunctionTok{annotate}\NormalTok{(}\AttributeTok{geom =} \StringTok{"text"}\NormalTok{, }\AttributeTok{x =} \DecValTok{18}\NormalTok{, }\AttributeTok{y =} \DecValTok{70}\NormalTok{, }\AttributeTok{label =}\StringTok{"March 18, 2022:"}\NormalTok{)}\SpecialCharTok{+} 
-  \FunctionTok{annotate}\NormalTok{(}\AttributeTok{geom =} \StringTok{"text"}\NormalTok{, }\AttributeTok{x =} \DecValTok{18}\NormalTok{, }\AttributeTok{y =} \DecValTok{66}\NormalTok{, }\AttributeTok{label =}\StringTok{"1st Missile Attack"}\NormalTok{)}\SpecialCharTok{+} 
-  \FunctionTok{annotate}\NormalTok{(}\AttributeTok{geom =} \StringTok{"text"}\NormalTok{, }\AttributeTok{x =} \DecValTok{26}\NormalTok{, }\AttributeTok{y =} \DecValTok{55}\NormalTok{, }\AttributeTok{label =}\StringTok{"March 26, 2022:"}\NormalTok{)}\SpecialCharTok{+} 
-  \FunctionTok{annotate}\NormalTok{(}\AttributeTok{geom =} \StringTok{"text"}\NormalTok{, }\AttributeTok{x =} \DecValTok{26}\NormalTok{, }\AttributeTok{y =} \DecValTok{51}\NormalTok{, }\AttributeTok{label =}\StringTok{"2nd Missile Attack"}\NormalTok{)}
-\FunctionTok{print}\NormalTok{(PM10\_Lviv\_PLOT)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-\centering
 \includegraphics{Fontanie_Gordon_Weinberg_Project_files/figure-latex/Plotting PM10-2.pdf}
-\caption{Comparing PM10 in Dnipro and Lviv, Ukraine}
-\end{figure}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{FULL\_Air\_quality }\OtherTok{\textless{}{-}} \FunctionTok{bind\_rows}\NormalTok{(Dnipro\_2022,Lviv\_2022)}
-
-\NormalTok{PM25\_Lviv\_and\_Dnipro\_PLOT }\OtherTok{\textless{}{-}}
-  \FunctionTok{ggplot}\NormalTok{(FULL\_Air\_quality) }\SpecialCharTok{+} 
-\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Day, }\AttributeTok{y =}\NormalTok{ pm25, }\AttributeTok{color =}\NormalTok{ City)) }\SpecialCharTok{+} 
-              \FunctionTok{geom\_line}\NormalTok{()}\SpecialCharTok{+}  
-  \FunctionTok{geom\_point}\NormalTok{()}\SpecialCharTok{+}
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Date"}\NormalTok{, }\AttributeTok{y=} \StringTok{"PM25"}\NormalTok{,}
-       \AttributeTok{title =} \StringTok{"Observing PM25 Values in 2022 Lviv and Dnipro Ukraine"}\NormalTok{)  }
-\FunctionTok{print}\NormalTok{(PM25\_Lviv\_and\_Dnipro\_PLOT)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-\centering
 \includegraphics{Fontanie_Gordon_Weinberg_Project_files/figure-latex/Plotting Lviv vs Dnipro-1.pdf}
-\caption{Comparing Air Pollution in Lviv vs Dnipro}
-\end{figure}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{PM10\_Lviv\_and\_Dnipro\_PLOT }\OtherTok{\textless{}{-}}
-  \FunctionTok{ggplot}\NormalTok{(FULL\_Air\_quality) }\SpecialCharTok{+} 
-\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Day, }\AttributeTok{y =}\NormalTok{ pm10, }\AttributeTok{color =}\NormalTok{ City)) }\SpecialCharTok{+} 
-              \FunctionTok{geom\_line}\NormalTok{()}\SpecialCharTok{+}  
-  \FunctionTok{geom\_point}\NormalTok{()}\SpecialCharTok{+}
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Date"}\NormalTok{, }\AttributeTok{y=} \StringTok{"PM10"}\NormalTok{,}
-       \AttributeTok{title =} \StringTok{"Observing PM10 Values in 2022 Lviv and Dnipro Ukraine"}\NormalTok{)  }
-\FunctionTok{print}\NormalTok{(PM10\_Lviv\_and\_Dnipro\_PLOT)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-\centering
 \includegraphics{Fontanie_Gordon_Weinberg_Project_files/figure-latex/Plotting Lviv vs Dnipro-2.pdf}
-\caption{Comparing Air Pollution in Lviv vs Dnipro}
-\end{figure}
 
 \newpage
 
@@ -368,24 +249,17 @@ invasion?}\label{question-1-are-there-significant-differences-in-air-quality-lev
 
 {[}insert text about how we analyzed{]}
 
-\hypertarget{question-2-do-air-quality-levels-worsen-in-affected-cities-around-missile-attack-events}{%
-\subsection{Question 2: Do air quality levels worsen in affected cities
-around missile attack
-events?}\label{question-2-do-air-quality-levels-worsen-in-affected-cities-around-missile-attack-events}}
-
-{[}insert text about how we analyzed{]}
-
-\hypertarget{question-3-are-there-significant-differences-in-air-quality-levels-in-affected-ukrainian-cities-before-and-during-the-russian-attacks}{%
-\subsection{Question 3: Are there significant differences in air quality
+\hypertarget{question-2-are-there-significant-differences-in-air-quality-levels-in-affected-ukrainian-cities-before-and-during-the-russian-attacks}{%
+\subsection{Question 2: Are there significant differences in air quality
 levels in affected Ukrainian cities before and during the Russian
-attacks?}\label{question-3-are-there-significant-differences-in-air-quality-levels-in-affected-ukrainian-cities-before-and-during-the-russian-attacks}}
+attacks?}\label{question-2-are-there-significant-differences-in-air-quality-levels-in-affected-ukrainian-cities-before-and-during-the-russian-attacks}}
 
 {[}insert text about how we analyzed{]}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{lviv.}\FloatTok{25.}\NormalTok{lm }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(}\AttributeTok{data =}\NormalTok{ FULL\_LVIV, pm25 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Year) }
-\FunctionTok{summary}\NormalTok{(lviv.}\FloatTok{25.}\NormalTok{lm) }
+\NormalTok{lviv.}\FloatTok{25.}\NormalTok{lm }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(}\AttributeTok{data =}\NormalTok{ FULL\_LVIV, pm25 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Year)}
+\FunctionTok{summary}\NormalTok{(lviv.}\FloatTok{25.}\NormalTok{lm)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -562,17 +436,10 @@ invasion?}\label{question-1-are-there-significant-differences-in-air-quality-lev
 
 {[}insert text about summary{]}
 
-\hypertarget{question-2-do-air-quality-levels-worsen-in-affected-cities-around-missile-attack-events-1}{%
-\subsection{Question 2: Do air quality levels worsen in affected cities
-around missile attack
-events?}\label{question-2-do-air-quality-levels-worsen-in-affected-cities-around-missile-attack-events-1}}
-
-{[}insert text about summary{]}
-
-\hypertarget{question-3-are-there-significant-differences-in-air-quality-levels-in-affected-ukrainian-cities-before-and-during-the-russian-attacks-1}{%
-\subsection{Question 3: Are there significant differences in air quality
+\hypertarget{question-2-are-there-significant-differences-in-air-quality-levels-in-affected-ukrainian-cities-before-and-during-the-russian-attacks-1}{%
+\subsection{Question 2: Are there significant differences in air quality
 levels in affected Ukrainian cities before and during the Russian
-attacks?}\label{question-3-are-there-significant-differences-in-air-quality-levels-in-affected-ukrainian-cities-before-and-during-the-russian-attacks-1}}
+attacks?}\label{question-2-are-there-significant-differences-in-air-quality-levels-in-affected-ukrainian-cities-before-and-during-the-russian-attacks-1}}
 
 {[}insert text about summary{]}
 
