@@ -65,7 +65,7 @@ Lviv and Dnipro.
 
 > Describe sources of data here (input Julia paragraph)
 
-```{r Data wrangling}  
+```{r Data wrangling, echo = FALSE}  
 # Initial wrangling 
 
 Ukraine_Processed <- UkraineData %>% 
@@ -134,7 +134,16 @@ FULL_DNIPRO | Lviv_2021 + Lviv_2022 combined
 FULL_LVIV | Dnipro_2021 + Dnipro_2022 combined
 \newpage
 
-# Exploratory Analysis  
+# Exploratory Analysis 
+
+
+```{r mapping lviv and dnipro}
+#I'm confused if we need to upload a shapefile of ukraine so that we can make a map but maybe im really overthinking this - just wanted to put it as a comment here so i dont forget 
+
+#https://simplemaps.com/data/ua-cities
+#we can download a csv of all the cities with lat and long from this link and we could make a map but idk if thats what you guys were thinking
+```
+
 ```{r summary statistics, echo = FALSE}
 
 #summary statistics PM2.5
@@ -158,6 +167,24 @@ air.quality.summary.PM10 <- Ukraine_Processed %>%
 )
 
 ```
+
+```{r heat map of air pollution, echo=FALSE, fig.cap="Air Pollution Heat Map"}
+
+Full_air_quality_21_22 <- bind_rows(FULL_LVIV, FULL_DNIPRO)
+
+Full_air_quality_21_22 <- Full_air_quality_21_22 %>%
+  mutate(Year = as.factor(Year))
+
+Full_air_quality_21_22 <-Full_air_quality_21_22 %>%
+  mutate(City_Year=(paste(City,"-",Year)))
+
+PM25_heatmap <- ggplot(Full_air_quality_21_22, aes(x = City_Year, y = pm25, color = pm25))+
+geom_tile() + scale_fill_gradient()
+
+print(PM25_heatmap) 
+
+```
+
 
 ```{r PM2.5 + PM10, echo = FALSE}
 #PM2.5
@@ -263,28 +290,16 @@ print(PM10_Lviv_and_Dnipro_PLOT)
 \newpage
 
 # Analysis
-```{r anova analysis}
 
-#after doing all these anovas i realized im not sure what this is really telling us and i think they might be super uncessary so i did an lm analysis in the code chunk below
+## Question 1: Are there significant differences in air quality levels between affected Ukrainian cities during the Russian invasion?
 
-lviv.pm25.anova <- aov(data = FULL_LVIV , pm25 ~ Year)
-summary(lviv.pm25.anova)
+[insert text about how we analyzed]
 
-lviv.pm10.anova <- aov(data = FULL_LVIV , pm10 ~ Year)
-summary(lviv.pm10.anova)
+## Question 2:  Do air quality levels worsen in affected cities around missile attack events?
+[insert text about how we analyzed]
 
-dnipro.pm25.anova <- aov(data = FULL_DNIPRO , pm25 ~ Year)
-summary(dnipro.pm25.anova)
-
-dnipro.pm10.anova <- aov(data = FULL_DNIPRO , pm10 ~ Year)
-summary(dnipro.pm10.anova)
-
-dnipro.lviv.pm25.anova <- aov(data = FULL_Air_quality , pm25 ~ City)
-summary(dnipro.lviv.pm25.anova)
-
-dnipro.lviv.pm10.anova <- aov(data = FULL_Air_quality , pm10 ~ City)
-summary(dnipro.lviv.pm10.anova)
-```
+## Question 3: Are there significant differences in air quality levels in affected Ukrainian cities before and during the Russian attacks? 
+[insert text about how we analyzed]
 
 ```{r lm analysis}
 
@@ -307,18 +322,7 @@ dnipro.lviv.pm10.lm <- lm(data = FULL_Air_quality, pm10 ~ City)
 summary(dnipro.lviv.pm10.lm)
 ```
 
-```{r mapping lviv and dnipro}
-#I'm confused if we need to upload a shapefile of ukraine so that we can make a map but maybe im really overthinking this - just wanted to put it as a comment here so i dont forget 
 
-#https://simplemaps.com/data/ua-cities
-#we can download a csv of all the cities with lat and long from this link and we could make a map but idk if thats what you guys were thinking
-```
-
-## Question 1: Are there significant differences in air quality levels between affected Ukrainian cities during the Russian invasion?
-
-## Question 2:  Do air quality levels worsen in affected cities around missile attack events?
-
-## Question 3: Are there significant differences in air quality levels in affected Ukrainian cities before and during the Russian attacks? 
 
 
 
@@ -326,7 +330,15 @@ summary(dnipro.lviv.pm10.lm)
 \newpage
 
 # Summary and Conclusions
+## Question 1: Are there significant differences in air quality levels between affected Ukrainian cities during the Russian invasion?
 
+[insert text about summary]
+
+## Question 2:  Do air quality levels worsen in affected cities around missile attack events?
+[insert text about summary]
+
+## Question 3: Are there significant differences in air quality levels in affected Ukrainian cities before and during the Russian attacks? 
+[insert text about summary]
 
 \newpage
 

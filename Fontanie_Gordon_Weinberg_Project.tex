@@ -158,63 +158,6 @@ first city attacked was Lviv and Dnipro. Kyiv was hit February 24th.
 Describe sources of data here (input Julia paragraph)
 \end{quote}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Initial wrangling }
-
-\NormalTok{Ukraine\_Processed }\OtherTok{\textless{}{-}}\NormalTok{ UkraineData }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{drop\_na}\NormalTok{(pm10) }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{drop\_na}\NormalTok{(pm25) }
-
-\CommentTok{\# Setting Date }
-\NormalTok{Ukraine\_Processed}\SpecialCharTok{$}\NormalTok{date }\OtherTok{\textless{}{-}} \FunctionTok{as.Date}\NormalTok{(Ukraine\_Processed}\SpecialCharTok{$}\NormalTok{date, }\StringTok{"\%m/\%d/\%y"}\NormalTok{)}
-\FunctionTok{write.csv}\NormalTok{(Ukraine\_Processed, }\AttributeTok{row.names =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{file =} \StringTok{"./Data/Processed/Ukraine\_Processed.csv"}\NormalTok{)}
-
-\CommentTok{\# Creating subsets by city, month, and year}
-
-\NormalTok{Dnipro\_2021 }\OtherTok{\textless{}{-}}\NormalTok{ Ukraine\_Processed }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{filter}\NormalTok{(City }\SpecialCharTok{\%in\%} \StringTok{"Dnipro"}\NormalTok{)}\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{subset}\NormalTok{(date }\SpecialCharTok{\textgreater{}} \StringTok{"2021{-}2{-}28"} \SpecialCharTok{\&}\NormalTok{ date }\SpecialCharTok{\textless{}} \StringTok{"2021{-}04{-}01"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Month =} \FunctionTok{month}\NormalTok{(date), }
-         \AttributeTok{Day =} \FunctionTok{day}\NormalTok{(date), }
-          \AttributeTok{Year =} \FunctionTok{as.factor}\NormalTok{(}\FunctionTok{year}\NormalTok{(date)))}
-\FunctionTok{write.csv}\NormalTok{(Dnipro\_2021, }\AttributeTok{row.names =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{file =} \StringTok{"./Data/Processed/Dnipro\_2021.csv"}\NormalTok{)}
-
-                
-\NormalTok{Dnipro\_2022 }\OtherTok{\textless{}{-}}\NormalTok{ Ukraine\_Processed }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{filter}\NormalTok{(City }\SpecialCharTok{\%in\%} \StringTok{"Dnipro"}\NormalTok{)}\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{subset}\NormalTok{(date }\SpecialCharTok{\textgreater{}} \StringTok{"2022{-}2{-}28"} \SpecialCharTok{\&}\NormalTok{ date }\SpecialCharTok{\textless{}} \StringTok{"2022{-}04{-}01"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-   \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Month =} \FunctionTok{month}\NormalTok{(date), }
-         \AttributeTok{Day =} \FunctionTok{day}\NormalTok{(date), }
-          \AttributeTok{Year =} \FunctionTok{as.factor}\NormalTok{(}\FunctionTok{year}\NormalTok{(date)))}
-
-\FunctionTok{write.csv}\NormalTok{(Dnipro\_2022, }\AttributeTok{row.names =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{file =} \StringTok{"./Data/Processed/Dnipro\_2022.csv"}\NormalTok{)}
-
-\NormalTok{Lviv\_2021 }\OtherTok{\textless{}{-}}\NormalTok{ Ukraine\_Processed }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{filter}\NormalTok{(City }\SpecialCharTok{\%in\%} \StringTok{"Lviv"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{subset}\NormalTok{(date }\SpecialCharTok{\textgreater{}} \StringTok{"2021{-}2{-}28"} \SpecialCharTok{\&}\NormalTok{ date }\SpecialCharTok{\textless{}} \StringTok{"2021{-}04{-}01"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Month =} \FunctionTok{month}\NormalTok{(date), }
-         \AttributeTok{Day =} \FunctionTok{day}\NormalTok{(date), }
-          \AttributeTok{Year =} \FunctionTok{as.factor}\NormalTok{(}\FunctionTok{year}\NormalTok{(date)))}
-\FunctionTok{write.csv}\NormalTok{(Lviv\_2021, }\AttributeTok{row.names =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{file =} \StringTok{"./Data/Processed/Lviv\_2021.csv"}\NormalTok{)}
-
-\NormalTok{Lviv\_2022 }\OtherTok{\textless{}{-}}\NormalTok{ Ukraine\_Processed }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{filter}\NormalTok{(City }\SpecialCharTok{\%in\%} \StringTok{"Lviv"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{subset}\NormalTok{(date }\SpecialCharTok{\textgreater{}} \StringTok{"2022{-}2{-}28"} \SpecialCharTok{\&}\NormalTok{ date }\SpecialCharTok{\textless{}} \StringTok{"2022{-}04{-}01"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Month =} \FunctionTok{month}\NormalTok{(date), }
-         \AttributeTok{Day =} \FunctionTok{day}\NormalTok{(date), }
-          \AttributeTok{Year =} \FunctionTok{as.factor}\NormalTok{(}\FunctionTok{year}\NormalTok{(date)))}
-\FunctionTok{write.csv}\NormalTok{(Lviv\_2022, }\AttributeTok{row.names =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{file =} \StringTok{"./Data/Processed/Lviv\_2022.csv"}\NormalTok{)}
-
-\CommentTok{\#creating subsets by city}
-\NormalTok{FULL\_DNIPRO }\OtherTok{\textless{}{-}} \FunctionTok{bind\_rows}\NormalTok{(Dnipro\_2021,Dnipro\_2022)}
-\FunctionTok{write.csv}\NormalTok{(FULL\_DNIPRO, }\AttributeTok{row.names =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{file =} \StringTok{"./Data/Processed/FULL\_DNIPRO.csv"}\NormalTok{)}
-
-\NormalTok{FULL\_LVIV }\OtherTok{\textless{}{-}} \FunctionTok{bind\_rows}\NormalTok{(Lviv\_2021,Lviv\_2022)}
-\FunctionTok{write.csv}\NormalTok{(FULL\_LVIV, }\AttributeTok{row.names =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{file =} \StringTok{"./Data/Processed/FULL\_LVIV.csv"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{quote}
 Explain data wrangling process here (shirley do this)
 \end{quote}
@@ -239,6 +182,15 @@ FULL\_LVIV & Dnipro\_2021 + Dnipro\_2022 combined \\
 
 \hypertarget{exploratory-analysis}{%
 \section{Exploratory Analysis}\label{exploratory-analysis}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#I\textquotesingle{}m confused if we need to upload a shapefile of ukraine so that we can make a map but maybe im really overthinking this {-} just wanted to put it as a comment here so i dont forget }
+
+\CommentTok{\#https://simplemaps.com/data/ua{-}cities}
+\CommentTok{\#we can download a csv of all the cities with lat and long from this link and we could make a map but idk if thats what you guys were thinking}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{longtable}[]{@{}lrrrr@{}}
 \caption{PM2.5 Levels by City}\tabularnewline
@@ -282,8 +234,10 @@ Lviv & 30.29246 & 4 & 606 & 26.78330 \\
 \NormalTok{  (}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Day, }\AttributeTok{y =}\NormalTok{ pm25, }\AttributeTok{color =}\NormalTok{ Year))}\SpecialCharTok{+} 
   \FunctionTok{geom\_line}\NormalTok{()}\SpecialCharTok{+}  
   \FunctionTok{geom\_point}\NormalTok{()}\SpecialCharTok{+}
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x=} \StringTok{"Date"}\NormalTok{, }\AttributeTok{y =} \StringTok{"PM2.5"}\NormalTok{,}
-       \AttributeTok{title =} \StringTok{" Observing PM2.5 Values in Dnipro, Ukraine"}\NormalTok{)}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x=} \StringTok{"Days in March"}\NormalTok{, }\AttributeTok{y =} \StringTok{"PM2.5"}\NormalTok{,}
+  \AttributeTok{title =} \StringTok{"          Observing PM2.5 Values in Dnipro, Ukraine"}\NormalTok{)}\SpecialCharTok{+} 
+  \FunctionTok{annotate}\NormalTok{(}\AttributeTok{geom =} \StringTok{"text"}\NormalTok{, }\AttributeTok{x =} \DecValTok{11}\NormalTok{, }\AttributeTok{y =} \DecValTok{68}\NormalTok{, }\AttributeTok{label =}\StringTok{"March 11, 2022:"}\NormalTok{)}\SpecialCharTok{+} 
+  \FunctionTok{annotate}\NormalTok{(}\AttributeTok{geom =} \StringTok{"text"}\NormalTok{, }\AttributeTok{x =} \DecValTok{11}\NormalTok{, }\AttributeTok{y =} \DecValTok{59}\NormalTok{, }\AttributeTok{label =}\StringTok{"Missile Attack"}\NormalTok{)}
 \FunctionTok{print}\NormalTok{(PM25\_Dnipro\_PLOT)}
 \end{Highlighting}
 \end{Shaded}
@@ -296,20 +250,18 @@ Lviv & 30.29246 & 4 & 606 & 26.78330 \\
 
 \begin{Shaded}
 \begin{Highlighting}[]
-  \CommentTok{\#annotate(geom = "text", x = as.Date("2022{-}03{-}11"), y = 50, label ="March 11, 2022:")+ }
-  \CommentTok{\#annotate(geom = "text", x = as.Date("2022{-}03{-}11"), y = 45, label ="Missile Attack")}
-
-
-
-
 \CommentTok{\# LVIV PM2.5}
 \NormalTok{PM25\_Lviv\_PLOT }\OtherTok{\textless{}{-}} 
   \FunctionTok{ggplot}\NormalTok{(FULL\_LVIV) }\SpecialCharTok{+} 
 \NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Day, }\AttributeTok{y =}\NormalTok{ pm25, }\AttributeTok{color =}\NormalTok{ Year)) }\SpecialCharTok{+} 
               \FunctionTok{geom\_line}\NormalTok{()}\SpecialCharTok{+}  
   \FunctionTok{geom\_point}\NormalTok{()}\SpecialCharTok{+}
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Date"}\NormalTok{, }\AttributeTok{y=} \StringTok{"PM2.5"}\NormalTok{,}
-       \AttributeTok{title =} \StringTok{"Observing PM2.5 Values in Lviv Ukraine"}\NormalTok{)}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Days in March"}\NormalTok{, }\AttributeTok{y=} \StringTok{"PM2.5"}\NormalTok{,}
+  \AttributeTok{title =} \StringTok{"          Observing PM2.5 Values in Lviv, Ukraine"}\NormalTok{)}\SpecialCharTok{+} 
+  \FunctionTok{annotate}\NormalTok{(}\AttributeTok{geom =} \StringTok{"text"}\NormalTok{, }\AttributeTok{x =} \DecValTok{18}\NormalTok{, }\AttributeTok{y =} \DecValTok{150}\NormalTok{, }\AttributeTok{label =}\StringTok{"March 18, 2022:"}\NormalTok{)}\SpecialCharTok{+} 
+  \FunctionTok{annotate}\NormalTok{(}\AttributeTok{geom =} \StringTok{"text"}\NormalTok{, }\AttributeTok{x =} \DecValTok{18}\NormalTok{, }\AttributeTok{y =} \DecValTok{142}\NormalTok{, }\AttributeTok{label =}\StringTok{"1st Missile Attack"}\NormalTok{)}\SpecialCharTok{+} 
+  \FunctionTok{annotate}\NormalTok{(}\AttributeTok{geom =} \StringTok{"text"}\NormalTok{, }\AttributeTok{x =} \DecValTok{26}\NormalTok{, }\AttributeTok{y =} \DecValTok{106}\NormalTok{, }\AttributeTok{label =}\StringTok{"March 26, 2022:"}\NormalTok{)}\SpecialCharTok{+} 
+  \FunctionTok{annotate}\NormalTok{(}\AttributeTok{geom =} \StringTok{"text"}\NormalTok{, }\AttributeTok{x =} \DecValTok{26}\NormalTok{, }\AttributeTok{y =} \DecValTok{98}\NormalTok{, }\AttributeTok{label =}\StringTok{"2nd Missile Attack"}\NormalTok{)}
 \FunctionTok{print}\NormalTok{(PM25\_Lviv\_PLOT)}
 \end{Highlighting}
 \end{Shaded}
@@ -322,27 +274,15 @@ Lviv & 30.29246 & 4 & 606 & 26.78330 \\
 
 \begin{Shaded}
 \begin{Highlighting}[]
-  \CommentTok{\#scale\_x\_date(limits = as.Date(c("2022{-}03{-}01", "2022{-}03{-}31")))+ }
-  \CommentTok{\#xlab("Date")+ }
-  \CommentTok{\#ylab("PM2.5")+ }
- \CommentTok{\# labs(title = "        Observing PM2.5 Values in Lviv, Ukraine")+}
-  \CommentTok{\#ylim(0,180)+}
- \CommentTok{\# annotate(geom = "text", x = as.Date("2022{-}03{-}18"), y = 165, label ="March 18, 2022:")+ }
-  \CommentTok{\#annotate(geom = "text", x = as.Date("2022{-}03{-}18"), y = 155, label ="1st Missile Attack")+ }
-  \CommentTok{\#annotate(geom = "text", x = as.Date("2022{-}03{-}26"), y = 110, label ="March 26, 2022:")+ }
-  \CommentTok{\#annotate(geom = "text", x = as.Date("2022{-}03{-}26"), y = 100, label ="2nd Missile Attack")}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \CommentTok{\#DNIPRO PM2.5}
 \NormalTok{PM10\_Dnipro\_PLOT }\OtherTok{\textless{}{-}}\FunctionTok{ggplot}\NormalTok{(FULL\_DNIPRO) }\SpecialCharTok{+} 
 \NormalTok{  (}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Day, }\AttributeTok{y =}\NormalTok{ pm10, }\AttributeTok{color =}\NormalTok{ Year))}\SpecialCharTok{+} 
   \FunctionTok{geom\_line}\NormalTok{()}\SpecialCharTok{+}  
   \FunctionTok{geom\_point}\NormalTok{()}\SpecialCharTok{+}
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x=} \StringTok{"Date"}\NormalTok{, }\AttributeTok{y =} \StringTok{"PM10"}\NormalTok{,}
-       \AttributeTok{title =} \StringTok{" Observing PM10 Values in Dnipro, Ukraine"}\NormalTok{)}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x=} \StringTok{"Days in March"}\NormalTok{, }\AttributeTok{y =} \StringTok{"PM10"}\NormalTok{,}
+  \AttributeTok{title =} \StringTok{"         Observing PM10 Values in Dnipro, Ukraine"}\NormalTok{)}\SpecialCharTok{+} 
+  \FunctionTok{annotate}\NormalTok{(}\AttributeTok{geom =} \StringTok{"text"}\NormalTok{, }\AttributeTok{x =} \DecValTok{11}\NormalTok{, }\AttributeTok{y =} \DecValTok{39}\NormalTok{, }\AttributeTok{label =}\StringTok{"March 11, 2022:"}\NormalTok{)}\SpecialCharTok{+} 
+  \FunctionTok{annotate}\NormalTok{(}\AttributeTok{geom =} \StringTok{"text"}\NormalTok{, }\AttributeTok{x =} \DecValTok{11}\NormalTok{, }\AttributeTok{y =} \DecValTok{35}\NormalTok{, }\AttributeTok{label =}\StringTok{"Missile Attack"}\NormalTok{)}
 \FunctionTok{print}\NormalTok{(PM10\_Dnipro\_PLOT) }
 \end{Highlighting}
 \end{Shaded}
@@ -355,26 +295,17 @@ Lviv & 30.29246 & 4 & 606 & 26.78330 \\
 
 \begin{Shaded}
 \begin{Highlighting}[]
-            \CommentTok{\#  geom\_line()+  }
- \CommentTok{\# geom\_point()+}
-  \CommentTok{\#scale\_x\_date(limits = as.Date(c("2022{-}03{-}01", "2022{-}03{-}31")))+ }
-  \CommentTok{\#xlab("Date")+ }
-  \CommentTok{\#ylab("PM10")+ }
-  \CommentTok{\#labs(title = "        Observing PM10 Values in Dnipro, Ukraine")+}
-  \CommentTok{\#ylim(0,40)+}
-  \CommentTok{\#annotate(geom = "text", x = as.Date("2022{-}03{-}11"), y = 25, label ="March 11, 2022:")+ }
-  \CommentTok{\#annotate(geom = "text", x = as.Date("2022{-}03{-}11"), y = 23, label ="Missile Attack")}
-  
-
-
 \CommentTok{\#LVIV PM10}
-\NormalTok{PM10\_Lviv\_PLOT }\OtherTok{\textless{}{-}}
-  \FunctionTok{ggplot}\NormalTok{(FULL\_LVIV) }\SpecialCharTok{+} 
-\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Day, }\AttributeTok{y =}\NormalTok{ pm10, }\AttributeTok{color =}\NormalTok{ Year)) }\SpecialCharTok{+} 
-              \FunctionTok{geom\_line}\NormalTok{()}\SpecialCharTok{+}  
+\NormalTok{PM10\_Lviv\_PLOT }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(FULL\_LVIV) }\SpecialCharTok{+} 
+\NormalTok{  (}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Day, }\AttributeTok{y =}\NormalTok{ pm10, }\AttributeTok{color =}\NormalTok{ Year)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_line}\NormalTok{()}\SpecialCharTok{+}  
   \FunctionTok{geom\_point}\NormalTok{()}\SpecialCharTok{+}
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Date"}\NormalTok{, }\AttributeTok{y=} \StringTok{"PM10"}\NormalTok{,}
-       \AttributeTok{title =} \StringTok{"Observing PM10 Values in Lviv Ukraine"}\NormalTok{)  }
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Days in March"}\NormalTok{, }\AttributeTok{y=} \StringTok{"PM10"}\NormalTok{,}
+  \AttributeTok{title =} \StringTok{"         Observing PM10 Values in Lviv, Ukraine"}\NormalTok{)}\SpecialCharTok{+}    
+  \FunctionTok{annotate}\NormalTok{(}\AttributeTok{geom =} \StringTok{"text"}\NormalTok{, }\AttributeTok{x =} \DecValTok{18}\NormalTok{, }\AttributeTok{y =} \DecValTok{70}\NormalTok{, }\AttributeTok{label =}\StringTok{"March 18, 2022:"}\NormalTok{)}\SpecialCharTok{+} 
+  \FunctionTok{annotate}\NormalTok{(}\AttributeTok{geom =} \StringTok{"text"}\NormalTok{, }\AttributeTok{x =} \DecValTok{18}\NormalTok{, }\AttributeTok{y =} \DecValTok{66}\NormalTok{, }\AttributeTok{label =}\StringTok{"1st Missile Attack"}\NormalTok{)}\SpecialCharTok{+} 
+  \FunctionTok{annotate}\NormalTok{(}\AttributeTok{geom =} \StringTok{"text"}\NormalTok{, }\AttributeTok{x =} \DecValTok{26}\NormalTok{, }\AttributeTok{y =} \DecValTok{55}\NormalTok{, }\AttributeTok{label =}\StringTok{"March 26, 2022:"}\NormalTok{)}\SpecialCharTok{+} 
+  \FunctionTok{annotate}\NormalTok{(}\AttributeTok{geom =} \StringTok{"text"}\NormalTok{, }\AttributeTok{x =} \DecValTok{26}\NormalTok{, }\AttributeTok{y =} \DecValTok{51}\NormalTok{, }\AttributeTok{label =}\StringTok{"2nd Missile Attack"}\NormalTok{)}
 \FunctionTok{print}\NormalTok{(PM10\_Lviv\_PLOT)}
 \end{Highlighting}
 \end{Shaded}
@@ -384,21 +315,6 @@ Lviv & 30.29246 & 4 & 606 & 26.78330 \\
 \includegraphics{Fontanie_Gordon_Weinberg_Project_files/figure-latex/Plotting PM10-2.pdf}
 \caption{Comparing PM10 in Dnipro and Lviv, Ukraine}
 \end{figure}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-  \CommentTok{\#geom\_point()+}
-  \CommentTok{\#scale\_x\_date(limits = as.Date(c("2022{-}03{-}01", "2022{-}03{-}31")))+ }
-  \CommentTok{\#xlab("Date")+ }
-  \CommentTok{\#ylab("PM10")+ }
-  \CommentTok{\#labs(title = "        Observing PM10 Values in Lviv, Ukraine")+}
-  \CommentTok{\#ylim(0,75)+}
-  \CommentTok{\#annotate(geom = "text", x = as.Date("2022{-}03{-}18"), y = 70, label ="March 18, 2022:")+ }
-  \CommentTok{\#annotate(geom = "text", x = as.Date("2022{-}03{-}18"), y = 66, label ="1st Missile Attack")+ }
-  \CommentTok{\#annotate(geom = "text", x = as.Date("2022{-}03{-}26"), y = 60, label ="March 26, 2022:")+ }
-  \CommentTok{\#annotate(geom = "text", x = as.Date("2022{-}03{-}26"), y = 56, label ="2nd Missile Attack")}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -445,93 +361,26 @@ Lviv & 30.29246 & 4 & 606 & 26.78330 \\
 \hypertarget{analysis}{%
 \section{Analysis}\label{analysis}}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\#after doing all these anovas i realized im not sure what this is really telling us and i think they might be super uncessary so i did an lm analysis in the code chunk below}
+\hypertarget{question-1-are-there-significant-differences-in-air-quality-levels-between-affected-ukrainian-cities-during-the-russian-invasion}{%
+\subsection{Question 1: Are there significant differences in air quality
+levels between affected Ukrainian cities during the Russian
+invasion?}\label{question-1-are-there-significant-differences-in-air-quality-levels-between-affected-ukrainian-cities-during-the-russian-invasion}}
 
-\NormalTok{lviv.pm25.anova }\OtherTok{\textless{}{-}} \FunctionTok{aov}\NormalTok{(}\AttributeTok{data =}\NormalTok{ FULL\_LVIV , pm25 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Year)}
-\FunctionTok{summary}\NormalTok{(lviv.pm25.anova)}
-\end{Highlighting}
-\end{Shaded}
+{[}insert text about how we analyzed{]}
 
-\begin{verbatim}
-##             Df Sum Sq Mean Sq F value Pr(>F)
-## Year         1   1585  1584.5   1.988  0.164
-## Residuals   58  46232   797.1
-\end{verbatim}
+\hypertarget{question-2-do-air-quality-levels-worsen-in-affected-cities-around-missile-attack-events}{%
+\subsection{Question 2: Do air quality levels worsen in affected cities
+around missile attack
+events?}\label{question-2-do-air-quality-levels-worsen-in-affected-cities-around-missile-attack-events}}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{lviv.pm10.anova }\OtherTok{\textless{}{-}} \FunctionTok{aov}\NormalTok{(}\AttributeTok{data =}\NormalTok{ FULL\_LVIV , pm10 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Year)}
-\FunctionTok{summary}\NormalTok{(lviv.pm10.anova)}
-\end{Highlighting}
-\end{Shaded}
+{[}insert text about how we analyzed{]}
 
-\begin{verbatim}
-##             Df Sum Sq Mean Sq F value Pr(>F)
-## Year         1    482   482.2   2.281  0.136
-## Residuals   58  12262   211.4
-\end{verbatim}
+\hypertarget{question-3-are-there-significant-differences-in-air-quality-levels-in-affected-ukrainian-cities-before-and-during-the-russian-attacks}{%
+\subsection{Question 3: Are there significant differences in air quality
+levels in affected Ukrainian cities before and during the Russian
+attacks?}\label{question-3-are-there-significant-differences-in-air-quality-levels-in-affected-ukrainian-cities-before-and-during-the-russian-attacks}}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{dnipro.pm25.anova }\OtherTok{\textless{}{-}} \FunctionTok{aov}\NormalTok{(}\AttributeTok{data =}\NormalTok{ FULL\_DNIPRO , pm25 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Year)}
-\FunctionTok{summary}\NormalTok{(dnipro.pm25.anova)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##             Df Sum Sq Mean Sq F value   Pr(>F)    
-## Year         1  15305   15305   55.92 5.07e-10 ***
-## Residuals   57  15599     274                     
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{dnipro.pm10.anova }\OtherTok{\textless{}{-}} \FunctionTok{aov}\NormalTok{(}\AttributeTok{data =}\NormalTok{ FULL\_DNIPRO , pm10 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Year)}
-\FunctionTok{summary}\NormalTok{(dnipro.pm10.anova)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##             Df Sum Sq Mean Sq F value   Pr(>F)    
-## Year         1   3616    3616   32.57 4.33e-07 ***
-## Residuals   57   6329     111                     
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{dnipro.lviv.pm25.anova }\OtherTok{\textless{}{-}} \FunctionTok{aov}\NormalTok{(}\AttributeTok{data =}\NormalTok{ FULL\_Air\_quality , pm25 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ City)}
-\FunctionTok{summary}\NormalTok{(dnipro.lviv.pm25.anova)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##             Df Sum Sq Mean Sq F value   Pr(>F)    
-## City         1  26819   26819   66.65 4.72e-11 ***
-## Residuals   55  22130     402                     
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{dnipro.lviv.pm10.anova }\OtherTok{\textless{}{-}} \FunctionTok{aov}\NormalTok{(}\AttributeTok{data =}\NormalTok{ FULL\_Air\_quality , pm10 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ City)}
-\FunctionTok{summary}\NormalTok{(dnipro.lviv.pm10.anova)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##             Df Sum Sq Mean Sq F value   Pr(>F)    
-## City         1   5180    5180   51.52 1.93e-09 ***
-## Residuals   55   5530     101                     
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-\end{verbatim}
+{[}insert text about how we analyzed{]}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -701,34 +550,31 @@ Lviv & 30.29246 & 4 & 606 & 26.78330 \\
 ## F-statistic: 51.52 on 1 and 55 DF,  p-value: 1.929e-09
 \end{verbatim}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\#I\textquotesingle{}m confused if we need to upload a shapefile of ukraine so that we can make a map but maybe im really overthinking this {-} just wanted to put it as a comment here so i dont forget }
-
-\CommentTok{\#https://simplemaps.com/data/ua{-}cities}
-\CommentTok{\#we can download a csv of all the cities with lat and long from this link and we could make a map but idk if thats what you guys were thinking}
-\end{Highlighting}
-\end{Shaded}
-
-\hypertarget{question-1-are-there-significant-differences-in-air-quality-levels-between-affected-ukrainian-cities-during-the-russian-invasion}{%
-\subsection{Question 1: Are there significant differences in air quality
-levels between affected Ukrainian cities during the Russian
-invasion?}\label{question-1-are-there-significant-differences-in-air-quality-levels-between-affected-ukrainian-cities-during-the-russian-invasion}}
-
-\hypertarget{question-2-do-air-quality-levels-worsen-in-affected-cities-around-missile-attack-events}{%
-\subsection{Question 2: Do air quality levels worsen in affected cities
-around missile attack
-events?}\label{question-2-do-air-quality-levels-worsen-in-affected-cities-around-missile-attack-events}}
-
-\hypertarget{question-3-are-there-significant-differences-in-air-quality-levels-in-affected-ukrainian-cities-before-and-during-the-russian-attacks}{%
-\subsection{Question 3: Are there significant differences in air quality
-levels in affected Ukrainian cities before and during the Russian
-attacks?}\label{question-3-are-there-significant-differences-in-air-quality-levels-in-affected-ukrainian-cities-before-and-during-the-russian-attacks}}
-
 \newpage
 
 \hypertarget{summary-and-conclusions}{%
 \section{Summary and Conclusions}\label{summary-and-conclusions}}
+
+\hypertarget{question-1-are-there-significant-differences-in-air-quality-levels-between-affected-ukrainian-cities-during-the-russian-invasion-1}{%
+\subsection{Question 1: Are there significant differences in air quality
+levels between affected Ukrainian cities during the Russian
+invasion?}\label{question-1-are-there-significant-differences-in-air-quality-levels-between-affected-ukrainian-cities-during-the-russian-invasion-1}}
+
+{[}insert text about summary{]}
+
+\hypertarget{question-2-do-air-quality-levels-worsen-in-affected-cities-around-missile-attack-events-1}{%
+\subsection{Question 2: Do air quality levels worsen in affected cities
+around missile attack
+events?}\label{question-2-do-air-quality-levels-worsen-in-affected-cities-around-missile-attack-events-1}}
+
+{[}insert text about summary{]}
+
+\hypertarget{question-3-are-there-significant-differences-in-air-quality-levels-in-affected-ukrainian-cities-before-and-during-the-russian-attacks-1}{%
+\subsection{Question 3: Are there significant differences in air quality
+levels in affected Ukrainian cities before and during the Russian
+attacks?}\label{question-3-are-there-significant-differences-in-air-quality-levels-in-affected-ukrainian-cities-before-and-during-the-russian-attacks-1}}
+
+{[}insert text about summary{]}
 
 \newpage
 
