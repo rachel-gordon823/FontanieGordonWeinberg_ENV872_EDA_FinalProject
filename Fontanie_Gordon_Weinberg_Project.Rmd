@@ -77,7 +77,6 @@ Ukraine_Processed$date <- as.Date(Ukraine_Processed$date, "%m/%d/%y")
 write.csv(Ukraine_Processed, row.names = FALSE, file = "./Data/Processed/Ukraine_Processed.csv")
 
 # Creating subsets by city, month, and year
-
 Dnipro_2021 <- Ukraine_Processed %>% 
   filter(City %in% "Dnipro")%>%
   subset(date > "2021-2-28" & date < "2021-04-01") %>%
@@ -205,7 +204,7 @@ print(PM25_Lviv_PLOT)
 
 ```
 
-```{r Plotting PM10, fig.cap= "Comparing PM10 in Dnipro and Lviv, Ukraine"} 
+```{r Plotting PM2.5 & PM10 in Dnipro and Lviv, fig.cap="Compari}
 
 #DNIPRO PM2.5
 PM10_Dnipro_PLOT <-ggplot(FULL_DNIPRO) + 
@@ -213,7 +212,7 @@ PM10_Dnipro_PLOT <-ggplot(FULL_DNIPRO) +
   geom_line()+  
   geom_point()+
   labs(x= "Days in March", y = "PM10",
-  title = "         Observing PM10 Values in Dnipro, Ukraine")+ 
+  title = "         Observing PM10 Values in Dnipro, Ukraine")+  
   annotate(geom = "text", x = 11, y = 39, label ="March 11, 2022:")+ 
   annotate(geom = "text", x = 11, y = 35, label ="Missile Attack")
 print(PM10_Dnipro_PLOT) 
@@ -242,19 +241,19 @@ FULL_Air_quality <- bind_rows(Dnipro_2022,Lviv_2022)
 PM25_Lviv_and_Dnipro_PLOT <-
   ggplot(FULL_Air_quality) + 
 (aes(x = Day, y = pm25, color = City)) + 
-              geom_line()+  
+  geom_line()+  
   geom_point()+
-  labs(x = "Date", y= "PM25",
-       title = "Observing PM25 Values in 2022 Lviv and Dnipro Ukraine")  
+  labs(x = "Days in March, 2022", y= "PM2.5",
+  title = "        Observing PM2.5 Values in Dnipro and Lviv, Ukraine")  
 print(PM25_Lviv_and_Dnipro_PLOT)
 
 PM10_Lviv_and_Dnipro_PLOT <-
   ggplot(FULL_Air_quality) + 
 (aes(x = Day, y = pm10, color = City)) + 
-              geom_line()+  
+  geom_line()+  
   geom_point()+
-  labs(x = "Date", y= "PM10",
-       title = "Observing PM10 Values in 2022 Lviv and Dnipro Ukraine")  
+  labs(x = "Days in March, 2022", y= "PM10",
+  title = "         Observing PM10 Values in Dnipro and Lviv, Ukraine")  
 print(PM10_Lviv_and_Dnipro_PLOT)
 
 
