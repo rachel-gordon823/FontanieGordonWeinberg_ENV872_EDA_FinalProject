@@ -181,13 +181,11 @@ PM25_Dnipro_PLOT <-
   (aes(x = Day, y = pm25, color = Year))+ 
   geom_line()+  
   geom_point()+
-  labs(x= "Date", y = "PM2.5",
-       title = " Observing PM2.5 Values in Dnipro, Ukraine")
+  labs(x= "Days in March", y = "PM2.5",
+  title = "          Observing PM2.5 Values in Dnipro, Ukraine")+ 
+  annotate(geom = "text", x = 11, y = 68, label ="March 11, 2022:")+ 
+  annotate(geom = "text", x = 11, y = 59, label ="Missile Attack")
 print(PM25_Dnipro_PLOT)
-  #annotate(geom = "text", x = as.Date("2022-03-11"), y = 50, label ="March 11, 2022:")+ 
-  #annotate(geom = "text", x = as.Date("2022-03-11"), y = 45, label ="Missile Attack")
-
-
 
 
 # LVIV PM2.5
@@ -196,18 +194,14 @@ PM25_Lviv_PLOT <-
 (aes(x = Day, y = pm25, color = Year)) + 
               geom_line()+  
   geom_point()+
-  labs(x = "Date", y= "PM2.5",
-       title = "Observing PM2.5 Values in Lviv Ukraine")
+  labs(x = "Days in March", y= "PM2.5",
+  title = "          Observing PM2.5 Values in Lviv, Ukraine")+ 
+  annotate(geom = "text", x = 18, y = 150, label ="March 18, 2022:")+ 
+  annotate(geom = "text", x = 18, y = 142, label ="1st Missile Attack")+ 
+  annotate(geom = "text", x = 26, y = 106, label ="March 26, 2022:")+ 
+  annotate(geom = "text", x = 26, y = 98, label ="2nd Missile Attack")
 print(PM25_Lviv_PLOT)
-  #scale_x_date(limits = as.Date(c("2022-03-01", "2022-03-31")))+ 
-  #xlab("Date")+ 
-  #ylab("PM2.5")+ 
- # labs(title = "        Observing PM2.5 Values in Lviv, Ukraine")+
-  #ylim(0,180)+
- # annotate(geom = "text", x = as.Date("2022-03-18"), y = 165, label ="March 18, 2022:")+ 
-  #annotate(geom = "text", x = as.Date("2022-03-18"), y = 155, label ="1st Missile Attack")+ 
-  #annotate(geom = "text", x = as.Date("2022-03-26"), y = 110, label ="March 26, 2022:")+ 
-  #annotate(geom = "text", x = as.Date("2022-03-26"), y = 100, label ="2nd Missile Attack")
+
 
 ```
 
@@ -218,40 +212,25 @@ PM10_Dnipro_PLOT <-ggplot(FULL_DNIPRO) +
   (aes(x = Day, y = pm10, color = Year))+ 
   geom_line()+  
   geom_point()+
-  labs(x= "Date", y = "PM10",
-       title = " Observing PM10 Values in Dnipro, Ukraine")
+  labs(x= "Days in March", y = "PM10",
+  title = "         Observing PM10 Values in Dnipro, Ukraine")+ 
+  annotate(geom = "text", x = 11, y = 39, label ="March 11, 2022:")+ 
+  annotate(geom = "text", x = 11, y = 35, label ="Missile Attack")
 print(PM10_Dnipro_PLOT) 
-            #  geom_line()+  
- # geom_point()+
-  #scale_x_date(limits = as.Date(c("2022-03-01", "2022-03-31")))+ 
-  #xlab("Date")+ 
-  #ylab("PM10")+ 
-  #labs(title = "        Observing PM10 Values in Dnipro, Ukraine")+
-  #ylim(0,40)+
-  #annotate(geom = "text", x = as.Date("2022-03-11"), y = 25, label ="March 11, 2022:")+ 
-  #annotate(geom = "text", x = as.Date("2022-03-11"), y = 23, label ="Missile Attack")
   
 
-
 #LVIV PM10
-PM10_Lviv_PLOT <-
-  ggplot(FULL_LVIV) + 
-(aes(x = Day, y = pm10, color = Year)) + 
-              geom_line()+  
+PM10_Lviv_PLOT <- ggplot(FULL_LVIV) + 
+  (aes(x = Day, y = pm10, color = Year)) + 
+  geom_line()+  
   geom_point()+
-  labs(x = "Date", y= "PM10",
-       title = "Observing PM10 Values in Lviv Ukraine")  
+  labs(x = "Days in March", y= "PM10",
+  title = "         Observing PM10 Values in Lviv, Ukraine")+    
+  annotate(geom = "text", x = 18, y = 70, label ="March 18, 2022:")+ 
+  annotate(geom = "text", x = 18, y = 66, label ="1st Missile Attack")+ 
+  annotate(geom = "text", x = 26, y = 55, label ="March 26, 2022:")+ 
+  annotate(geom = "text", x = 26, y = 51, label ="2nd Missile Attack")
 print(PM10_Lviv_PLOT)
-  #geom_point()+
-  #scale_x_date(limits = as.Date(c("2022-03-01", "2022-03-31")))+ 
-  #xlab("Date")+ 
-  #ylab("PM10")+ 
-  #labs(title = "        Observing PM10 Values in Lviv, Ukraine")+
-  #ylim(0,75)+
-  #annotate(geom = "text", x = as.Date("2022-03-18"), y = 70, label ="March 18, 2022:")+ 
-  #annotate(geom = "text", x = as.Date("2022-03-18"), y = 66, label ="1st Missile Attack")+ 
-  #annotate(geom = "text", x = as.Date("2022-03-26"), y = 60, label ="March 26, 2022:")+ 
-  #annotate(geom = "text", x = as.Date("2022-03-26"), y = 56, label ="2nd Missile Attack")
 
 
 ```
