@@ -173,11 +173,14 @@ air.quality.summary.PM10 <- Ukraine_Processed %>%
 
 Full_air_quality_21_22 <- bind_rows(FULL_LVIV, FULL_DNIPRO)
 
+
 Full_air_quality_21_22 <- Full_air_quality_21_22 %>%
   mutate(Year = as.factor(Year))
 
 Full_air_quality_21_22 <-Full_air_quality_21_22 %>%
   mutate(City_Year=(paste(City,"-",Year)))
+
+
 
 PM25_heatmap <- ggplot(Full_air_quality_21_22, aes(x = City_Year, y = pm25, color = pm25))+
 geom_tile() + scale_fill_gradient()
@@ -197,7 +200,7 @@ knitr::kable(air.quality.summary.PM10, caption = "PM10 Levels by City",
              col.names = c("City", "Mean", "Min", "Max", "Std Dev"))
 ```
 
-```{r Plotting.PM25, fig.cap = "Comparing PM2.5 in Dnipro and Lviv, Ukraine"} 
+```{r Plotting.PM25, fig.cap = "Comparing PM2.5 in Dnipro and Lviv, Ukraine", echo = FALSE} 
 # DNIPRO PM2.5
 
 #group=as.Date(year(Dnipro_2021$date)), color =as.Date(year(Dnipro_2021$date)))
@@ -213,6 +216,7 @@ PM25_Dnipro_PLOT <-
   annotate(geom = "text", x = 11, y = 68, label ="March 11, 2022:")+ 
   annotate(geom = "text", x = 11, y = 59, label ="Missile Attack")
 print(PM25_Dnipro_PLOT)
+
 
 
 # LVIV PM2.5
@@ -232,7 +236,7 @@ print(PM25_Lviv_PLOT)
 
 ```
 
-```{r Plotting PM10, fig.cap= "Comparing PM10 in Dnipro and Lviv, Ukraine"} 
+```{r Plotting PM10, fig.cap= "Comparing PM10 in Dnipro and Lviv, Ukraine", echo = FALSE} 
 
 #DNIPRO PM2.5
 PM10_Dnipro_PLOT <-ggplot(FULL_DNIPRO) + 
@@ -245,6 +249,7 @@ PM10_Dnipro_PLOT <-ggplot(FULL_DNIPRO) +
   annotate(geom = "text", x = 11, y = 35, label ="Missile Attack")
 print(PM10_Dnipro_PLOT) 
   
+
 
 #LVIV PM10
 PM10_Lviv_PLOT <- ggplot(FULL_LVIV) + 
@@ -262,7 +267,7 @@ print(PM10_Lviv_PLOT)
 
 ```
 
-```{r Plotting Lviv vs Dnipro, fig.cap= "Comparing Air Pollution in Lviv vs Dnipro"}
+```{r Plotting Lviv vs Dnipro, fig.cap= "Comparing Air Pollution in Lviv vs Dnipro 2022", echo = FALSE}
 
 FULL_Air_quality <- bind_rows(Dnipro_2022,Lviv_2022)
 
@@ -274,6 +279,7 @@ PM25_Lviv_and_Dnipro_PLOT <-
   labs(x = "Date", y= "PM25",
        title = "Observing PM25 Values in 2022 Lviv and Dnipro Ukraine")  
 print(PM25_Lviv_and_Dnipro_PLOT)
+
 
 PM10_Lviv_and_Dnipro_PLOT <-
   ggplot(FULL_Air_quality) + 
@@ -296,16 +302,13 @@ print(PM10_Lviv_and_Dnipro_PLOT)
 
 [insert text about how we analyzed]
 
-## Question 2:  Do air quality levels worsen in affected cities around missile attack events?
-[insert text about how we analyzed]
-
-## Question 3: Are there significant differences in air quality levels in affected Ukrainian cities before and during the Russian attacks? 
+## Question 2: Are there significant differences in air quality levels in affected Ukrainian cities before and during the Russian attacks? 
 [insert text about how we analyzed]
 
 ```{r lm analysis}
 
-lviv.25.lm <- lm(data = FULL_LVIV, pm25 ~ Year) 
-summary(lviv.25.lm) 
+lviv.25.lm <- lm(data = FULL_LVIV, pm25 ~ Year)
+summary(lviv.25.lm)
 
 lviv.10.lm <- lm(data = FULL_LVIV, pm10 ~ Year) 
 summary(lviv.10.lm) 
@@ -335,10 +338,7 @@ summary(dnipro.lviv.pm10.lm)
 
 [insert text about summary]
 
-## Question 2:  Do air quality levels worsen in affected cities around missile attack events?
-[insert text about summary]
-
-## Question 3: Are there significant differences in air quality levels in affected Ukrainian cities before and during the Russian attacks? 
+## Question 2: Are there significant differences in air quality levels in affected Ukrainian cities before and during the Russian attacks? 
 [insert text about summary]
 
 \newpage
