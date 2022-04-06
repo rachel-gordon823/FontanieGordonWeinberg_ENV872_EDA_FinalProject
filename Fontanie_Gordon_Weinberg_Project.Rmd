@@ -115,12 +115,12 @@ FULL_LVIV <- bind_rows(Lviv_2021,Lviv_2022)
 
 > Explain data wrangling process here (shirley do this) 
 
-Data Used | Brief Description 
-----------|------------------
+Data File Name | Description
+----------    |------------------
 UkraineData | (Raw) Ukraine air quality data 
-Ukraine_Processed | (Processed) Ukraine air quality data, with no missing values 
-Dnipro | (Processed) Dnipro air quality data, showing PM2.5 and PM10 values 
-Lviv | (Processed) Lviv air quality data, showing PM2.5 and PM10 values 
+Ukraine_Processed | (Processed) Ukraine air quality data, w/o na's
+Dnipro | (Processed) Dnipro air quality data, w/ PM2.5 and PM10
+Lviv | (Processed) Lviv air quality data w/ PM2.5 and PM10 
 
 \newpage
 
@@ -292,9 +292,11 @@ summary(dnipro.lviv.pm10.lm)
 #we can download a csv of all the cities with lat and long from this link and we could make a map but idk if thats what you guys were thinking
 ```
 
-## Question 1: <insert specific question here and add additional subsections for additional questions below, if needed>
+## Question 1: Are there significant differences in air quality levels between affected Ukrainian cities during the Russian invasion?
 
-## Question 2: 
+## Question 2:  Do air quality levels worsen in affected cities around missile attack events?
+
+## Question 3: Are there significant differences in air quality levels in affected Ukrainian cities before and during the Russian attacks? 
 
 
 
