@@ -249,11 +249,9 @@ print(PM25_Lviv_PLOT)
 
 ```
 
-<<<<<<< HEAD
-```{r Plotting PM2.5 & PM10 in Dnipro and Lviv, fig.cap="Compari}
-=======
-```{r Plotting PM10, fig.cap= "Comparing PM10 in Dnipro and Lviv, Ukraine", echo = FALSE} 
->>>>>>> aed3453eac2f779cb94e3c7f70bae107dd03be74
+
+```{r Plotting PM2.5 & PM10 in Dnipro and Lviv, fig.cap="Comparing PM10 in Dnipro and Lviv, UKraine", echo=FALSE}
+ 
 
 #DNIPRO PM2.5
 PM10_Dnipro_PLOT <-ggplot(FULL_DNIPRO) + 
