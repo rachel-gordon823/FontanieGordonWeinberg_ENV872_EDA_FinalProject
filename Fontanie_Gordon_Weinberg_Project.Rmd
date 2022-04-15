@@ -133,6 +133,8 @@ FULL_DNIPRO | Lviv_2021 + Lviv_2022 combined
 FULL_LVIV | Dnipro_2021 + Dnipro_2022 combined
 FULL_Air_quality|
 Full-air_quality_21_22|
+
+
 \newpage
 
 # Exploratory Analysis 
@@ -173,13 +175,8 @@ air.quality.summary.PM10 <- Ukraine_Processed %>%
 
 ```{r heat map of air pollution, echo=FALSE, fig.cap="Air Pollution Heat Map"}
 
-Full_air_quality_21_22 <- bind_rows(FULL_LVIV, FULL_DNIPRO)
-
-
-Full_air_quality_21_22 <- Full_air_quality_21_22 %>%
-  mutate(Year = as.factor(Year))
-
-Full_air_quality_21_22 <-Full_air_quality_21_22 %>%
+Full_air_quality_21_22 <- bind_rows(FULL_LVIV, FULL_DNIPRO)%>%
+  mutate(Year = as.factor(Year))%>%
   mutate(City_Year=(paste(City,"-",Year)))
 
 
@@ -209,8 +206,9 @@ PM25_dotplot <- ggplot(Full_air_quality_21_22,
   aes(x= City_Year, y = pm25, fill = City))+
   geom_boxplot()+
   geom_dotplot(binaxis = 'y', stackdir = 'center')+
-  labs(x = "City Year", y = "PM2.5", color = "City Year")+
+  labs(x = "City Year", y = "PM2.5")+
   theme(legend.position = "none")
+    
 print(PM25_dotplot)
 
 PM10_dotplot <- ggplot(Full_air_quality_21_22, 
@@ -219,6 +217,8 @@ PM10_dotplot <- ggplot(Full_air_quality_21_22,
   geom_dotplot(binaxis = 'y', stackdir = 'center')+
   labs(x = "City Year", y = "PM10", color = "City Year")+
   theme(legend.position = "none")
+    
+
 print(PM10_dotplot)
 
 
@@ -226,6 +226,8 @@ print(PM10_dotplot)
 
 
 ```{r PM2.5 + PM10, echo = FALSE}
+
+
 #PM2.5
 knitr::kable(air.quality.summary.PM25, caption = "PM2.5 Levels by City", 
              col.names = c("City", "Mean", "Min", "Max", "Std Dev"))
