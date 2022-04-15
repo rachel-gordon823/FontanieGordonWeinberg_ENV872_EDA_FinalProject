@@ -7,7 +7,7 @@ output:
 geometry: margin=2.54cm
 title: "Air Quality in Ukraine post Ukraine-Russia Dispute"
 subtitle: "Web address for GitHub repository"
-author: "Curly Girlies: Shirley Fontanié, Rachel Gordon, and Julia Weinberg"
+author: "Shirley Fontanié, Rachel Gordon, and Julia Weinberg"
 fontsize: 12pt
 mainfont: Times New Roman
 
@@ -49,18 +49,14 @@ theme_set(ourtheme)
 
 UkraineData <- read.csv("./Data/RawData/Ukraine_AQIData.csv", stringsAsFactors = TRUE)
 
-UkraineMap <- read.csv("./Data/RawData/ukrainelatandlong.csv", stringsAsFactors = TRUE)
+#UkraineMap <- read.csv("./Data/RawData/ukrainelatandlong.csv", stringsAsFactors = TRUE)
 
 
 ```
 
 # Rationale and Research Questions
 
-> Research question: How does air quality in various Ukrainian cities differ before and after the Ukraine-Russia dispute?  
-*******
-> Rationale: On February 24, 2022, Russia attacked Ukraine. The first city attacked was
-Lviv and Dnipro. 
-> Kyiv was hit February 24th.  
+> Rachel input written section  
 
 \newpage
 
@@ -139,6 +135,7 @@ FULL_LVIV | Dnipro_2021 + Dnipro_2022 combined
 
 # Exploratory Analysis 
 
+>INSERT COMMENTARY ABOUT EXPLORATORY ANALYSIS COMPONENTS
 
 ```{r mapping lviv and dnipro}
 #I'm confused if we need to upload a shapefile of ukraine so that we can make a map but maybe im really overthinking this - just wanted to put it as a comment here so i dont forget 
