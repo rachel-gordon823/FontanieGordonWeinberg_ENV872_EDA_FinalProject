@@ -236,75 +236,13 @@ knitr::kable(air.quality.summary.PM25, caption = "PM2.5 Levels by City",
 knitr::kable(air.quality.summary.PM10, caption = "PM10 Levels by City", 
              col.names = c("City", "Mean", "Min", "Max", "Std Dev"))
 ```
+\newpage
 
-```{r Plotting.PM25, fig.cap = "Comparing PM2.5 in Dnipro and Lviv, Ukraine", echo = FALSE} 
-# DNIPRO PM2.5
+# Analysis
 
-#group=as.Date(year(Dnipro_2021$date)), color =as.Date(year(Dnipro_2021$date)))
-#aes(month(date, label = TRUE, abbr = TRUE)) 
+## Question 1: Are there significant differences in air quality levels between affected Ukrainian cities during the Russian invasion?
 
-PM25_Dnipro_PLOT <- 
-  ggplot(FULL_DNIPRO) + 
-  (aes(x = Day, y = pm25, color = Year))+ 
-  geom_line()+  
-  geom_point()+
-  labs(x= "Days in March", y = "PM2.5",
-  title = "          Observing PM2.5 Values in Dnipro, Ukraine")+ 
-  annotate(geom = "text", x = 11, y = 68, label ="March 11, 2022:")+ 
-  annotate(geom = "text", x = 11, y = 59, label ="Missile Attack")
-print(PM25_Dnipro_PLOT)
-
-
-
-# LVIV PM2.5
-PM25_Lviv_PLOT <- 
-  ggplot(FULL_LVIV) + 
-(aes(x = Day, y = pm25, color = Year)) + 
-  geom_line()+  
-  geom_point()+
-  labs(x = "Days in March", y= "PM2.5",
-  title = "          Observing PM2.5 Values in Lviv, Ukraine")+ 
-  annotate(geom = "text", x = 18, y = 150, label ="March 18, 2022:")+ 
-  annotate(geom = "text", x = 18, y = 142, label ="1st Missile Attack")+ 
-  annotate(geom = "text", x = 26, y = 106, label ="March 26, 2022:")+ 
-  annotate(geom = "text", x = 26, y = 98, label ="2nd Missile Attack")
-print(PM25_Lviv_PLOT)
-
-
-```
-
-
-```{r Plotting PM2.5 & PM10 in Dnipro and Lviv, fig.cap="Comparing PM10 in Dnipro and Lviv, UKraine", echo=FALSE}
- 
-
-#DNIPRO PM2.5
-PM10_Dnipro_PLOT <-ggplot(FULL_DNIPRO) + 
-  (aes(x = Day, y = pm10, color = Year))+ 
-  geom_line()+  
-  geom_point()+
-  labs(x= "Days in March", y = "PM10",
-  title = "         Observing PM10 Values in Dnipro, Ukraine")+  
-  annotate(geom = "text", x = 11, y = 39, label ="March 11, 2022:")+ 
-  annotate(geom = "text", x = 11, y = 35, label ="Missile Attack")
-print(PM10_Dnipro_PLOT) 
-  
-
-
-#LVIV PM10
-PM10_Lviv_PLOT <- ggplot(FULL_LVIV) + 
-  (aes(x = Day, y = pm10, color = Year)) + 
-  geom_line()+  
-  geom_point()+
-  labs(x = "Days in March", y= "PM10",
-  title = "         Observing PM10 Values in Lviv, Ukraine")+    
-  annotate(geom = "text", x = 18, y = 70, label ="March 18, 2022:")+ 
-  annotate(geom = "text", x = 18, y = 66, label ="1st Missile Attack")+ 
-  annotate(geom = "text", x = 26, y = 55, label ="March 26, 2022:")+ 
-  annotate(geom = "text", x = 26, y = 51, label ="2nd Missile Attack")
-print(PM10_Lviv_PLOT)
-
-
-```
+>[Shirley insert text about how we analyzed - visualizations and statistical tests]
 
 ```{r Plotting Lviv vs Dnipro, fig.cap= "Comparing Air Pollution in Lviv vs Dnipro 2022", echo = FALSE}
 
@@ -330,35 +268,11 @@ PM10_Lviv_and_Dnipro_PLOT <-
 print(PM10_Lviv_and_Dnipro_PLOT)
 
 
+
+
+
 ```
-
-
-\newpage
-
-# Analysis
-
-## Question 1: Are there significant differences in air quality levels between affected Ukrainian cities during the Russian invasion?
-
->[insert text about how we analyzed - visualizations and statistical tests]
-
-
-## Question 2: Are there significant differences in air quality levels in affected Ukrainian cities before and during the Russian attacks? 
-[insert text about how we analyzed]
-
-```{r lm analysis, echo = FALSE}
-
-lviv.25.lm <- lm(data = FULL_LVIV, pm25 ~ Year)
-summary(lviv.25.lm)
-
-lviv.10.lm <- lm(data = FULL_LVIV, pm10 ~ Year) 
-summary(lviv.10.lm) 
-
-dnipro.25.lm <- lm(data = FULL_DNIPRO, pm25 ~ Year) 
-summary(dnipro.25.lm) 
-
-dnipro.10.lm <- lm(data = FULL_DNIPRO, pm10 ~ Year) 
-summary(dnipro.10.lm) 
-
+```{r lm of air quality by city, echo = FALSE}
 dnipro.lviv.pm25.lm <- lm(data = FULL_Air_quality, pm25 ~ City) 
 summary(dnipro.lviv.pm25.lm)
 
@@ -368,6 +282,106 @@ summary(dnipro.lviv.pm10.lm)
 
 
 
+## Question 2: Are there significant differences in air quality levels in affected Ukrainian cities before and during the Russian attacks? 
+
+>Similiar to our first research question, we conducted a visual analysis of PM2.5 and PM10 levels within Dnipro and Lviv for years 2021 and 2022. For each of our visualizations, we created line plots that showed the air pollution levels within the city, comparing 2021 to 2022. As we needed to visualize the levels of both PM2.5 and PM10, we created four different plots - "Observing PM2.5 Values in Dnipro", "Observing PM2.5 Values in Lviv", "Observing PM10 Values in Dnipro", and "Observing PM10 Values in Lviv". Within each of these plots, we also created annotations to indicate the specific dates of the missile attacks within the cities to see if there were any PM2.5 or PM10 increases or decreases around those dates. Additionally, we conducted a linear regression analysis for each of these charts to understand if there is a significant difference in PM2.5 levels and PM10 levels within Dnipro and Lviv in March of 2021 compared to March of 2022.\
+
+
+**PM2.5 in Dnipro**\
+When plotting PM2.5 levels in Dnipro in 2021 compared to 2022, it is evident that overall, PM2.5 levels were higher in 2021 than 2022. It is also interesting to note that around March 11 in 2022, when the missile attack occured, there appears to be an uptick in PM2.5 levels and then sharply decreases shortly after. Overall in both years, there seems to be a variety of fluctuation in PM2.5 levels and they are not consistent within each year. Additionally, within most of 2022, PM2.5 levels stayed within "good" to "moderate" levels, with an exception of reaching a level of "unhealthy for sensitive groups" at the end of March 2022. In March 2021, however, the PM2.5 levels were mainly in the "unhealthy for sensitive groups" or "unhealthy" category, with only a few days throughout that month in "moderate" levels.
+
+> For the statistical analysis, we ran a linear regression model of pm2.5 levels by year within Dnipro, to understand if there are significant differences in PM2.5 levels within the city in March 2021 compared to March 2022. The linear regression showed that the relationship between PM2.5 levels and year in Dnipro is significant (p = 5.074e-10). Additionally, the slope (-32.253) is negative, meaning that PM2.5 levels decreased in 2022 compared to 2021.
+
+**PM2.5 in Lviv**\
+
+```{r Analyzing 25 in Dnipro, fig.cap = "PM2.5 in Dnipro", echo = FALSE} 
+# DNIPRO PM2.5
+
+PM25_Dnipro_PLOT <- 
+  ggplot(FULL_DNIPRO) + 
+  (aes(x = Day, y = pm25, color = Year))+ 
+  geom_line()+  
+  geom_point()+
+  labs(x= "Days in March", y = "PM2.5",
+  title = "          Observing PM2.5 Levels in Dnipro")+ 
+  annotate(geom = "text", x = 11, y = 68, label ="March 11, 2022:")+ 
+  annotate(geom = "text", x = 11, y = 59, label ="Missile Attack")
+print(PM25_Dnipro_PLOT)
+
+dnipro.25.lm <- lm(data = FULL_DNIPRO, pm25 ~ Year)
+summary(dnipro.25.lm) 
+
+
+```
+
+
+
+
+
+```{r plotting PM25 in Lviv, fig.cap = "PM2.5 in Lviv", echo = FALSE}
+#LVIV PM2.5
+PM25_Lviv_PLOT <- 
+  ggplot(FULL_LVIV) + 
+(aes(x = Day, y = pm25, color = Year)) + 
+  geom_line()+  
+  geom_point()+
+  labs(x = "Days in March", y= "PM2.5",
+  title = "          Observing PM2.5 Levels in Lviv")+ 
+  annotate(geom = "text", x = 18, y = 150, label ="March 18, 2022:")+ 
+  annotate(geom = "text", x = 18, y = 142, label ="1st Missile Attack")+ 
+  annotate(geom = "text", x = 26, y = 106, label ="March 26, 2022:")+ 
+  annotate(geom = "text", x = 26, y = 98, label ="2nd Missile Attack")
+print(PM25_Lviv_PLOT)
+
+```
+
+
+```{r Plotting PM2.5 & PM10 in Dnipro and Lviv, fig.cap="Comparing PM10 in Dnipro and Lviv, UKraine", echo=FALSE}
+ 
+
+#DNIPRO PM2.5
+PM10_Dnipro_PLOT <-ggplot(FULL_DNIPRO) + 
+  (aes(x = Day, y = pm10, color = Year))+ 
+  geom_line()+  
+  geom_point()+
+  labs(x= "Days in March", y = "PM10",
+  title = "         Observing PM10 Levels in Dnipro, Ukraine")+  
+  annotate(geom = "text", x = 11, y = 39, label ="March 11, 2022:")+ 
+  annotate(geom = "text", x = 11, y = 35, label ="Missile Attack")
+print(PM10_Dnipro_PLOT) 
+  
+
+
+#LVIV PM10
+PM10_Lviv_PLOT <- ggplot(FULL_LVIV) + 
+  (aes(x = Day, y = pm10, color = Year)) + 
+  geom_line()+  
+  geom_point()+
+  labs(x = "Days in March", y= "PM10",
+  title = "         Observing PM10 Levels in Lviv, Ukraine")+    
+  annotate(geom = "text", x = 18, y = 70, label ="March 18, 2022:")+ 
+  annotate(geom = "text", x = 18, y = 66, label ="1st Missile Attack")+ 
+  annotate(geom = "text", x = 26, y = 55, label ="March 26, 2022:")+ 
+  annotate(geom = "text", x = 26, y = 51, label ="2nd Missile Attack")
+print(PM10_Lviv_PLOT)
+
+
+```
+
+
+
+```{r lm analysis by year, echo = FALSE}
+
+lviv.25.lm <- lm(data = FULL_LVIV, pm25 ~ Year)
+summary(lviv.25.lm)
+
+lviv.10.lm <- lm(data = FULL_LVIV, pm10 ~ Year) 
+summary(lviv.10.lm) 
+
+dnipro.10.lm <- lm(data = FULL_DNIPRO, pm10 ~ Year) 
+summary(dnipro.10.lm) 
+
+```
 
 
 

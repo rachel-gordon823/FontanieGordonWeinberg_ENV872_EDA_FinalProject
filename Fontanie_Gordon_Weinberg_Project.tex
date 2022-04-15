@@ -142,10 +142,7 @@
 Questions}\label{rationale-and-research-questions}}
 
 \begin{quote}
-Research question: How does air quality in various Ukrainian cities
-differ before and after the Ukraine-Russia dispute?\\
-******* Rationale: On February 24, 2022, Russia attacked Ukraine. The
-first city attacked was Lviv and Dnipro. Kyiv was hit February 24th.
+Rachel input written section
 \end{quote}
 
 \newpage
@@ -174,6 +171,8 @@ Lviv\_2021 & Lviv PM 2.5 + PM10, Mar 2021 \\
 Lviv\_2022 & Lviv PM 2.5 + PM10, Mar 2022 \\
 FULL\_DNIPRO & Lviv\_2021 + Lviv\_2022 combined \\
 FULL\_LVIV & Dnipro\_2021 + Dnipro\_2022 combined \\
+FULL\_Air\_quality & \\
+Full-air\_quality\_21\_22 & \\
 \bottomrule
 \end{longtable}
 
@@ -181,6 +180,10 @@ FULL\_LVIV & Dnipro\_2021 + Dnipro\_2022 combined \\
 
 \hypertarget{exploratory-analysis}{%
 \section{Exploratory Analysis}\label{exploratory-analysis}}
+
+\begin{quote}
+INSERT COMMENTARY ABOUT EXPLORATORY ANALYSIS COMPONENTS
+\end{quote}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -191,8 +194,31 @@ FULL\_LVIV & Dnipro\_2021 + Dnipro\_2022 combined \\
 \end{Highlighting}
 \end{Shaded}
 
+\begin{figure}
+\centering
 \includegraphics{Fontanie_Gordon_Weinberg_Project_files/figure-latex/heat map of air pollution-1.pdf}
-{[}INSERT COMMENTARY ABOUT HEAT MAP{]}
+\caption{Air Pollution Heat Map}
+\end{figure}
+
+\begin{verbatim}
+## Bin width defaults to 1/30 of the range of the data. Pick better value with `binwidth`.
+\end{verbatim}
+
+\begin{figure}
+\centering
+\includegraphics{Fontanie_Gordon_Weinberg_Project_files/figure-latex/heat map of air pollution-2.pdf}
+\caption{Air Pollution Heat Map}
+\end{figure}
+
+\begin{verbatim}
+## Bin width defaults to 1/30 of the range of the data. Pick better value with `binwidth`.
+\end{verbatim}
+
+\begin{figure}
+\centering
+\includegraphics{Fontanie_Gordon_Weinberg_Project_files/figure-latex/heat map of air pollution-3.pdf}
+\caption{Air Pollution Heat Map}
+\end{figure}
 
 \begin{longtable}[]{@{}lrrrr@{}}
 \caption{PM2.5 Levels by City}\tabularnewline
@@ -224,15 +250,6 @@ Lviv & 30.29246 & 4 & 606 & 26.78330 \\
 \bottomrule
 \end{longtable}
 
-\includegraphics{Fontanie_Gordon_Weinberg_Project_files/figure-latex/Plotting.PM25-1.pdf}
-\includegraphics{Fontanie_Gordon_Weinberg_Project_files/figure-latex/Plotting.PM25-2.pdf}
-
-\includegraphics{Fontanie_Gordon_Weinberg_Project_files/figure-latex/Plotting PM2.5 \& PM10 in Dnipro and Lviv-1.pdf}
-\includegraphics{Fontanie_Gordon_Weinberg_Project_files/figure-latex/Plotting PM2.5 \& PM10 in Dnipro and Lviv-2.pdf}
-
-\includegraphics{Fontanie_Gordon_Weinberg_Project_files/figure-latex/Plotting Lviv vs Dnipro-1.pdf}
-\includegraphics{Fontanie_Gordon_Weinberg_Project_files/figure-latex/Plotting Lviv vs Dnipro-2.pdf}
-
 \newpage
 
 \hypertarget{analysis}{%
@@ -243,14 +260,129 @@ Lviv & 30.29246 & 4 & 606 & 26.78330 \\
 levels between affected Ukrainian cities during the Russian
 invasion?}\label{question-1-are-there-significant-differences-in-air-quality-levels-between-affected-ukrainian-cities-during-the-russian-invasion}}
 
-{[}insert text about how we analyzed{]}
+\begin{quote}
+{[}Shirley insert text about how we analyzed - visualizations and
+statistical tests{]}
+\end{quote}
+
+\includegraphics{Fontanie_Gordon_Weinberg_Project_files/figure-latex/Plotting Lviv vs Dnipro-1.pdf}
+\includegraphics{Fontanie_Gordon_Weinberg_Project_files/figure-latex/Plotting Lviv vs Dnipro-2.pdf}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = pm25 ~ City, data = FULL_Air_quality)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -49.103 -11.714  -3.103  11.286  64.897 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)   25.714      3.791   6.783 8.54e-09 ***
+## CityLviv      43.389      5.315   8.164 4.72e-11 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 20.06 on 55 degrees of freedom
+## Multiple R-squared:  0.5479, Adjusted R-squared:  0.5397 
+## F-statistic: 66.65 on 1 and 55 DF,  p-value: 4.715e-11
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = pm10 ~ City, data = FULL_Air_quality)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -22.069  -6.000  -1.069   5.931  29.931 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)   14.000      1.895   7.388 8.72e-10 ***
+## CityLviv      19.069      2.657   7.178 1.93e-09 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 10.03 on 55 degrees of freedom
+## Multiple R-squared:  0.4837, Adjusted R-squared:  0.4743 
+## F-statistic: 51.52 on 1 and 55 DF,  p-value: 1.929e-09
+\end{verbatim}
 
 \hypertarget{question-2-are-there-significant-differences-in-air-quality-levels-in-affected-ukrainian-cities-before-and-during-the-russian-attacks}{%
 \subsection{Question 2: Are there significant differences in air quality
 levels in affected Ukrainian cities before and during the Russian
 attacks?}\label{question-2-are-there-significant-differences-in-air-quality-levels-in-affected-ukrainian-cities-before-and-during-the-russian-attacks}}
 
-{[}insert text about how we analyzed{]}
+\begin{quote}
+Similiar to our first research question, we conducted a visual analysis
+of PM2.5 and PM10 levels within Dnipro and Lviv for years 2021 and 2022.
+For each of our visualizations, we created line plots that showed the
+air pollution levels within the city, comparing 2021 to 2022. As we
+needed to visualize the levels of both PM2.5 and PM10, we created four
+different plots - ``Observing PM2.5 Values in Dnipro'', ``Observing
+PM2.5 Values in Lviv'', ``Observing PM10 Values in Dnipro'', and
+``Observing PM10 Values in Lviv''. Within each of these plots, we also
+created annotations to indicate the specific dates of the missile
+attacks within the cities to see if there were any PM2.5 or PM10
+increases or decreases around those dates. Additionally, we conducted a
+linear regression analysis for each of these charts to understand if
+there is a significant difference in PM2.5 levels and PM10 levels within
+Dnipro and Lviv in March of 2021 compared to March of 2022.\\
+\end{quote}
+
+\textbf{PM2.5 in Dnipro}\\
+When plotting PM2.5 levels in Dnipro in 2021 compared to 2022, it is
+evident that overall, PM2.5 levels were higher in 2021 than 2022. It is
+also interesting to note that around March 11 in 2022, when the missile
+attack occured, there appears to be an uptick in PM2.5 levels and then
+sharply decreases shortly after. Overall in both years, there seems to
+be a variety of fluctuation in PM2.5 levels and they are not consistent
+within each year. Additionally, within most of 2022, PM2.5 levels stayed
+within ``good'' to ``moderate'' levels, with an exception of reaching a
+level of ``unhealthy for sensitive groups'' at the end of March 2022. In
+March 2021, however, the PM2.5 levels were mainly in the ``unhealthy for
+sensitive groups'' or ``unhealthy'' category, with only a few days
+throughout that month in ``moderate'' levels.
+
+\begin{quote}
+For the statistical analysis, we ran a linear regression model of pm2.5
+levels by year within Dnipro, to understand if there are significant
+differences in PM2.5 levels within the city in March 2021 compared to
+March 2022. The linear regression showed that the relationship between
+PM2.5 levels and year in Dnipro is significant (p = 5.074e-10).
+Additionally, the slope (-32.253) is negative, meaning that PM2.5 levels
+decreased in 2022 compared to 2021.
+\includegraphics{Fontanie_Gordon_Weinberg_Project_files/figure-latex/Analyzing 25 in Dnipro-1.pdf}
+\end{quote}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = pm25 ~ Year, data = FULL_DNIPRO)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -35.968  -9.841  -4.714   8.159  55.032 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)   57.968      2.971  19.510  < 2e-16 ***
+## Year2022     -32.253      4.313  -7.478 5.07e-10 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 16.54 on 57 degrees of freedom
+## Multiple R-squared:  0.4952, Adjusted R-squared:  0.4864 
+## F-statistic: 55.93 on 1 and 57 DF,  p-value: 5.074e-10
+\end{verbatim}
+
+\textbf{PM2.5 in Lviv} \textgreater test
+\includegraphics{Fontanie_Gordon_Weinberg_Project_files/figure-latex/plotting PM25 in Lviv-1.pdf}
+
+\includegraphics{Fontanie_Gordon_Weinberg_Project_files/figure-latex/Plotting PM2.5 \& PM10 in Dnipro and Lviv-1.pdf}
+\includegraphics{Fontanie_Gordon_Weinberg_Project_files/figure-latex/Plotting PM2.5 \& PM10 in Dnipro and Lviv-2.pdf}
 
 \begin{verbatim}
 ## 
@@ -297,27 +429,6 @@ attacks?}\label{question-2-are-there-significant-differences-in-air-quality-leve
 \begin{verbatim}
 ## 
 ## Call:
-## lm(formula = pm25 ~ Year, data = FULL_DNIPRO)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -35.968  -9.841  -4.714   8.159  55.032 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)   57.968      2.971  19.510  < 2e-16 ***
-## Year2022     -32.253      4.313  -7.478 5.07e-10 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 16.54 on 57 degrees of freedom
-## Multiple R-squared:  0.4952, Adjusted R-squared:  0.4864 
-## F-statistic: 55.93 on 1 and 57 DF,  p-value: 5.074e-10
-\end{verbatim}
-
-\begin{verbatim}
-## 
-## Call:
 ## lm(formula = pm10 ~ Year, data = FULL_DNIPRO)
 ## 
 ## Residuals:
@@ -336,48 +447,6 @@ attacks?}\label{question-2-are-there-significant-differences-in-air-quality-leve
 ## F-statistic: 32.57 on 1 and 57 DF,  p-value: 4.325e-07
 \end{verbatim}
 
-\begin{verbatim}
-## 
-## Call:
-## lm(formula = pm25 ~ City, data = FULL_Air_quality)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -49.103 -11.714  -3.103  11.286  64.897 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)   25.714      3.791   6.783 8.54e-09 ***
-## CityLviv      43.389      5.315   8.164 4.72e-11 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 20.06 on 55 degrees of freedom
-## Multiple R-squared:  0.5479, Adjusted R-squared:  0.5397 
-## F-statistic: 66.65 on 1 and 55 DF,  p-value: 4.715e-11
-\end{verbatim}
-
-\begin{verbatim}
-## 
-## Call:
-## lm(formula = pm10 ~ City, data = FULL_Air_quality)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -22.069  -6.000  -1.069   5.931  29.931 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)   14.000      1.895   7.388 8.72e-10 ***
-## CityLviv      19.069      2.657   7.178 1.93e-09 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 10.03 on 55 degrees of freedom
-## Multiple R-squared:  0.4837, Adjusted R-squared:  0.4743 
-## F-statistic: 51.52 on 1 and 55 DF,  p-value: 1.929e-09
-\end{verbatim}
-
 \newpage
 
 \hypertarget{summary-and-conclusions}{%
@@ -388,14 +457,23 @@ attacks?}\label{question-2-are-there-significant-differences-in-air-quality-leve
 levels between affected Ukrainian cities during the Russian
 invasion?}\label{question-1-are-there-significant-differences-in-air-quality-levels-between-affected-ukrainian-cities-during-the-russian-invasion-1}}
 
-{[}insert text about summary{]}
+\begin{quote}
+{[}insert results from our analysis{]}
+\end{quote}
 
 \hypertarget{question-2-are-there-significant-differences-in-air-quality-levels-in-affected-ukrainian-cities-before-and-during-the-russian-attacks-1}{%
 \subsection{Question 2: Are there significant differences in air quality
 levels in affected Ukrainian cities before and during the Russian
 attacks?}\label{question-2-are-there-significant-differences-in-air-quality-levels-in-affected-ukrainian-cities-before-and-during-the-russian-attacks-1}}
 
+\begin{quote}
 {[}insert text about summary{]}
+\end{quote}
+
+\begin{quote}
+insert text about what may have affected our results, limitations of our
+data, and what we would do next if we could
+\end{quote}
 
 \newpage
 
