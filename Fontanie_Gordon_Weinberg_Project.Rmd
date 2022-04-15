@@ -132,7 +132,7 @@ Lviv_2022 | Lviv PM 2.5 + PM10, Mar 2022
 FULL_DNIPRO | Lviv_2021 + Lviv_2022 combined
 FULL_LVIV | Dnipro_2021 + Dnipro_2022 combined
 FULL_Air_quality|
-Full-air_quality_21_22\
+Full-air_quality_21_22|
 \newpage
 
 # Exploratory Analysis 
@@ -258,7 +258,7 @@ print(PM25_Dnipro_PLOT)
 PM25_Lviv_PLOT <- 
   ggplot(FULL_LVIV) + 
 (aes(x = Day, y = pm25, color = Year)) + 
-              geom_line()+  
+  geom_line()+  
   geom_point()+
   labs(x = "Days in March", y= "PM2.5",
   title = "          Observing PM2.5 Values in Lviv, Ukraine")+ 
@@ -337,7 +337,8 @@ print(PM10_Lviv_and_Dnipro_PLOT)
 
 ## Question 1: Are there significant differences in air quality levels between affected Ukrainian cities during the Russian invasion?
 
-[insert text about how we analyzed]
+>[insert text about how we analyzed - visualizations and statistical tests]
+
 
 ## Question 2: Are there significant differences in air quality levels in affected Ukrainian cities before and during the Russian attacks? 
 [insert text about how we analyzed]
@@ -373,10 +374,13 @@ summary(dnipro.lviv.pm10.lm)
 # Summary and Conclusions
 ## Question 1: Are there significant differences in air quality levels between affected Ukrainian cities during the Russian invasion?
 
-[insert text about summary]
+>[insert results from our analysis]
 
 ## Question 2: Are there significant differences in air quality levels in affected Ukrainian cities before and during the Russian attacks? 
-[insert text about summary]
+>[insert text about summary]
+
+
+>insert text about what may have affected our results, limitations of our data, and what we would do next if we could
 
 \newpage
 
