@@ -231,7 +231,6 @@ Lviv & 30.29246 & 4 & 606 & 26.78330 \\
 \includegraphics{Fontanie_Gordon_Weinberg_Project_files/figure-latex/Plotting.PM25-1.pdf}
 \includegraphics{Fontanie_Gordon_Weinberg_Project_files/figure-latex/Plotting.PM25-2.pdf}
 
-\textless\textless\textless\textless\textless\textless\textless{} HEAD
 \includegraphics{Fontanie_Gordon_Weinberg_Project_files/figure-latex/Plotting PM2.5 \& PM10 in Dnipro and Lviv-1.pdf}
 \includegraphics{Fontanie_Gordon_Weinberg_Project_files/figure-latex/Plotting PM2.5 \& PM10 in Dnipro and Lviv-2.pdf}
 
@@ -257,13 +256,6 @@ attacks?}\label{question-2-are-there-significant-differences-in-air-quality-leve
 
 {[}insert text about how we analyzed{]}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{lviv.}\FloatTok{25.}\NormalTok{lm }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(}\AttributeTok{data =}\NormalTok{ FULL\_LVIV, pm25 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Year)}
-\FunctionTok{summary}\NormalTok{(lviv.}\FloatTok{25.}\NormalTok{lm)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{verbatim}
 ## 
 ## Call:
@@ -284,13 +276,6 @@ attacks?}\label{question-2-are-there-significant-differences-in-air-quality-leve
 ## Multiple R-squared:  0.03314,    Adjusted R-squared:  0.01647 
 ## F-statistic: 1.988 on 1 and 58 DF,  p-value: 0.1639
 \end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{lviv.}\FloatTok{10.}\NormalTok{lm }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(}\AttributeTok{data =}\NormalTok{ FULL\_LVIV, pm10 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Year) }
-\FunctionTok{summary}\NormalTok{(lviv.}\FloatTok{10.}\NormalTok{lm) }
-\end{Highlighting}
-\end{Shaded}
 
 \begin{verbatim}
 ## 
@@ -313,13 +298,6 @@ attacks?}\label{question-2-are-there-significant-differences-in-air-quality-leve
 ## F-statistic: 2.281 on 1 and 58 DF,  p-value: 0.1364
 \end{verbatim}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{dnipro.}\FloatTok{25.}\NormalTok{lm }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(}\AttributeTok{data =}\NormalTok{ FULL\_DNIPRO, pm25 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Year) }
-\FunctionTok{summary}\NormalTok{(dnipro.}\FloatTok{25.}\NormalTok{lm) }
-\end{Highlighting}
-\end{Shaded}
-
 \begin{verbatim}
 ## 
 ## Call:
@@ -340,13 +318,6 @@ attacks?}\label{question-2-are-there-significant-differences-in-air-quality-leve
 ## Multiple R-squared:  0.4952, Adjusted R-squared:  0.4864 
 ## F-statistic: 55.93 on 1 and 57 DF,  p-value: 5.074e-10
 \end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{dnipro.}\FloatTok{10.}\NormalTok{lm }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(}\AttributeTok{data =}\NormalTok{ FULL\_DNIPRO, pm10 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Year) }
-\FunctionTok{summary}\NormalTok{(dnipro.}\FloatTok{10.}\NormalTok{lm) }
-\end{Highlighting}
-\end{Shaded}
 
 \begin{verbatim}
 ## 
@@ -369,13 +340,6 @@ attacks?}\label{question-2-are-there-significant-differences-in-air-quality-leve
 ## F-statistic: 32.57 on 1 and 57 DF,  p-value: 4.325e-07
 \end{verbatim}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{dnipro.lviv.pm25.lm }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(}\AttributeTok{data =}\NormalTok{ FULL\_Air\_quality, pm25 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ City) }
-\FunctionTok{summary}\NormalTok{(dnipro.lviv.pm25.lm)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{verbatim}
 ## 
 ## Call:
@@ -396,13 +360,6 @@ attacks?}\label{question-2-are-there-significant-differences-in-air-quality-leve
 ## Multiple R-squared:  0.5479, Adjusted R-squared:  0.5397 
 ## F-statistic: 66.65 on 1 and 55 DF,  p-value: 4.715e-11
 \end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{dnipro.lviv.pm10.lm }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(}\AttributeTok{data =}\NormalTok{ FULL\_Air\_quality, pm10 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ City) }
-\FunctionTok{summary}\NormalTok{(dnipro.lviv.pm10.lm)}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{verbatim}
 ## 

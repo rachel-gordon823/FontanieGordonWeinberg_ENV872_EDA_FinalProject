@@ -320,7 +320,7 @@ print(PM10_Lviv_and_Dnipro_PLOT)
 ## Question 2: Are there significant differences in air quality levels in affected Ukrainian cities before and during the Russian attacks? 
 [insert text about how we analyzed]
 
-```{r lm analysis}
+```{r lm analysis, echo = FALSE}
 
 lviv.25.lm <- lm(data = FULL_LVIV, pm25 ~ Year)
 summary(lviv.25.lm)
