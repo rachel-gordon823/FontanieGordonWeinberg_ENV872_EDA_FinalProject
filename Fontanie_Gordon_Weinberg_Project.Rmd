@@ -57,13 +57,17 @@ UkraineData <- read.csv("./Data/RawData/Ukraine_AQIData.csv", stringsAsFactors =
 
 # Rationale and Research Questions
 
-> Rachel input written section  
+> During periods of war and geopolitical conflicts, environmental pollution and degraded air quality is a common effect experienced by nations subject to violent attacks. Specifically, the use of explosive weapons can cause extensive damage to urban buildings and infrastructure, resulting in hazardous dust, debris, and other air particles that can have lasting health impacts on affected populations.
+
+>On February 24, 2022 Russia invaded Ukraine due to geopolitical conflicts between the two nations. Russia’s invasion has consisted of multiple missile attacks throughout Ukraine, causing extensive damage to urban infrastructure, reducing buildings to rubble and creating dangerous explosions that have enormous potential to raise air pollution levels. Therefore, in this project, we examine two different Ukrainian cities that have experienced attacks since Russia’s invasion and explore air quality levels of these cities both before and during the war.
+
+>As the conflict has been ongoing throughout all of March 2022, we chose to analyze air quality data from March 2022 as well as March 2021. We chose to include data from the same month in 2021 to be able to compare air quality levels during the war to the levels before to control for weather and temperature variations that typically occur throughout different months and seasons. Additionally, we were interested in exploring air quality levels of two cities that are in different geographic locations and have experienced at least one missile attack by Russia during March 2022. For air quality indicators, we wanted to look at both PM 2.5 and PM 10, as the levels of these particulate matters increase from sources such as construction sites and fires and can have lasting effects on human health. PM2.5 are very fine inhalable particles that are 2.5 micrometers or smaller, whereas PM10 are less than 10.5 micrometers. Lastly, we wanted to look at two cities that differed in economic activity and levels of industrial manufacturing, as industrial manufacturing activities can have an effect on air quality levels.
 
 \newpage
 
 # Dataset Information 
 
-> Describe sources of data here (input Julia paragraph)
+> Data for this project was retrieved from the World Air Quality Indices’ Air Quality Historical Data Platform. The World Air Quality Index is a non-profit started in 2007 that is working to increase transparency for air quality data in order to improve pollution awareness. The World Air Quality Index created the Air Quality Historical Data Platform in 2014 in order to provide information on how location-based air quality is changing over time. Data in this report looks at PM10 and PM2.5 air pollution. The World Air Quality Index provides ranges for air quality health and the numbers are differentiated for PM2.5 and PM10. Table 1 provides the ranges for good, moderate, poor, and unhealthy air quality levels. Historical data sets available through the World Air Quality Index span a 36-month time frame, and data used in this report is from 2019-2022. The data was collected for two cities Dnipro and Lviv, located in Eastern and Western Ukraine respectively. The air-quality monitoring station in Lviv is called Steeldrum and the air-quality monitoring station in Dnipro is called Vulytsya-Pavla Nirinberha, 4-6.
 
 ```{r Data wrangling, echo = FALSE}  
 # Initial wrangling 
@@ -120,7 +124,27 @@ write.csv(FULL_LVIV, row.names = FALSE, file = "./Data/Processed/FULL_LVIV.csv")
 
 ```
 
-> Explain data wrangling process here (shirley do this) 
+> Initially once accessing our first csv dataset (outlined in Table 1), we processed the UkraineData by omitting missing values (the NA’s) from the PM2.5 and PM 10 values.  
+Then, we set the “numeric” class of the date column to a “date” class. 
+Then, we wrangled the processed version of the Ukraine data and created four subsets by city, month, and year. Each city, Dnipro and Lviv, is being evaluated for air quality during the month of March and in years 2021 and 2022. 
+Now we have four new data sets; Dnipro 2021, Dnipro 2022, Lviv 2021, and Lviv 2022, all showing PM2.5 and PM10 values for days in March. 
+We then binded the rows for both Dnipro 2021 and Dnipro 2022, called FULL_DNIPRO. We also binded rows for Lviv 2021 and Lviv 2022, called FULL_LVIV.   
+In our exploratory analysis, we wanted to look at mean, maximum, minimum, and the standard deviation for PM2.5 and PM10 values in Dnipro and Ukraine. We used the group_by function to group by City, and the summarize function to include mean, maximum, minimum, and standard deviation of the PM values. 
+Additionally, within the exploratory analysis we binded FULL_Dnipro and FULL_LVIV in order to create a dot plot showing the air quality ranges our data demonstrated. We then plotted this data with ggplot using scale_fill_gradient2 to color-code data by health-hazard level.
+Furthermore, we wanted to look at PM2.5 and PM10 values comparing Dnipro and Lviv in solely March 2022 – during the time of the missile attacks. 
+To do this analysis, we wrangled the Dnipro 2022 and Lviv 2022 to create a dataset with both cities, that includes both PM values, for solely March 2022. The important difference is that we are not looking at 2021 values in this dataset. Table 2 outlines all of our working data sets and what they each contain.
+
+\newpage
+**Table 1**
+
+Data File Name | Column Name | Data Type
+---------------| ------------|---------------
+UkraineData | City | Factor (Dnipro and Lviv)
+UkraineData | Date | Factor (later converted to date object)
+UkraineData | pm25 | Integer (PM2.5 values)
+UkraineData | pm10 | Integer (PM10 values)
+
+**Table 2**
 
 Data File Name | Description
 ----------    |------------------
@@ -130,27 +154,94 @@ Dnipro_2021 | Dnipro PM2.5 + PM10, Mar 2021
 Dnipro_2022 | Dnipro PM2.5+ PM10, Mar 2022
 Lviv_2021 | Lviv PM 2.5 + PM10, Mar 2021
 Lviv_2022 | Lviv PM 2.5 + PM10, Mar 2022
-FULL_DNIPRO | Lviv_2021 + Lviv_2022 combined
-FULL_LVIV | Dnipro_2021 + Dnipro_2022 combined
-FULL_Air_quality|
-Full-air_quality_21_22|
+FULL_LVIV | Lviv_2021 + Lviv_2022 combined
+FULL_Dnipro | Dnipro_2021 + Dnipro_2022 combined
+FULL_Air_quality| Dnipro_2022 + Lviv_2022 combined
+Full-air_quality_21_22| FULL_LVIV + FULL_Dnipro combined
 
 
 \newpage
 
 # Exploratory Analysis 
 
->INSERT COMMENTARY ABOUT EXPLORATORY ANALYSIS COMPONENTS
+>To begin our exploratory analysis of the air quality data, we created dot plots to map out what range of our quality our data fell into (Figures 1 & 2). The data is color coded with green denoting good air quality conditions, yellow is moderate conditions, and red is showing air quality that is poor and likely hazardous to health. Attached is a table showing a breakdown for air quality metrics (Table 3). This dot plot was created to show the range in which our data falls in terms of air quality health. Additionally, we determined the summary statistics of the PM10 and PM2.5 (Table 4)
 
-```{r mapping lviv and dnipro}
-#I'm confused if we need to upload a shapefile of ukraine so that we can make a map but maybe im really overthinking this - just wanted to put it as a comment here so i dont forget 
+**Table 3**
 
-#https://simplemaps.com/data/ua-cities
-#we can download a csv of all the cities with lat and long from this link and we could make a map but idk if thats what you guys were thinking
+AQI Category | PM2.5 | PM10
+---------------| ------------|---------------
+Good | 0 to 15.5 | 0 to 54
+Moderate | 15.5 to 35.5 | 54 to 150
+Poor | 35.5 to 150 | 150 to 250
+Unhealthy | 150+ | 250+
+
+```{r plot of pm2.5 air pollution by levels, echo=FALSE, fig.cap="Figure 1 PM2.5 Air Pollution Dot Plot"}
+
+Full_air_quality_21_22 <- bind_rows(FULL_LVIV, FULL_DNIPRO)%>%
+  mutate(Year = as.factor(Year))%>%
+  mutate(City_Year=(paste(City,"-",Year)))
+
+
+PM25_plot <- ggplot(Full_air_quality_21_22, x = City_Year, y = pm25)+
+  geom_point(aes(x=City_Year, y = pm25, color = pm25),
+            size=5)+
+  labs(x = "City Year", y = "PM2.5", legend = "color")+
+  theme(legend.position = "right")+
+ scale_fill_gradient2(
+  low = "#66FF00",
+  mid = "#FFFF33",
+  high = "#CC0033",
+  midpoint = 35.5,
+  space = "Lab",
+  guide = "colourbar",
+  aesthetics = "color"
+)
+
+print(PM25_plot)
+#PM25_dotplot <- ggplot(Full_air_quality_21_22, 
+  #aes(x= City_Year, y = pm25, fill = City))+
+  #geom_boxplot()+
+  #geom_dotplot(binaxis = 'y', stackdir = 'center')+
+  #labs(x = "City Year", y = "PM2.5")+
+  #theme(legend.position = "none")
+    
+#print(PM25_dotplot)
+
+#PM10_dotplot <- ggplot(Full_air_quality_21_22, 
+  #aes(x= City_Year, y = pm10, fill = City))+
+  #geom_boxplot()+
+  #geom_dotplot(binaxis = 'y', stackdir = 'center')+
+  #labs(x = "City Year", y = "PM10", color = "City Year")+
+  #theme(legend.position = "none")
+
+    
 
 ```
 
-```{r summary statistics, echo = FALSE}
+
+
+
+```{r plot of pm10 air pollution by levels, echo=FALSE, fig.cap="Figure 1 PM10 Air Pollution Dot Plot"}
+PM10_plot <- ggplot(Full_air_quality_21_22, x = City_Year, y = pm10)+
+  geom_point(aes(x=City_Year, y = pm10, color = pm10),
+             size = 5)+
+  labs(x = "City Year", y = "PM10", legend = "color")+
+  theme(legend.position = "right")+
+ scale_fill_gradient2(
+  low = "#66FF00",
+  mid = "#FFFF33",
+  high = "#CC0033",
+  midpoint = 55,
+  space = "Lab",
+  guide = "colourbar",
+  aesthetics = "color"
+)
+print(PM10_plot)
+
+
+```
+\newpage
+```{r summary statistics, echo = FALSE, fig.cap = "Table 4 Summary Statistics"}
 
 #summary statistics PM2.5
 air.quality.summary.PM25 <- Ukraine_Processed %>%
@@ -174,64 +265,8 @@ air.quality.summary.PM10 <- Ukraine_Processed %>%
 
 ```
 
-```{r plot of air pollution by levels, echo=FALSE, fig.cap="Air Pollution Heat Map"}
+ 
 
-Full_air_quality_21_22 <- bind_rows(FULL_LVIV, FULL_DNIPRO)%>%
-  mutate(Year = as.factor(Year))%>%
-  mutate(City_Year=(paste(City,"-",Year)))
-
-
-PM25_plot <- ggplot(Full_air_quality_21_22, x = City_Year, y = pm25)+
-  geom_point(aes(x=City_Year, y = pm25, color = pm25))+
-  labs(x = "City Year", y = "PM2.5", legend = "color")+
-  theme(legend.position = "right")+
- scale_fill_gradient2(
-  low = "#66FF00",
-  mid = "#FFFF33",
-  high = "#CC0033",
-  midpoint = 35.5,
-  space = "Lab",
-  guide = "colourbar",
-  aesthetics = "color"
-)
-
-
-PM25_dotplot <- ggplot(Full_air_quality_21_22, 
-  aes(x= City_Year, y = pm25, fill = City))+
-  geom_boxplot()+
-  geom_dotplot(binaxis = 'y', stackdir = 'center')+
-  labs(x = "City Year", y = "PM2.5")+
-  theme(legend.position = "none")
-    
-print(PM25_dotplot)
-
-PM10_dotplot <- ggplot(Full_air_quality_21_22, 
-  aes(x= City_Year, y = pm10, fill = City))+
-  geom_boxplot()+
-  geom_dotplot(binaxis = 'y', stackdir = 'center')+
-  labs(x = "City Year", y = "PM10", color = "City Year")+
-  theme(legend.position = "none")
-
-    
-print(PM25_plot)
-
-PM10_plot <- ggplot(Full_air_quality_21_22, x = City_Year, y = pm10)+
-  geom_point(aes(x=City_Year, y = pm10, color = pm10))+
-  labs(x = "City Year", y = "PM10", legend = "color")+
-  theme(legend.position = "right")+
- scale_fill_gradient2(
-  low = "#66FF00",
-  mid = "#FFFF33",
-  high = "#CC0033",
-  midpoint = 35.5,
-  space = "Lab",
-  guide = "colourbar",
-  aesthetics = "color"
-)
-print(PM10_plot)
-
-
-```
 
 
 ```{r PM2.5 + PM10, echo = FALSE}
