@@ -49,6 +49,9 @@ theme_set(ourtheme)
 
 UkraineData <- read.csv("./Data/RawData/Ukraine_AQIData.csv", stringsAsFactors = TRUE)
 
+UkraineMap <- read.csv("./Data/RawData/ukrainelatandlong.csv", stringsAsFactors = TRUE)
+
+
 ```
 
 # Rationale and Research Questions
@@ -142,6 +145,7 @@ FULL_LVIV | Dnipro_2021 + Dnipro_2022 combined
 
 #https://simplemaps.com/data/ua-cities
 #we can download a csv of all the cities with lat and long from this link and we could make a map but idk if thats what you guys were thinking
+
 ```
 
 ```{r summary statistics, echo = FALSE}
