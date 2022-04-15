@@ -42,7 +42,7 @@ mapviewOptions(fgb = FALSE)
 
 ourtheme <- theme_classic(base_size = 14)+ 
   theme(axis.text = element_text(color="black"), 
-        legend.position = "top")
+        legend.position = "bottom")
 theme_set(ourtheme)
   
 # Load your datasets
@@ -131,6 +131,8 @@ Lviv_2021 | Lviv PM 2.5 + PM10, Mar 2021
 Lviv_2022 | Lviv PM 2.5 + PM10, Mar 2022
 FULL_DNIPRO | Lviv_2021 + Lviv_2022 combined
 FULL_LVIV | Dnipro_2021 + Dnipro_2022 combined
+FULL_Air_quality|
+Full-air_quality_21_22\
 \newpage
 
 # Exploratory Analysis 
@@ -200,6 +202,25 @@ PM25_heatmap <- PM25_heatmap + coord_fixed(.02)
 #can I make a scale for what counts as low moderate and high? moderate is like 15-35 but its not showing up that way 
 #why does it look like a bar code rather than tiles
 print(PM25_heatmap) 
+
+#trying dotplot
+
+PM25_dotplot <- ggplot(Full_air_quality_21_22, 
+  aes(x= City_Year, y = pm25, fill = City))+
+  geom_boxplot()+
+  geom_dotplot(binaxis = 'y', stackdir = 'center')+
+  labs(x = "City Year", y = "PM2.5", color = "City Year")+
+  theme(legend.position = "none")
+print(PM25_dotplot)
+
+PM10_dotplot <- ggplot(Full_air_quality_21_22, 
+  aes(x= City_Year, y = pm10, fill = City))+
+  geom_boxplot()+
+  geom_dotplot(binaxis = 'y', stackdir = 'center')+
+  labs(x = "City Year", y = "PM10", color = "City Year")+
+  theme(legend.position = "none")
+print(PM10_dotplot)
+
 
 ```
 
