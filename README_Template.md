@@ -1,17 +1,15 @@
-# <Repository Title>
-<Instructions: copy and paste this template into your project README file (found in the parent folder of the repository). Fill in relevant information as requested.>
-
-<General notes: add as much information as is relevant for your repository. Some overarching guidelines are provided, but feel free to expand on these guidelines.>
-<More resources found here: https://www.dataone.org/all-best-practices>
-<Delete the text inside the brackets when formatting your file.>
+# <Ukraine_Air_Quality Datasets>
 
 ## Summary
 
-<describe the purpose of this repository, the information it contains, and any relevant analysis goals. What, why, where, when, how?>
+<This dataset was prepared for Environmental Data Analytics (ENV 872L) at Duke University, Spring 2022. >
+
+<The data was obtained through the World Air Quality Indices’ Air Quality Historical Data Platform in order to make air quality data more easily available to the general public. The data shows air quality values for a particular location over a 36-month time period. Data is not authenticated and is intended for research purposes only rather than official reporting.>
+
 
 ## Investigators
 
-<name(s), affiliation(s), contact information, roles (if applicable)>
+<Rachel Gordon, Shirley Fontanie, Julia Weinberg, Duke Nicholas School of the Environment, rachel.gordon@duke.edu, shirley.fontanie@duke.edu, julia.weinberg@duke.edu>
 
 ## Keywords
 
