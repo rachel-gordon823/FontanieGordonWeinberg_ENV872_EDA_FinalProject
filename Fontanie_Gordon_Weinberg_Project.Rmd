@@ -203,6 +203,24 @@ PM25_heatmap <- PM25_heatmap + coord_fixed(.02)
 #why does it look like a bar code rather than tiles
 print(PM25_heatmap) 
 
+PM10_heatmap <- ggplot(Full_air_quality_21_22, aes(x = City_Year, y = pm10, fill = pm10))+
+geom_tile() +
+  scale_fill_gradient2(
+  low = "#66FF00",
+  mid = "#FFFF33",
+  high = "#CC0033",
+  midpoint = 50,
+  space = "Lab",
+  guide = "colourbar",
+  aesthetics = "fill"
+)
+
+
+
+#can I make a scale for what counts as low moderate and high? moderate is like 15-35 but its not showing up that way 
+#why does it look like a bar code rather than tiles
+print(PM10_heatmap) 
+
 #trying dotplot
 
 PM25_dotplot <- ggplot(Full_air_quality_21_22, 
