@@ -174,53 +174,43 @@ air.quality.summary.PM10 <- Ukraine_Processed %>%
 
 ```
 
-```{r heat map of air pollution, echo=FALSE, fig.cap="Air Pollution Heat Map"}
+```{r plot of air pollution by levels, echo=FALSE, fig.cap="Air Pollution Heat Map"}
 
 Full_air_quality_21_22 <- bind_rows(FULL_LVIV, FULL_DNIPRO)%>%
   mutate(Year = as.factor(Year))%>%
   mutate(City_Year=(paste(City,"-",Year)))
 
 
-
-PM25_heatmap <- ggplot(Full_air_quality_21_22, aes(x = City_Year, y = pm25, fill = pm25))+
-geom_tile() +
-  scale_fill_gradient2(
+PM25_plot <- ggplot(Full_air_quality_21_22, x = City_Year, y = pm25)+
+  geom_point(aes(x=City_Year, y = pm25, color = pm25))+
+  labs(x = "City Year", y = "PM2.5", legend = "color")+
+  theme(legend.position = "right")+
+ scale_fill_gradient2(
   low = "#66FF00",
   mid = "#FFFF33",
   high = "#CC0033",
   midpoint = 35.5,
   space = "Lab",
   guide = "colourbar",
-  aesthetics = "fill"
+  aesthetics = "color"
 )
-
-PM25_heatmap <- PM25_heatmap + coord_fixed(.02)
-
-
-#can I make a scale for what counts as low moderate and high? moderate is like 15-35 but its not showing up that way 
-#why does it look like a bar code rather than tiles
-print(PM25_heatmap) 
-
-#trying dotplot
-
-PM25_dotplot <- ggplot(Full_air_quality_21_22, 
-  aes(x= City_Year, y = pm25, fill = City))+
-  geom_boxplot()+
-  geom_dotplot(binaxis = 'y', stackdir = 'center')+
-  labs(x = "City Year", y = "PM2.5")+
-  theme(legend.position = "none")
     
-print(PM25_dotplot)
+print(PM25_plot)
 
-PM10_dotplot <- ggplot(Full_air_quality_21_22, 
-  aes(x= City_Year, y = pm10, fill = City))+
-  geom_boxplot()+
-  geom_dotplot(binaxis = 'y', stackdir = 'center')+
-  labs(x = "City Year", y = "PM10", color = "City Year")+
-  theme(legend.position = "none")
-    
-
-print(PM10_dotplot)
+PM10_plot <- ggplot(Full_air_quality_21_22, x = City_Year, y = pm10)+
+  geom_point(aes(x=City_Year, y = pm10, color = pm10))+
+  labs(x = "City Year", y = "PM10", legend = "color")+
+  theme(legend.position = "right")+
+ scale_fill_gradient2(
+  low = "#66FF00",
+  mid = "#FFFF33",
+  high = "#CC0033",
+  midpoint = 35.5,
+  space = "Lab",
+  guide = "colourbar",
+  aesthetics = "color"
+)
+print(PM10_plot)
 
 
 ```
