@@ -57,19 +57,28 @@ UkraineData <- read.csv("./Data/RawData/Ukraine_AQIData.csv", stringsAsFactors =
 
 # Rationale and Research Questions
 
-
-
-> During periods of war and geopolitical conflicts, environmental pollution and degraded air quality is a common effect experienced by nations subject to violent attacks. Specifically, the use of explosive weapons can cause extensive damage to urban buildings and infrastructure, resulting in hazardous dust, debris, and other air particles that can have lasting health impacts on affected populations.
+>During periods of war and geopolitical conflicts, environmental pollution and degraded air quality is a common effect experienced by nations subject to violent attacks. Specifically, the use of explosive weapons can cause extensive damage to urban buildings and infrastructure, resulting in hazardous dust, debris, and other air particles that can have lasting health impacts on affected populations (Dathan 2020).
 
 >On February 24, 2022 Russia invaded Ukraine due to geopolitical conflicts between the two nations. Russia’s invasion has consisted of multiple missile attacks throughout Ukraine, causing extensive damage to urban infrastructure, reducing buildings to rubble and creating dangerous explosions that have enormous potential to raise air pollution levels. Therefore, in this project, we examine two different Ukrainian cities that have experienced attacks since Russia’s invasion and explore air quality levels of these cities both before and during the war.
 
->As the conflict has been ongoing throughout all of March 2022, we chose to analyze air quality data from March 2022 as well as March 2021. We chose to include data from the same month in 2021 to be able to compare air quality levels during the war to the levels before to control for weather and temperature variations that typically occur throughout different months and seasons. Additionally, we were interested in exploring air quality levels of two cities that are in different geographic locations and have experienced at least one missile attack by Russia during March 2022. For air quality indicators, we wanted to look at both PM 2.5 and PM 10, as the levels of these particulate matters increase from sources such as construction sites and fires and can have lasting effects on human health. PM2.5 are very fine inhalable particles that are 2.5 micrometers or smaller, whereas PM10 are less than 10.5 micrometers. Lastly, we wanted to look at two cities that differed in economic activity and levels of industrial manufacturing, as industrial manufacturing activities can have an effect on air quality levels.
+>As the conflict has been ongoing throughout all of March 2022, we chose to analyze air quality data from March 2022 as well as March 2021. We chose to include data from the same month in 2021 to be able to compare air quality levels during the war to the levels before to control for weather and temperature variations that typically occur throughout different months and seasons. Additionally, we were interested in exploring air quality levels of two cities that are in different geographic locations and have experienced at least one missile attack by Russia during March 2022. For air quality indicators, we wanted to look at both PM 2.5 and PM 10, as the levels of these particulate matters increase from sources such as construction sites and fires and can have lasting effects on human health (EPA, Particulate Matter  Basics). PM2.5 are very fine inhalable particles that are 2.5 micrometers or smaller, whereas PM10 are less than 10.5 micrometers (EPA, Particulate Matter Basics). Lastly, we wanted to look at two cities that differed in economic activity and levels of industrial manufacturing, as industrial manufacturing activities can have an effect on air quality levels (Parrett 2020).
+
+>Based on these criteria, we chose to explore air quality levels of Lviv, Ukraine and Dnipro, Ukraine. Lviv, a western-Ukranian city known as the country’s cultural capital, has experienced various missile attacks since the initial Russian invasion (Anna 2022). Dnipro is a primarily industrial, eastern-Ukranian city that has also been attacked at least once during the Russian invasion (Lister et al. 2022). As these cities differ in both geographical locations and industrial activity, they were chosen as our cities to compare.
+
+>The data analyzed was retrieved from the Air Quality Historical Data Platform created by the World Air Quality Indices as this data source had sufficient raw data for PM2.5 and PM10 levels across both March 2021 and March 2022 for both Lviv and Dnipro. From this dataset, we explored the following research questions:
+
+>1) Are there significant differences in air quality levels between affected Ukrainian cities during the Russian invasion?
+>2) Are there significant differences in air quality levels in affected Ukrainian cities before and during the Russian attacks?
+
+
 
 \newpage
 
 # Dataset Information 
 
-> Data for this project was retrieved from the World Air Quality Indices’ Air Quality Historical Data Platform. The World Air Quality Index is a non-profit started in 2007 that is working to increase transparency for air quality data in order to improve pollution awareness. The World Air Quality Index created the Air Quality Historical Data Platform in 2014 in order to provide information on how location-based air quality is changing over time. Data in this report looks at PM10 and PM2.5 air pollution. The World Air Quality Index provides ranges for air quality health and the numbers are differentiated for PM2.5 and PM10. Table 1 provides the ranges for good, moderate, poor, and unhealthy air quality levels. Historical data sets available through the World Air Quality Index span a 36-month time frame, and data used in this report is from 2019-2022. The data was collected for two cities Dnipro and Lviv, located in Eastern and Western Ukraine respectively. The air-quality monitoring station in Lviv is called Steeldrum and the air-quality monitoring station in Dnipro is called Vulytsya-Pavla Nirinberha, 4-6.
+> Data for this project was retrieved from the World Air Quality Indices’ Air Quality Historical Data Platform (The World Air Quality Project). The World Air Quality Index is a non-profit started in 2007 that is working to increase transparency for air quality data in order to improve pollution awareness. The World Air Quality Index created the Air Quality Historical Data Platform in 2014 in order to provide information on how location-based air quality is changing over time.
+
+>Data in this report looks at PM10 and PM2.5 air pollution. The World Air Quality Index provides ranges for air quality health and the numbers are differentiated for PM2.5 and PM10. Table 1 provides the ranges for good, moderate, poor, and unhealthy air quality levels. Historical data sets available through the World Air Quality Index span a 36-month time frame, and data used in this report is from 2019-2022. The data was collected for two cities Dnipro and Lviv, located in Eastern and Western Ukraine respectively. The air-quality monitoring station in Lviv is called Steeldrum and the air-quality monitoring station in Dnipro is called Vulytsya-Pavla Nirinberha, 4-6.
 
 ```{r Data wrangling, echo = FALSE}  
 # Initial wrangling 
@@ -126,17 +135,17 @@ write.csv(FULL_LVIV, row.names = FALSE, file = "./Data/Processed/FULL_LVIV.csv")
 
 ```
 
-> Initially once accessing our first csv dataset (outlined in Table 1), we processed the UkraineData by omitting missing values (the NA’s) from the PM2.5 and PM 10 values.  
-Then, we set the “numeric” class of the date column to a “date” class. 
-Then, we wrangled the processed version of the Ukraine data and created four subsets by city, month, and year. Each city, Dnipro and Lviv, is being evaluated for air quality during the month of March and in years 2021 and 2022. 
-Now we have four new data sets; Dnipro 2021, Dnipro 2022, Lviv 2021, and Lviv 2022, all showing PM2.5 and PM10 values for days in March. 
+> Initially once accessing our first csv dataset (outlined in Table 1), we processed the UkraineData by omitting missing values (the NA’s) from the PM2.5 and PM 10 values. Then, we set the “numeric” class of the date column to a “date” class. Then, we wrangled the processed version of the Ukraine data and created four subsets by city, month, and year. Each city, Dnipro and Lviv, is being evaluated for air quality during the month of March and in years 2021 and 2022. 
+
+>Now we have four new data sets; Dnipro 2021, Dnipro 2022, Lviv 2021, and Lviv 2022, all showing PM2.5 and PM10 values for days in March. 
 We then binded the rows for both Dnipro 2021 and Dnipro 2022, called FULL_DNIPRO. We also binded rows for Lviv 2021 and Lviv 2022, called FULL_LVIV.   
-In our exploratory analysis, we wanted to look at mean, maximum, minimum, and the standard deviation for PM2.5 and PM10 values in Dnipro and Ukraine. We used the group_by function to group by City, and the summarize function to include mean, maximum, minimum, and standard deviation of the PM values. 
+
+>In our exploratory analysis, we wanted to look at mean, maximum, minimum, and the standard deviation for PM2.5 and PM10 values in Dnipro and Ukraine. We used the group_by function to group by City, and the summarize function to include mean, maximum, minimum, and standard deviation of the PM values. 
 Additionally, within the exploratory analysis we binded FULL_Dnipro and FULL_LVIV in order to create a dot plot showing the air quality ranges our data demonstrated. We then plotted this data with ggplot using scale_fill_gradient2 to color-code data by health-hazard level.
 Furthermore, we wanted to look at PM2.5 and PM10 values comparing Dnipro and Lviv in solely March 2022 – during the time of the missile attacks. 
 To do this analysis, we wrangled the Dnipro 2022 and Lviv 2022 to create a dataset with both cities, that includes both PM values, for solely March 2022. The important difference is that we are not looking at 2021 values in this dataset. Table 2 outlines all of our working data sets and what they each contain.
 
-\new
+\newpage
 **Table 1**
 
 Data File Name | Column Name | Data Type
@@ -166,7 +175,8 @@ Full-air_quality_21_22| FULL_LVIV + FULL_Dnipro combined
 
 # Exploratory Analysis 
 
->To begin our exploratory analysis of the air quality data, we created dot plots to map out what range of our quality our data fell into (Figures 1 & 2). The data is color coded with green denoting good air quality conditions, yellow is moderate conditions, and red is showing air quality that is poor and likely hazardous to health. Attached is a table showing a breakdown for air quality metrics (Table 3). This dot plot was created to show the range in which our data falls in terms of air quality health. Additionally, we determined the summary statistics of the PM10 and PM2.5 (Table 4)
+>To begin our exploratory analysis of the air quality data, we created dot plots to map out what range of our quality our data fell into (Figures 1 & 2). The data is color coded with green denoting good air quality conditions, yellow is moderate conditions, and red is showing air quality that is poor and likely hazardous to health. Attached is a table showing a breakdown for air quality metrics (Table 3). This dot plot was created to show the range in which our data falls in terms of air quality health. Additionally, we determined the summary statistics of the PM2.5 and PM10 (Tables 4 + 5).
+
 
 **Table 3**
 
@@ -177,7 +187,29 @@ Moderate | 15.5 to 35.5 | 54 to 150
 Poor | 35.5 to 150 | 150 to 250
 Unhealthy | 150+ | 250+
 
-```{r plot of pm2.5 air pollution by levels, echo=FALSE, fig.cap="Figure 1 PM2.5 Air Pollution Dot Plot"}
+\newpage
+
+```{r summary statistics, echo = FALSE}
+#PM2.5
+air.quality.summary.PM25 <- Ukraine_Processed %>%
+ group_by(City) %>%
+  summarize( mean_PM2.5 = mean(pm25),
+    min_PM2.5 = min(pm25),
+    max_PM2.5 = max(pm25),
+    sd_PM2.5 = sd(pm25)
+)
+
+#PM10
+air.quality.summary.PM10 <- Ukraine_Processed %>%
+ group_by(City) %>%
+  summarize(mean_PM10 = mean(pm10),
+    min_PM10 = min(pm10),
+    max_PM10 = max(pm10),
+    sd_PM2.5 = sd(pm10)
+)
+```
+
+```{r plot of pm25 air pollution by cityyear,fig.cap="PM2.5 Air Pollution Distribution",echo=FALSE}
 
 Full_air_quality_21_22 <- bind_rows(FULL_LVIV, FULL_DNIPRO)%>%
   mutate(Year = as.factor(Year))%>%
@@ -206,15 +238,14 @@ print(PM25_plot)
 ```
 
 \
-```{r PM2.5 table,echo = FALSE}
+```{r PM25 table, echo = FALSE}
 #PM2.5
 knitr::kable(air.quality.summary.PM25, caption = "PM2.5 Levels by City", 
              col.names = c("City", "Mean", "Min", "Max", "Std Dev"))
 
 ```
 
-
-```{r plot of pm10 air pollution by levels, echo=FALSE, fig.cap="Figure 1 PM10 Air Pollution Dot Plot"}
+```{r plot of PM10 air pollution by cityyear,fig.cap="PM10 Air Pollution Distribution",echo=FALSE}
 PM10_plot <- ggplot(Full_air_quality_21_22, x = City_Year, y = pm10)+
   geom_point(aes(x=City_Year, y = pm10, color = pm10),
              size = 5)+
@@ -230,9 +261,10 @@ PM10_plot <- ggplot(Full_air_quality_21_22, x = City_Year, y = pm10)+
   aesthetics = "color"
 )
 print(PM10_plot)
-```
 
+```
 \
+
 ```{r  PM10 table, echo = FALSE}
 
 #PM10
@@ -423,13 +455,20 @@ It is important to note that our study was limited in the amount of data analyze
 >Additionally, it may be valuable to explore other variables that may be affecting air pollution levels besides war presence and missile attacks. Specifically, population and population density may have an impact on air pollution levels. As it was found that Lviv had much higher absolute levels of air pollution compared to Dnipro, it would be valuable to understand differences in population, population density, and tourism activity (as Lviv is the cultural capital of the country) has any impact on air pollution levels.
 
 >**Conclusions**\
-<<<<<<< HEAD
-From this study, we can conclude that there were differences in air quality levels between affected cities during the Russian invasion. However, we cannot conclude that varying levels of missile attacks is the only factor contributing to these differences. Additionally, we can conclude that cities may differ in air pollution levels during the presence of war activity compared to before, however, it appears that missile attacks may have a negative relationship with air pollution levels. These results show that there may be other variables affecting air pollution levels in cities (such as the presence or absence of industrial activity) that would be valuable
-=======
 From this study, we can conclude that there were differences in air quality levels between affected cities during the Russian invasion. However, we cannot conclude that varying levels of missile attacks is the only factor contributing to these differences. Additionally, we can conclude that cities may differ in air pollution levels during the presence of war activity compared to before, however, it appears that missile attacks may have a negative relationship with air pollution levels. These results show that there may be other variables affecting air pollution levels in cities (such as the presence or absence of industrial activity) that would be valuable to analyze in future studies.
->>>>>>> 646109b84aa0b8b64ced60bc58b234a9aefc3502
+
 
 \newpage
 
 # References
-<add references here if relevant, otherwise delete this section> 
+Anna, C. (2022, March 19). Ukraine's cultural capital no longer distant from the war. AP NEWS. Retrieved April 17, 2022, from https://apnews.com/article/russia-ukraine-kyiv-europe-religion-a3db4233f2fe7359230d4d9c56aae972
+
+Dathan, J. (2020, July 3). The broken land: The environmental consequences of explosive weapon use - syrian arab republic. ReliefWeb. Retrieved April 17, 2022, from https://reliefweb.int/report/syrian-arab-republic/broken-land-environmental-consequences-explosive-weapon-use 
+
+EPA. (n.d.). Particulate Matter (PM) Basics. EPA. Retrieved April 17, 2022, from https://www.epa.gov/pm-pollution/particulate-matter-pm-basics
+
+Lister, T., Mezzofiore, G., Murphy, P., Smith-Spark, L., & Picheta, R. (2022, March 11). Russia widens attack on Ukraine's cities, striking western airfields and Dnipro. CNN. Retrieved April 17, 2022, from https://www.cnn.com/2022/03/11/europe/russia-invasion-ukraine-03-11-intl/index.html 
+
+Parrett, M. (2020, October 27). Air pollution is a problem for manufacturing sector, according to whitepaper. New Food Magazine. Retrieved April 17, 2022, from https://www.newfoodmagazine.com/news/122481/air-pollution/
+
+The World Air Quality Project. (n.d.). Air Quality Historical Data Platform. aqicn.org. Retrieved April 17, 2022, from https://aqicn.org/data-platform/register/ 
