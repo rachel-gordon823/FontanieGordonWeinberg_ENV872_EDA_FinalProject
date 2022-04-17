@@ -355,7 +355,7 @@ summary(dnipro.25.lm)
 ```
 \newpage
 >**PM2.5 in Lviv**\
->When plotting PM2.5 levels in Lviv in 2021 compared to 2022 (Figure 4), there is no clear difference in levels between years. It is interesting to note that before the March 18 attack, PM2.5 levels were increasing, and after the March 18, 2022 missile attack, it appears levels sharply decreased. Overall in both years, it appears that there seems to be a variety of fluctuation in PM2.5 in Lviv. Additionally, within both 2021 and 2022, it is very rare that levels are within the "good" range of PM2.5 (<15.4) and are typically within "moderate" to "unhealthy" levels.
+>When plotting PM2.5 levels in Lviv in 2021 compared to 2022 (Figure 6), there is no clear difference in levels between years. It is interesting to note that before the March 18 attack, PM2.5 levels were increasing, and after the March 18, 2022 missile attack, it appears levels sharply decreased. Overall in both years, it appears that there seems to be a variety of fluctuation in PM2.5 in Lviv. Additionally, within both 2021 and 2022, it is very rare that levels are within the "good" range of PM2.5 (<15.4) and are typically within "moderate" to "unhealthy" levels.
 
 >For the statistical analysis, we ran a linear regression model of PM2.5 levels by year within Lviv, to understand if there are significant differences in levels within the city in March 2021 compared to March 2022. Through the analysis, we found that the slope was negative (-10.284), meaning that PM2.5 levels decreased in 2022 compared to 2021. However, the linear regression showed that the negative relationship between PM2.5 levels and year in Lviv is not significant (p=0.1639).
 
@@ -381,7 +381,7 @@ summary(lviv.25.lm)
 ```
 \newpage
 >**PM10 in Dnipro**\
->When plotting PM10 levels in Dnipro in 2021 compared to 2022 (Figure 5), it is evident that overall, PM10 levels were higher in 2021 compared to 2022. When looking at the PM10 levels around the March 11 attack in 2022, there does not appear to be a significant increase. Additionally, in March 2022, PM10 levels seemed to stay within or below "moderate" levels, whereas 2021 levels ranged from "moderate" to "unhealthy for sensitive groups".
+>When plotting PM10 levels in Dnipro in 2021 compared to 2022 (Figure 7), it is evident that overall, PM10 levels were higher in 2021 compared to 2022. When looking at the PM10 levels around the March 11 attack in 2022, there does not appear to be a significant increase. Additionally, in March 2022, PM10 levels seemed to stay within or below "moderate" levels, whereas 2021 levels ranged from "moderate" to "unhealthy for sensitive groups".
 
 >For the statistical analysis, we ran a linear regression of PM10 levels by year within Dnipro, to understand if there are significant differences in levels within the city in March 2021 compared to March 2022. Through the analysis, we found that the slope was negative (-15.677), meaning that PM10 levels decreased in 2022 compared to 2021. Additionally, the linear regression showed that these results are statistically significant (p=4.325e-07), meaning there is a significant difference in PM10 levels in Dnipro in 2022 compared to 2021.
 
@@ -408,7 +408,7 @@ summary(dnipro.10.lm)
 ```
 \newpage
 >**PM10 in Lviv**\
->When plotting PM10 levels in Lviv in 2021 compared to 2022 (Figure 6), there is no clear difference observed in PM10 levels between the years. It is also interesting to note that there does not seem to a significant change in PM10 levels after the March 18 attack, and PM10 levels appear to sharply drop after the March 26 attack. Additionally, PM10 levels in both years stay mainly within "unhealthy for sensitive groups" to "good" levels, but at some points in 2021, levels reach into the "unhealthy" level.
+>When plotting PM10 levels in Lviv in 2021 compared to 2022 (Figure 8), there is no clear difference observed in PM10 levels between the years. It is also interesting to note that there does not seem to a significant change in PM10 levels after the March 18 attack, and PM10 levels appear to sharply drop after the March 26 attack. Additionally, PM10 levels in both years stay mainly within "unhealthy for sensitive groups" to "good" levels, but at some points in 2021, levels reach into the "unhealthy" level.
 
 >For the statistical analysis, we ran a linear regression of PM10 levels by year within Lviv, to understand if there are significant differences in levels within the city in March 2021 compared to March 2022. Through the analysis, we found that the slope was negative (-5.673), meaning that PM10 levels decreased in 2022 compared to 2021 in Lviv. However, the linear regression showed that these results are not statistically significant (p=0.1364), meaning that there is not a significant difference in PM10 levels in Lviv in 2022 compared to 2021.
 
