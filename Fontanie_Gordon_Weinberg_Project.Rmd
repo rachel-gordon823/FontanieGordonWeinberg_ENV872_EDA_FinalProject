@@ -12,6 +12,7 @@ fontsize: 12pt
 mainfont: Times New Roman
 editor_options: 
   chunk_output_type: console
+
 ---
 
 \newpage
@@ -209,7 +210,7 @@ air.quality.summary.PM10 <- Ukraine_Processed %>%
 )
 ```
 
-```{r plot of pm25 air pollution by cityyear,fig.cap="PM2.5 Air Pollution Distribution",echo=FALSE}
+```{r plot of PM25 air pollution by cityyear,fig.cap="PM2.5 Air Pollution Distribution",echo=FALSE}
 
 Full_air_quality_21_22 <- bind_rows(FULL_LVIV, FULL_DNIPRO)%>%
   mutate(Year = as.factor(Year))%>%
@@ -244,8 +245,9 @@ knitr::kable(air.quality.summary.PM25, caption = "PM2.5 Levels by City",
              col.names = c("City", "Mean", "Min", "Max", "Std Dev"))
 
 ```
+\newpage
 
-```{r plot of PM10 air pollution by cityyear,fig.cap="PM10 Air Pollution Distribution",echo=FALSE}
+```{r plot of PM10 air pollution by city year,fig.cap="PM10 Air Pollution Distribution", echo=FALSE}
 PM10_plot <- ggplot(Full_air_quality_21_22, x = City_Year, y = pm10)+
   geom_point(aes(x=City_Year, y = pm10, color = pm10),
              size = 5)+
@@ -258,12 +260,10 @@ PM10_plot <- ggplot(Full_air_quality_21_22, x = City_Year, y = pm10)+
   midpoint = 55,
   space = "Lab",
   guide = "colourbar",
-  aesthetics = "color"
-)
+  aesthetics = "color")
 print(PM10_plot)
-
 ```
-\
+
 
 ```{r  PM10 table, echo = FALSE}
 
@@ -271,6 +271,7 @@ print(PM10_plot)
 knitr::kable(air.quality.summary.PM10, caption = "PM10 Levels by City", 
              col.names = c("City", "Mean", "Min", "Max", "Std Dev"))
 ```
+
 \newpage
 
 # Analysis
@@ -327,7 +328,7 @@ summary(dnipro.lviv.pm10.lm)
 >Similiar to our first research question, we conducted a visual analysis of PM2.5 and PM10 levels within Dnipro and Lviv for years 2021 and 2022. For each of our visualizations, we created line plots that showed the air pollution levels within the city, comparing 2021 to 2022. As we needed to visualize the levels of both PM2.5 and PM10, we created four different plots - "PM2.5 Levels in Dnipro", "PM2.5 Levels in Lviv", "PM10 Levels in Dnipro", and "PM10 Levels in Lviv". Within each of these plots, we also created annotations to indicate the specific dates of the missile attacks within the cities to see if there were any PM2.5 or PM10 increases or decreases around those dates. Additionally, we conducted a linear regression analysis for each of these charts to understand if there is a significant difference in PM2.5 levels and PM10 levels within Dnipro and Lviv in March of 2021 compared to March of 2022.\
 
 >**PM2.5 in Dnipro**\
->When plotting PM2.5 levels in Dnipro in 2021 compared to 2022 (Figure 3), it is evident that overall, PM2.5 levels were higher in 2021 than 2022. It is also interesting to note that around March 11 in 2022, when the missile attack occured, there appears to be an uptick in PM2.5 levels and then sharply decreases shortly after. Overall in both years, there seems to be a variety of fluctuation in PM2.5 levels and they are not consistent within each year. Additionally, within most of 2022, PM2.5 levels stayed within "good" to "moderate" levels, with an exception of reaching a level of "unhealthy for sensitive groups" at the end of March 2022. In March 2021, however, the PM2.5 levels were mainly in the "unhealthy for sensitive groups" or "unhealthy" category, with only a few days throughout that month in "moderate" levels.
+>When plotting PM2.5 levels in Dnipro in 2021 compared to 2022 (Figure 5), it is evident that overall, PM2.5 levels were higher in 2021 than 2022. It is also interesting to note that around March 11 in 2022, when the missile attack occured, there appears to be an uptick in PM2.5 levels and then sharply decreases shortly after. Overall in both years, there seems to be a variety of fluctuation in PM2.5 levels and they are not consistent within each year. Additionally, within most of 2022, PM2.5 levels stayed within "good" to "moderate" levels, with an exception of reaching a level of "unhealthy for sensitive groups" at the end of March 2022. In March 2021, however, the PM2.5 levels were mainly in the "unhealthy for sensitive groups" or "unhealthy" category, with only a few days throughout that month in "moderate" levels.
 
 >For the statistical analysis, we ran a linear regression model of pm2.5 levels by year within Dnipro, to understand if there are significant differences in PM2.5 levels within the city in March 2021 compared to March 2022. The linear regression showed the slope was negative (-32.253), meaning that PM2.5 levels decreased in 2022 compared to 2021. Additionally, the linear regression showed that the relationship between PM2.5 levels and year in Dnipro is significant (p = 5.074e-10), meaning that there is a significant difference in PM2.5 levels in Dnipro in 2022 compared to 2021.
 
