@@ -57,7 +57,16 @@ UkraineData <- read.csv("./Data/RawData/Ukraine_AQIData.csv", stringsAsFactors =
 
 # Rationale and Research Questions
 
+<<<<<<< HEAD
 > [Rachel to do]
+=======
+
+> During periods of war and geopolitical conflicts, environmental pollution and degraded air quality is a common effect experienced by nations subject to violent attacks. Specifically, the use of explosive weapons can cause extensive damage to urban buildings and infrastructure, resulting in hazardous dust, debris, and other air particles that can have lasting health impacts on affected populations.
+
+>On February 24, 2022 Russia invaded Ukraine due to geopolitical conflicts between the two nations. Russia’s invasion has consisted of multiple missile attacks throughout Ukraine, causing extensive damage to urban infrastructure, reducing buildings to rubble and creating dangerous explosions that have enormous potential to raise air pollution levels. Therefore, in this project, we examine two different Ukrainian cities that have experienced attacks since Russia’s invasion and explore air quality levels of these cities both before and during the war.
+
+>As the conflict has been ongoing throughout all of March 2022, we chose to analyze air quality data from March 2022 as well as March 2021. We chose to include data from the same month in 2021 to be able to compare air quality levels during the war to the levels before to control for weather and temperature variations that typically occur throughout different months and seasons. Additionally, we were interested in exploring air quality levels of two cities that are in different geographic locations and have experienced at least one missile attack by Russia during March 2022. For air quality indicators, we wanted to look at both PM 2.5 and PM 10, as the levels of these particulate matters increase from sources such as construction sites and fires and can have lasting effects on human health. PM2.5 are very fine inhalable particles that are 2.5 micrometers or smaller, whereas PM10 are less than 10.5 micrometers. Lastly, we wanted to look at two cities that differed in economic activity and levels of industrial manufacturing, as industrial manufacturing activities can have an effect on air quality levels.
+>>>>>>> 646109b84aa0b8b64ced60bc58b234a9aefc3502
 
 \newpage
 
@@ -187,6 +196,11 @@ PM25_plot <- ggplot(Full_air_quality_21_22, x = City_Year, y = pm25)+
   aesthetics = "color"
 )
 print(PM25_plot)
+<<<<<<< HEAD
+=======
+
+    
+>>>>>>> 646109b84aa0b8b64ced60bc58b234a9aefc3502
 
 ```
 
@@ -215,6 +229,10 @@ PM10_plot <- ggplot(Full_air_quality_21_22, x = City_Year, y = pm10)+
 )
 print(PM10_plot)
 ```
+<<<<<<< HEAD
+=======
+
+>>>>>>> 646109b84aa0b8b64ced60bc58b234a9aefc3502
 \
 ```{r  PM10 table, echo = FALSE}
 
@@ -406,7 +424,11 @@ It is important to note that our study was limited in the amount of data analyze
 >Additionally, it may be valuable to explore other variables that may be affecting air pollution levels besides war presence and missile attacks. Specifically, population and population density may have an impact on air pollution levels. As it was found that Lviv had much higher absolute levels of air pollution compared to Dnipro, it would be valuable to understand differences in population, population density, and tourism activity (as Lviv is the cultural capital of the country) has any impact on air pollution levels.
 
 >**Conclusions**\
+<<<<<<< HEAD
 From this study, we can conclude that there were differences in air quality levels between affected cities during the Russian invasion. However, we cannot conclude that varying levels of missile attacks is the only factor contributing to these differences. Additionally, we can conclude that cities may differ in air pollution levels during the presence of war activity compared to before, however, it appears that missile attacks may have a negative relationship with air pollution levels. These results show that there may be other variables affecting air pollution levels in cities (such as the presence or absence of industrial activity) that would be valuable
+=======
+From this study, we can conclude that there were differences in air quality levels between affected cities during the Russian invasion. However, we cannot conclude that varying levels of missile attacks is the only factor contributing to these differences. Additionally, we can conclude that cities may differ in air pollution levels during the presence of war activity compared to before, however, it appears that missile attacks may have a negative relationship with air pollution levels. These results show that there may be other variables affecting air pollution levels in cities (such as the presence or absence of industrial activity) that would be valuable to analyze in future studies.
+>>>>>>> 646109b84aa0b8b64ced60bc58b234a9aefc3502
 
 \newpage
 
