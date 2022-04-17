@@ -57,6 +57,7 @@ UkraineData <- read.csv("./Data/RawData/Ukraine_AQIData.csv", stringsAsFactors =
 
 # Rationale and Research Questions
 
+
 > During periods of war and geopolitical conflicts, environmental pollution and degraded air quality is a common effect experienced by nations subject to violent attacks. Specifically, the use of explosive weapons can cause extensive damage to urban buildings and infrastructure, resulting in hazardous dust, debris, and other air particles that can have lasting health impacts on affected populations.
 
 >On February 24, 2022 Russia invaded Ukraine due to geopolitical conflicts between the two nations. Russia’s invasion has consisted of multiple missile attacks throughout Ukraine, causing extensive damage to urban infrastructure, reducing buildings to rubble and creating dangerous explosions that have enormous potential to raise air pollution levels. Therefore, in this project, we examine two different Ukrainian cities that have experienced attacks since Russia’s invasion and explore air quality levels of these cities both before and during the war.
@@ -198,27 +199,18 @@ PM25_plot <- ggplot(Full_air_quality_21_22, x = City_Year, y = pm25)+
 )
 
 print(PM25_plot)
-#PM25_dotplot <- ggplot(Full_air_quality_21_22, 
-  #aes(x= City_Year, y = pm25, fill = City))+
-  #geom_boxplot()+
-  #geom_dotplot(binaxis = 'y', stackdir = 'center')+
-  #labs(x = "City Year", y = "PM2.5")+
-  #theme(legend.position = "none")
-    
-#print(PM25_dotplot)
-
-#PM10_dotplot <- ggplot(Full_air_quality_21_22, 
-  #aes(x= City_Year, y = pm10, fill = City))+
-  #geom_boxplot()+
-  #geom_dotplot(binaxis = 'y', stackdir = 'center')+
-  #labs(x = "City Year", y = "PM10", color = "City Year")+
-  #theme(legend.position = "none")
 
     
 
 ```
 
+\
+```{r PM2.5 table,echo = FALSE}
+#PM2.5
+knitr::kable(air.quality.summary.PM25, caption = "PM2.5 Levels by City", 
+             col.names = c("City", "Mean", "Min", "Max", "Std Dev"))
 
+```
 
 
 ```{r plot of pm10 air pollution by levels, echo=FALSE, fig.cap="Figure 1 PM10 Air Pollution Dot Plot"}
@@ -237,44 +229,10 @@ PM10_plot <- ggplot(Full_air_quality_21_22, x = City_Year, y = pm10)+
   aesthetics = "color"
 )
 print(PM10_plot)
-
-
-```
-\newpage
-```{r summary statistics, echo = FALSE, fig.cap = "Table 4 Summary Statistics"}
-
-#summary statistics PM2.5
-air.quality.summary.PM25 <- Ukraine_Processed %>%
-  group_by(City) %>%
-  summarize(
-    mean_PM2.5 = mean(pm25),
-    min_PM2.5 = min(pm25),
-    max_PM2.5 = max(pm25),
-    sd_PM2.5 = sd(pm25)
-)
-
-#summary statistics PM10
-air.quality.summary.PM10 <- Ukraine_Processed %>%
-  group_by(City) %>%
-  summarize(
-    mean_PM10 = mean(pm10),
-    min_PM10 = min(pm10),
-    max_PM10 = max(pm10),
-    sd_PM10 = sd(pm10)
-)
-
 ```
 
- 
-
-
-
-```{r PM2.5 + PM10, echo = FALSE}
-
-
-#PM2.5
-knitr::kable(air.quality.summary.PM25, caption = "PM2.5 Levels by City", 
-             col.names = c("City", "Mean", "Min", "Max", "Std Dev"))
+\
+```{r  PM10 table, echo = FALSE}
 
 #PM10
 knitr::kable(air.quality.summary.PM10, caption = "PM10 Levels by City", 
@@ -288,7 +246,9 @@ knitr::kable(air.quality.summary.PM10, caption = "PM10 Levels by City",
 
 >[Shirley insert text about how we analyzed - visualizations and statistical tests]
 
-```{r Plotting Lviv vs Dnipro, fig.cap= "Comparing Air Pollution in Lviv vs Dnipro 2022", echo = FALSE}
+>**PM2.5 in Lviv and Dnipro during the invasions**
+
+```{r Plotting Lviv vs Dnipro PM25, fig.cap= "2022 PM2.5 Levels in Dnipro and Lviv", echo = FALSE}
 
 FULL_Air_quality <- bind_rows(Dnipro_2022,Lviv_2022)
 
@@ -297,43 +257,44 @@ PM25_Lviv_and_Dnipro_PLOT <-
 (aes(x = Day, y = pm25, color = City)) + 
   geom_line()+  
   geom_point()+
-  labs(x = "Days in March, 2022", y= "PM2.5",
-  title = "        Observing PM2.5 Values in Dnipro and Lviv, Ukraine")  
+  labs(x = "Days in March, 2022", y= "PM2.5")  
 print(PM25_Lviv_and_Dnipro_PLOT)
 
+```
+
+```{r lm analysis of PM25 2022 levels in Dnipro and Lviv, include = FALSE}
+
+dnipro.lviv.pm25.lm <- lm(data = FULL_Air_quality, pm25 ~ City) 
+summary(dnipro.lviv.pm25.lm)
+```
+
+
+
+```{r Plotting Lviv and Dnipro PM10, fig.cap = "2022 PM10 Levels in Lviv and Dnipro", echo = FALSE}
 
 PM10_Lviv_and_Dnipro_PLOT <-
   ggplot(FULL_Air_quality) + 
 (aes(x = Day, y = pm10, color = City)) + 
   geom_line()+  
   geom_point()+
-  labs(x = "Days in March, 2022", y= "PM10",
-  title = "         Observing PM10 Values in Dnipro and Lviv, Ukraine")  
+  labs(x = "Days in March, 2022", y= "PM10")  
 print(PM10_Lviv_and_Dnipro_PLOT)
 
-
-
-
-
 ```
-```{r lm of air quality by city, echo = FALSE}
-dnipro.lviv.pm25.lm <- lm(data = FULL_Air_quality, pm25 ~ City) 
-summary(dnipro.lviv.pm25.lm)
+
+```{r lm analysis of PM10 2022 levels in Dnipro and Lviv, include = FALSE}
 
 dnipro.lviv.pm10.lm <- lm(data = FULL_Air_quality, pm10 ~ City) 
 summary(dnipro.lviv.pm10.lm)
 ```
-
-
+\newpage
 
 ## Question 2: Are there significant differences in air quality levels in affected Ukrainian cities before and during the Russian attacks? 
 
 >Similiar to our first research question, we conducted a visual analysis of PM2.5 and PM10 levels within Dnipro and Lviv for years 2021 and 2022. For each of our visualizations, we created line plots that showed the air pollution levels within the city, comparing 2021 to 2022. As we needed to visualize the levels of both PM2.5 and PM10, we created four different plots - "PM2.5 Levels in Dnipro", "PM2.5 Levels in Lviv", "PM10 Levels in Dnipro", and "PM10 Levels in Lviv". Within each of these plots, we also created annotations to indicate the specific dates of the missile attacks within the cities to see if there were any PM2.5 or PM10 increases or decreases around those dates. Additionally, we conducted a linear regression analysis for each of these charts to understand if there is a significant difference in PM2.5 levels and PM10 levels within Dnipro and Lviv in March of 2021 compared to March of 2022.\
 
-\newpage
-
 >**PM2.5 in Dnipro**\
->When plotting PM2.5 levels in Dnipro in 2021 compared to 2022, it is evident that overall, PM2.5 levels were higher in 2021 than 2022. It is also interesting to note that around March 11 in 2022, when the missile attack occured, there appears to be an uptick in PM2.5 levels and then sharply decreases shortly after. Overall in both years, there seems to be a variety of fluctuation in PM2.5 levels and they are not consistent within each year. Additionally, within most of 2022, PM2.5 levels stayed within "good" to "moderate" levels, with an exception of reaching a level of "unhealthy for sensitive groups" at the end of March 2022. In March 2021, however, the PM2.5 levels were mainly in the "unhealthy for sensitive groups" or "unhealthy" category, with only a few days throughout that month in "moderate" levels.
+>When plotting PM2.5 levels in Dnipro in 2021 compared to 2022 (Figure 3), it is evident that overall, PM2.5 levels were higher in 2021 than 2022. It is also interesting to note that around March 11 in 2022, when the missile attack occured, there appears to be an uptick in PM2.5 levels and then sharply decreases shortly after. Overall in both years, there seems to be a variety of fluctuation in PM2.5 levels and they are not consistent within each year. Additionally, within most of 2022, PM2.5 levels stayed within "good" to "moderate" levels, with an exception of reaching a level of "unhealthy for sensitive groups" at the end of March 2022. In March 2021, however, the PM2.5 levels were mainly in the "unhealthy for sensitive groups" or "unhealthy" category, with only a few days throughout that month in "moderate" levels.
 
 >For the statistical analysis, we ran a linear regression model of pm2.5 levels by year within Dnipro, to understand if there are significant differences in PM2.5 levels within the city in March 2021 compared to March 2022. The linear regression showed the slope was negative (-32.253), meaning that PM2.5 levels decreased in 2022 compared to 2021. Additionally, the linear regression showed that the relationship between PM2.5 levels and year in Dnipro is significant (p = 5.074e-10), meaning that there is a significant difference in PM2.5 levels in Dnipro in 2022 compared to 2021.
 
@@ -361,7 +322,7 @@ summary(dnipro.25.lm)
 ```
 \newpage
 >**PM2.5 in Lviv**\
->When plotting PM2.5 levels in Lviv in 2021 compared to 2022, there is no clear difference in levels between years. It is interesting to note that before the March 18 attack, PM2.5 levels were increasing, and after the March 18, 2022 missile attack, it appears levels sharply decreased. Overall in both years, it appears that there seems to be a variety of fluctuation in PM2.5 in Lviv. Additionally, within both 2021 and 2022, it is very rare that levels are within the "good" range of PM2.5 (<15.4) and are typically within "moderate" to "unhealthy" levels.
+>When plotting PM2.5 levels in Lviv in 2021 compared to 2022 (Figure 4), there is no clear difference in levels between years. It is interesting to note that before the March 18 attack, PM2.5 levels were increasing, and after the March 18, 2022 missile attack, it appears levels sharply decreased. Overall in both years, it appears that there seems to be a variety of fluctuation in PM2.5 in Lviv. Additionally, within both 2021 and 2022, it is very rare that levels are within the "good" range of PM2.5 (<15.4) and are typically within "moderate" to "unhealthy" levels.
 
 >For the statistical analysis, we ran a linear regression model of PM2.5 levels by year within Lviv, to understand if there are significant differences in levels within the city in March 2021 compared to March 2022. Through the analysis, we found that the slope was negative (-10.284), meaning that PM2.5 levels decreased in 2022 compared to 2021. However, the linear regression showed that the negative relationship between PM2.5 levels and year in Lviv is not significant (p=0.1639).
 
@@ -387,7 +348,7 @@ summary(lviv.25.lm)
 ```
 \newpage
 >**PM10 in Dnipro**\
->When plotting PM10 levels in Dnipro in 2021 compared to 2022, it is evident that overall, PM10 levels were higher in 2021 compared to 2022. When looking at the PM10 levels around the March 11 attack in 2022, there does not appear to be a significant increase. Additionally, in March 2022, PM10 levels seemed to stay within or below "moderate" levels, whereas 2021 levels ranged from "moderate" to "unhealthy for sensitive groups".
+>When plotting PM10 levels in Dnipro in 2021 compared to 2022 (Figure 5), it is evident that overall, PM10 levels were higher in 2021 compared to 2022. When looking at the PM10 levels around the March 11 attack in 2022, there does not appear to be a significant increase. Additionally, in March 2022, PM10 levels seemed to stay within or below "moderate" levels, whereas 2021 levels ranged from "moderate" to "unhealthy for sensitive groups".
 
 >For the statistical analysis, we ran a linear regression of PM10 levels by year within Dnipro, to understand if there are significant differences in levels within the city in March 2021 compared to March 2022. Through the analysis, we found that the slope was negative (-15.677), meaning that PM10 levels decreased in 2022 compared to 2021. Additionally, the linear regression showed that these results are statistically significant (p=4.325e-07), meaning there is a significant difference in PM10 levels in Dnipro in 2022 compared to 2021.
 
@@ -414,7 +375,7 @@ summary(dnipro.10.lm)
 ```
 \newpage
 >**PM10 in Lviv**\
->When plotting PM10 levels in Lviv in 2021 compared to 2022, there is no clear difference observed in PM10 levels between the years. It is also interesting to note that there does not seem to a significant change in PM10 levels after the March 18 attack, and PM10 levels appear to sharply drop after the March 26 attack. Additionally, PM10 levels in both years stay mainly within "unhealthy for sensitive groups" to "good" levels, but at some points in 2021, levels reach into the "unhealthy" level.
+>When plotting PM10 levels in Lviv in 2021 compared to 2022 (Figure 6), there is no clear difference observed in PM10 levels between the years. It is also interesting to note that there does not seem to a significant change in PM10 levels after the March 18 attack, and PM10 levels appear to sharply drop after the March 26 attack. Additionally, PM10 levels in both years stay mainly within "unhealthy for sensitive groups" to "good" levels, but at some points in 2021, levels reach into the "unhealthy" level.
 
 >For the statistical analysis, we ran a linear regression of PM10 levels by year within Lviv, to understand if there are significant differences in levels within the city in March 2021 compared to March 2022. Through the analysis, we found that the slope was negative (-5.673), meaning that PM10 levels decreased in 2022 compared to 2021 in Lviv. However, the linear regression showed that these results are not statistically significant (p=0.1364), meaning that there is not a significant difference in PM10 levels in Lviv in 2022 compared to 2021.
 
@@ -445,15 +406,23 @@ summary(lviv.10.lm)
 \newpage
 
 # Summary and Conclusions
+
 ## Question 1: Are there significant differences in air quality levels between affected Ukrainian cities during the Russian invasion?
 
->[insert results from our analysis]
+>[Shirley insert results from our analysis]
 
 ## Question 2: Are there significant differences in air quality levels in affected Ukrainian cities before and during the Russian attacks? 
->[insert text about summary]
+> There were significant differences in both PM2.5 and PM10 levels in Dnipro in March of 2022 compared to March of 2021. However, there were no significant differences in PM2.5 and PM10 levels in Lviv in March of 2022 compared to March of 2021. In Dnipro in March of 2022, the PM2.5 levels were much higher in 2021 compared to 2022, which was surprising given the context originally discussed in which air pollution tends to increase during times of war due to explosions and infrastructure collapse that increase levels of hazardous dust and debris.
 
+> As Dnipro typically has a high presence of industrial activity during pre-war times, it is possible that PM2.5 and PM10 levels decreased due to the industrial sector activities being paused during the war. Additionally, since Lviv is more of a cultural city and does not have a heavy industrial presence, it is likely that PM2.5 levels and PM10 levels didn't significantly change if industrial activity is a more influential factor than presence of missile attacks. This is an interesting idea that would be valuable to explore in future studies, comparing multiple cities that have experienced missile attacks with varying industrial profiles and identifying if air pollution levels change in those cities if industrial activity is paused due to war.
 
->insert text about what may have affected our results, limitations of our data, and what we would do next if we could
+>**Limitations**\
+It is important to note that our study was limited in the amount of data analyzed over time. To improve the analysis, if it's possible to find more data, we would study PM2.5 and PM10 levels from at least three years prior. Additionally, depending on how the war continues, it would be interested to study air pollution levels beyond March of 2022, especially if the war worsens and there is an increasing amount of missile attacks. Our study is also limited in the number of cities analyzed. To improve the study, we would expand our analysis to more cities throughout Ukraine if it is possible to find the data.
+
+>Additionally, it may be valuable to explore other variables that may be affecting air pollution levels besides war presence and missile attacks. Specifically, population and population density may have an impact on air pollution levels. As it was found that Lviv had much higher absolute levels of air pollution compared to Dnipro, it would be valuable to understand differences in population, population density, and tourism activity (as Lviv is the cultural capital of the country) has any impact on air pollution levels.
+
+>**Conclusions**\
+From this study, we can conclude that there were differences in air quality levels between affected cities during the Russian invasion. However, we cannot conclude that varying levels of missile attacks is the only factor contributing to these differences. Additionally, we can conclude that cities may differ in air pollution levels during the presence of war activity compared to before, however, it appears that missile attacks may have a negative relationship with air pollution levels. These results show that there may be other variables affecting air pollution levels in cities (such as the presence or absence of industrial activity) that would be valuable to analyze in future studies.
 
 \newpage
 
