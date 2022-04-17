@@ -102,42 +102,7 @@
 Questions}\label{rationale-and-research-questions}}
 
 \begin{quote}
-During periods of war and geopolitical conflicts, environmental
-pollution and degraded air quality is a common effect experienced by
-nations subject to violent attacks. Specifically, the use of explosive
-weapons can cause extensive damage to urban buildings and
-infrastructure, resulting in hazardous dust, debris, and other air
-particles that can have lasting health impacts on affected populations.
-\end{quote}
-
-\begin{quote}
-On February 24, 2022 Russia invaded Ukraine due to geopolitical
-conflicts between the two nations. Russia's invasion has consisted of
-multiple missile attacks throughout Ukraine, causing extensive damage to
-urban infrastructure, reducing buildings to rubble and creating
-dangerous explosions that have enormous potential to raise air pollution
-levels. Therefore, in this project, we examine two different Ukrainian
-cities that have experienced attacks since Russia's invasion and explore
-air quality levels of these cities both before and during the war.
-\end{quote}
-
-\begin{quote}
-As the conflict has been ongoing throughout all of March 2022, we chose
-to analyze air quality data from March 2022 as well as March 2021. We
-chose to include data from the same month in 2021 to be able to compare
-air quality levels during the war to the levels before to control for
-weather and temperature variations that typically occur throughout
-different months and seasons. Additionally, we were interested in
-exploring air quality levels of two cities that are in different
-geographic locations and have experienced at least one missile attack by
-Russia during March 2022. For air quality indicators, we wanted to look
-at both PM 2.5 and PM 10, as the levels of these particulate matters
-increase from sources such as construction sites and fires and can have
-lasting effects on human health. PM2.5 are very fine inhalable particles
-that are 2.5 micrometers or smaller, whereas PM10 are less than 10.5
-micrometers. Lastly, we wanted to look at two cities that differed in
-economic activity and levels of industrial manufacturing, as industrial
-manufacturing activities can have an effect on air quality levels.
+Rachel input written section
 \end{quote}
 
 \newpage
@@ -146,71 +111,12 @@ manufacturing activities can have an effect on air quality levels.
 \section{Dataset Information}\label{dataset-information}}
 
 \begin{quote}
-Data for this project was retrieved from the World Air Quality Indices'
-Air Quality Historical Data Platform. The World Air Quality Index is a
-non-profit started in 2007 that is working to increase transparency for
-air quality data in order to improve pollution awareness. The World Air
-Quality Index created the Air Quality Historical Data Platform in 2014
-in order to provide information on how location-based air quality is
-changing over time. Data in this report looks at PM10 and PM2.5 air
-pollution. The World Air Quality Index provides ranges for air quality
-health and the numbers are differentiated for PM2.5 and PM10. Table 1
-provides the ranges for good, moderate, poor, and unhealthy air quality
-levels. Historical data sets available through the World Air Quality
-Index span a 36-month time frame, and data used in this report is from
-2019-2022. The data was collected for two cities Dnipro and Lviv,
-located in Eastern and Western Ukraine respectively. The air-quality
-monitoring station in Lviv is called Steeldrum and the air-quality
-monitoring station in Dnipro is called Vulytsya-Pavla Nirinberha, 4-6.
+Describe sources of data here (input Julia paragraph)
 \end{quote}
 
 \begin{quote}
-Initially once accessing our first csv dataset (outlined in Table 1), we
-processed the UkraineData by omitting missing values (the NA's) from the
-PM2.5 and PM 10 values.\\
-Then, we set the ``numeric'' class of the date column to a ``date''
-class. Then, we wrangled the processed version of the Ukraine data and
-created four subsets by city, month, and year. Each city, Dnipro and
-Lviv, is being evaluated for air quality during the month of March and
-in years 2021 and 2022. Now we have four new data sets; Dnipro 2021,
-Dnipro 2022, Lviv 2021, and Lviv 2022, all showing PM2.5 and PM10 values
-for days in March. We then binded the rows for both Dnipro 2021 and
-Dnipro 2022, called FULL\_DNIPRO. We also binded rows for Lviv 2021 and
-Lviv 2022, called FULL\_LVIV.\\
-In our exploratory analysis, we wanted to look at mean, maximum,
-minimum, and the standard deviation for PM2.5 and PM10 values in Dnipro
-and Ukraine. We used the group\_by function to group by City, and the
-summarize function to include mean, maximum, minimum, and standard
-deviation of the PM values. Additionally, within the exploratory
-analysis we binded FULL\_Dnipro and FULL\_LVIV in order to create a dot
-plot showing the air quality ranges our data demonstrated. We then
-plotted this data with ggplot using scale\_fill\_gradient2 to color-code
-data by health-hazard level. Furthermore, we wanted to look at PM2.5 and
-PM10 values comparing Dnipro and Lviv in solely March 2022 -- during the
-time of the missile attacks. To do this analysis, we wrangled the Dnipro
-2022 and Lviv 2022 to create a dataset with both cities, that includes
-both PM values, for solely March 2022. The important difference is that
-we are not looking at 2021 values in this dataset. Table 2 outlines all
-of our working data sets and what they each contain.
+Explain data wrangling process here (shirley do this)
 \end{quote}
-
-\newpage
-
-\textbf{Table 1}
-
-\begin{longtable}[]{@{}lll@{}}
-\toprule
-Data File Name & Column Name & Data Type \\
-\midrule
-\endhead
-UkraineData & City & Factor (Dnipro and Lviv) \\
-UkraineData & Date & Factor (later converted to date object) \\
-UkraineData & pm25 & Integer (PM2.5 values) \\
-UkraineData & pm10 & Integer (PM10 values) \\
-\bottomrule
-\end{longtable}
-
-\textbf{Table 2}
 
 \begin{longtable}[]{@{}ll@{}}
 \toprule
@@ -223,10 +129,10 @@ Dnipro\_2021 & Dnipro PM2.5 + PM10, Mar 2021 \\
 Dnipro\_2022 & Dnipro PM2.5+ PM10, Mar 2022 \\
 Lviv\_2021 & Lviv PM 2.5 + PM10, Mar 2021 \\
 Lviv\_2022 & Lviv PM 2.5 + PM10, Mar 2022 \\
-FULL\_LVIV & Lviv\_2021 + Lviv\_2022 combined \\
-FULL\_Dnipro & Dnipro\_2021 + Dnipro\_2022 combined \\
-FULL\_Air\_quality & Dnipro\_2022 + Lviv\_2022 combined \\
-Full-air\_quality\_21\_22 & FULL\_LVIV + FULL\_Dnipro combined \\
+FULL\_DNIPRO & Lviv\_2021 + Lviv\_2022 combined \\
+FULL\_LVIV & Dnipro\_2021 + Dnipro\_2022 combined \\
+FULL\_Air\_quality & 2022 Air Quality for Lviv and Dnipro \\
+Full-air\_quality\_21\_22 & 2021 and 2022 Data for Lviv and Dnipro \\
 \bottomrule
 \end{longtable}
 
@@ -236,39 +142,16 @@ Full-air\_quality\_21\_22 & FULL\_LVIV + FULL\_Dnipro combined \\
 \section{Exploratory Analysis}\label{exploratory-analysis}}
 
 \begin{quote}
-To begin our exploratory analysis of the air quality data, we created
-dot plots to map out what range of our quality our data fell into
-(Figures 1 \& 2). The data is color coded with green denoting good air
-quality conditions, yellow is moderate conditions, and red is showing
-air quality that is poor and likely hazardous to health. Attached is a
-table showing a breakdown for air quality metrics (Table 3). This dot
-plot was created to show the range in which our data falls in terms of
-air quality health. Additionally, we determined the summary statistics
-of the PM10 and PM2.5 (Table 4)
+INSERT COMMENTARY ABOUT EXPLORATORY ANALYSIS COMPONENTS
 \end{quote}
-
-\textbf{Table 3}
-
-\begin{longtable}[]{@{}lll@{}}
-\toprule
-AQI Category & PM2.5 & PM10 \\
-\midrule
-\endhead
-Good & 0 to 15.5 & 0 to 54 \\
-Moderate & 15.5 to 35.5 & 54 to 150 \\
-Poor & 35.5 to 150 & 150 to 250 \\
-Unhealthy & 150+ & 250+ \\
-\bottomrule
-\end{longtable}
 
 \begin{figure}
 \centering
-\includegraphics{Fontanie_Gordon_Weinberg_Project_files/figure-latex/plot of pm2.5 air pollution by levels-1.pdf}
-\caption{Figure 1 PM2.5 Air Pollution Dot Plot}
+\includegraphics{Fontanie_Gordon_Weinberg_Project_files/figure-latex/plot of PM25air pollution levels by CityYear-1.pdf}
+\caption{PM2.5 Distribution}
 \end{figure}
 
-\includegraphics{Fontanie_Gordon_Weinberg_Project_files/figure-latex/plot of pm10 air pollution by levels-1.pdf}
-\newpage
+\hfill\break
 
 \begin{longtable}[]{@{}lrrrr@{}}
 \caption{PM2.5 Levels by City}\tabularnewline
@@ -284,6 +167,8 @@ Dnipro & 49.41546 & 4 & 160 & 25.91608 \\
 Lviv & 60.51086 & 8 & 518 & 34.79405 \\
 \bottomrule
 \end{longtable}
+
+\includegraphics{Fontanie_Gordon_Weinberg_Project_files/figure-latex/plot of PM10 levels by CityYear-1.pdf}\\
 
 \begin{longtable}[]{@{}lrrrr@{}}
 \caption{PM10 Levels by City}\tabularnewline
@@ -315,50 +200,23 @@ invasion?}\label{question-1-are-there-significant-differences-in-air-quality-lev
 statistical tests{]}
 \end{quote}
 
-\includegraphics{Fontanie_Gordon_Weinberg_Project_files/figure-latex/Plotting Lviv vs Dnipro-1.pdf}
-\includegraphics{Fontanie_Gordon_Weinberg_Project_files/figure-latex/Plotting Lviv vs Dnipro-2.pdf}
+\begin{quote}
+\textbf{PM2.5 in Lviv and Dnipro during the invasions}
+\end{quote}
 
-\begin{verbatim}
-## 
-## Call:
-## lm(formula = pm25 ~ City, data = FULL_Air_quality)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -49.103 -11.714  -3.103  11.286  64.897 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)   25.714      3.791   6.783 8.54e-09 ***
-## CityLviv      43.389      5.315   8.164 4.72e-11 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 20.06 on 55 degrees of freedom
-## Multiple R-squared:  0.5479, Adjusted R-squared:  0.5397 
-## F-statistic: 66.65 on 1 and 55 DF,  p-value: 4.715e-11
-\end{verbatim}
+\begin{figure}
+\centering
+\includegraphics{Fontanie_Gordon_Weinberg_Project_files/figure-latex/Plotting Lviv vs Dnipro PM25-1.pdf}
+\caption{2022 PM2.5 Levels in Dnipro and Lviv}
+\end{figure}
 
-\begin{verbatim}
-## 
-## Call:
-## lm(formula = pm10 ~ City, data = FULL_Air_quality)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -22.069  -6.000  -1.069   5.931  29.931 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)   14.000      1.895   7.388 8.72e-10 ***
-## CityLviv      19.069      2.657   7.178 1.93e-09 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 10.03 on 55 degrees of freedom
-## Multiple R-squared:  0.4837, Adjusted R-squared:  0.4743 
-## F-statistic: 51.52 on 1 and 55 DF,  p-value: 1.929e-09
-\end{verbatim}
+\begin{figure}
+\centering
+\includegraphics{Fontanie_Gordon_Weinberg_Project_files/figure-latex/Plotting Lviv and Dnipro PM10-1.pdf}
+\caption{2022 PM10 Levels in Lviv and Dnipro}
+\end{figure}
+
+\newpage
 
 \hypertarget{question-2-are-there-significant-differences-in-air-quality-levels-in-affected-ukrainian-cities-before-and-during-the-russian-attacks}{%
 \subsection{Question 2: Are there significant differences in air quality
@@ -382,22 +240,21 @@ levels within Dnipro and Lviv in March of 2021 compared to March of
 2022.\\
 \end{quote}
 
-\newpage
-
 \begin{quote}
 \textbf{PM2.5 in Dnipro}\\
-When plotting PM2.5 levels in Dnipro in 2021 compared to 2022, it is
-evident that overall, PM2.5 levels were higher in 2021 than 2022. It is
-also interesting to note that around March 11 in 2022, when the missile
-attack occured, there appears to be an uptick in PM2.5 levels and then
-sharply decreases shortly after. Overall in both years, there seems to
-be a variety of fluctuation in PM2.5 levels and they are not consistent
-within each year. Additionally, within most of 2022, PM2.5 levels stayed
-within ``good'' to ``moderate'' levels, with an exception of reaching a
-level of ``unhealthy for sensitive groups'' at the end of March 2022. In
-March 2021, however, the PM2.5 levels were mainly in the ``unhealthy for
-sensitive groups'' or ``unhealthy'' category, with only a few days
-throughout that month in ``moderate'' levels.
+When plotting PM2.5 levels in Dnipro in 2021 compared to 2022 (Figure
+3), it is evident that overall, PM2.5 levels were higher in 2021 than
+2022. It is also interesting to note that around March 11 in 2022, when
+the missile attack occured, there appears to be an uptick in PM2.5
+levels and then sharply decreases shortly after. Overall in both years,
+there seems to be a variety of fluctuation in PM2.5 levels and they are
+not consistent within each year. Additionally, within most of 2022,
+PM2.5 levels stayed within ``good'' to ``moderate'' levels, with an
+exception of reaching a level of ``unhealthy for sensitive groups'' at
+the end of March 2022. In March 2021, however, the PM2.5 levels were
+mainly in the ``unhealthy for sensitive groups'' or ``unhealthy''
+category, with only a few days throughout that month in ``moderate''
+levels.
 \end{quote}
 
 \begin{quote}
@@ -422,15 +279,15 @@ compared to 2021.
 
 \begin{quote}
 \textbf{PM2.5 in Lviv}\\
-When plotting PM2.5 levels in Lviv in 2021 compared to 2022, there is no
-clear difference in levels between years. It is interesting to note that
-before the March 18 attack, PM2.5 levels were increasing, and after the
-March 18, 2022 missile attack, it appears levels sharply decreased.
-Overall in both years, it appears that there seems to be a variety of
-fluctuation in PM2.5 in Lviv. Additionally, within both 2021 and 2022,
-it is very rare that levels are within the ``good'' range of PM2.5
-(\textless15.4) and are typically within ``moderate'' to ``unhealthy''
-levels.
+When plotting PM2.5 levels in Lviv in 2021 compared to 2022 (Figure 4),
+there is no clear difference in levels between years. It is interesting
+to note that before the March 18 attack, PM2.5 levels were increasing,
+and after the March 18, 2022 missile attack, it appears levels sharply
+decreased. Overall in both years, it appears that there seems to be a
+variety of fluctuation in PM2.5 in Lviv. Additionally, within both 2021
+and 2022, it is very rare that levels are within the ``good'' range of
+PM2.5 (\textless15.4) and are typically within ``moderate'' to
+``unhealthy'' levels.
 \end{quote}
 
 \begin{quote}
@@ -453,11 +310,11 @@ between PM2.5 levels and year in Lviv is not significant (p=0.1639).
 
 \begin{quote}
 \textbf{PM10 in Dnipro}\\
-When plotting PM10 levels in Dnipro in 2021 compared to 2022, it is
-evident that overall, PM10 levels were higher in 2021 compared to 2022.
-When looking at the PM10 levels around the March 11 attack in 2022,
-there does not appear to be a significant increase. Additionally, in
-March 2022, PM10 levels seemed to stay within or below ``moderate''
+When plotting PM10 levels in Dnipro in 2021 compared to 2022 (Figure 5),
+it is evident that overall, PM10 levels were higher in 2021 compared to
+2022. When looking at the PM10 levels around the March 11 attack in
+2022, there does not appear to be a significant increase. Additionally,
+in March 2022, PM10 levels seemed to stay within or below ``moderate''
 levels, whereas 2021 levels ranged from ``moderate'' to ``unhealthy for
 sensitive groups''.
 \end{quote}
@@ -483,14 +340,14 @@ difference in PM10 levels in Dnipro in 2022 compared to 2021.
 
 \begin{quote}
 \textbf{PM10 in Lviv}\\
-When plotting PM10 levels in Lviv in 2021 compared to 2022, there is no
-clear difference observed in PM10 levels between the years. It is also
-interesting to note that there does not seem to a significant change in
-PM10 levels after the March 18 attack, and PM10 levels appear to sharply
-drop after the March 26 attack. Additionally, PM10 levels in both years
-stay mainly within ``unhealthy for sensitive groups'' to ``good''
-levels, but at some points in 2021, levels reach into the ``unhealthy''
-level.
+When plotting PM10 levels in Lviv in 2021 compared to 2022 (Figure 6),
+there is no clear difference observed in PM10 levels between the years.
+It is also interesting to note that there does not seem to a significant
+change in PM10 levels after the March 18 attack, and PM10 levels appear
+to sharply drop after the March 26 attack. Additionally, PM10 levels in
+both years stay mainly within ``unhealthy for sensitive groups'' to
+``good'' levels, but at some points in 2021, levels reach into the
+``unhealthy'' level.
 \end{quote}
 
 \begin{quote}
