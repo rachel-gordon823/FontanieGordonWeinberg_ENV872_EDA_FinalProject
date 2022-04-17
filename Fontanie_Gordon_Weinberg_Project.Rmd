@@ -245,7 +245,7 @@ knitr::kable(air.quality.summary.PM25, caption = "PM2.5 Levels by City",
 
 ```
 
-```{r plot of PM10 air pollution by cityyear,fig.cap="PM10 Air Pollution Distribution",echo=FALSE}
+```{r plot of PM10 air pollution by cityyear,echo=FALSE, fig.cap= "PM10 Air Pollution Distribution"}
 PM10_plot <- ggplot(Full_air_quality_21_22, x = City_Year, y = pm10)+
   geom_point(aes(x=City_Year, y = pm10, color = pm10),
              size = 5)+
@@ -261,6 +261,7 @@ PM10_plot <- ggplot(Full_air_quality_21_22, x = City_Year, y = pm10)+
   aesthetics = "color"
 )
 print(PM10_plot)
+
 
 ```
 \
