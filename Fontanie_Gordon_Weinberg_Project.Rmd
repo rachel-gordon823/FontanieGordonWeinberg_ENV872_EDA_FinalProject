@@ -16,10 +16,10 @@ editor_options:
 ---
 
 \newpage
-\tableofcontents 
+\tableofcontents
 \newpage
 \listoftables 
-\newpage
+\newpage 
 \listoffigures 
 \newpage
 
