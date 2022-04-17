@@ -57,7 +57,7 @@ UkraineData <- read.csv("./Data/RawData/Ukraine_AQIData.csv", stringsAsFactors =
 
 # Rationale and Research Questions
 
-> Rachel input written section  
+> [Rachel to do]
 
 \newpage
 
@@ -390,15 +390,23 @@ summary(lviv.10.lm)
 \newpage
 
 # Summary and Conclusions
+
 ## Question 1: Are there significant differences in air quality levels between affected Ukrainian cities during the Russian invasion?
 
 >[Shirley insert results from our analysis]
 
 ## Question 2: Are there significant differences in air quality levels in affected Ukrainian cities before and during the Russian attacks? 
->[Rachel insert text about summary]
+> There were significant differences in both PM2.5 and PM10 levels in Dnipro in March of 2022 compared to March of 2021. However, there were no significant differences in PM2.5 and PM10 levels in Lviv in March of 2022 compared to March of 2021. In Dnipro in March of 2022, the PM2.5 levels were much higher in 2021 compared to 2022, which was surprising given the context originally discussed in which air pollution tends to increase during times of war due to explosions and infrastructure collapse that increase levels of hazardous dust and debris.
 
+> As Dnipro typically has a high presence of industrial activity during pre-war times, it is possible that PM2.5 and PM10 levels decreased due to the industrial sector activities being paused during the war. Additionally, since Lviv is more of a cultural city and does not have a heavy industrial presence, it is likely that PM2.5 levels and PM10 levels didn't significantly change if industrial activity is a more influential factor than presence of missile attacks. This is an interesting idea that would be valuable to explore in future studies, comparing multiple cities that have experienced missile attacks with varying industrial profiles and identifying if air pollution levels change in those cities if industrial activity is paused due to war.
 
->insert text about what may have affected our results, limitations of our data, and what we would do next if we could
+>**Limitations**\
+It is important to note that our study was limited in the amount of data analyzed over time. To improve the analysis, if it's possible to find more data, we would study PM2.5 and PM10 levels from at least three years prior. Additionally, depending on how the war continues, it would be interested to study air pollution levels beyond March of 2022, especially if the war worsens and there is an increasing amount of missile attacks. Our study is also limited in the number of cities analyzed. To improve the study, we would expand our analysis to more cities throughout Ukraine if it is possible to find the data.
+
+>Additionally, it may be valuable to explore other variables that may be affecting air pollution levels besides war presence and missile attacks. Specifically, population and population density may have an impact on air pollution levels. As it was found that Lviv had much higher absolute levels of air pollution compared to Dnipro, it would be valuable to understand differences in population, population density, and tourism activity (as Lviv is the cultural capital of the country) has any impact on air pollution levels.
+
+>**Conclusions**\
+From this study, we can conclude that there were differences in air quality levels between affected cities during the Russian invasion. However, we cannot conclude that varying levels of missile attacks is the only factor contributing to these differences. Additionally, we can conclude that cities may differ in air pollution levels during the presence of war activity compared to before, however, it appears that missile attacks may have a negative relationship with air pollution levels. These results show that there may be other variables affecting air pollution levels in cities (such as the presence or absence of industrial activity) that would be valuable to analyze in future studies.
 
 \newpage
 
