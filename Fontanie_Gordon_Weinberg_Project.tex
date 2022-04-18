@@ -12,7 +12,7 @@
   \apptocmd{\@title}{\par {\large #1 \par}}{}{}
 }
 \makeatother
-\subtitle{Web address for GitHub repository}
+\subtitle{\url{https://github.com/rachel-gordon823/FontanieGordonWeinberg_ENV872_EDA_FinalProject}}
 \author{Shirley Fontanié, Rachel Gordon, and Julia Weinberg}
 \date{}
 
@@ -92,18 +92,7 @@
 \newpage
 \tableofcontents
 \newpage
-\listoftables
-
-\begin{quote}
-1 Raw Data Details
-\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots{}
-8 2 Processed Data Details
-\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots{}
-8 3 Air Quality Parameters
-\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots{}
-9
-\end{quote}
-
+\listoftables 
 \newpage 
 \listoffigures 
 \newpage
@@ -376,19 +365,86 @@ levels between affected Ukrainian cities during the Russian
 invasion?}\label{question-1-are-there-significant-differences-in-air-quality-levels-between-affected-ukrainian-cities-during-the-russian-invasion}}
 
 \begin{quote}
-{[}Shirley insert text about how we analyzed - visualizations and
-statistical tests{]}
+To begin our analysis, we conducted a visual analysis of PM2.5 and PM10
+levels in Dnipro and Lviv for the time period of March 2022, as both
+cities experienced their first missile attacks during March 2022. We
+chose to use line plots including points to clearly show the values of
+the PM2.5 and PM10 values. We created two different plots: ``2022 PM2.5
+Levels in Dnipro and Lviv'' and ``2022 PM10 Levels in Lviv and Dnipro''.
+Additionally, we conducted a linear regression analysis for each of
+these charts to understand if there is a significant difference in air
+quality levels in PM2.5 and PM10 between both the cities of Dnipro and
+Lviv.
 \end{quote}
 
 \begin{quote}
-\textbf{PM2.5 in Lviv and Dnipro during the invasions}
+\textbf{PM2.5 in Dnipro vs.~Lviv}\\
+While plotting PM2.5 levels in Dnipro and Lviv in March 2022, we observe
+significantly higher PM2.5 levels in Lviv than Dnipro consistently
+throughout the month. There are just two dates where PM2.5 levels
+between the cities are almost the same, March 10, 2022, and March 27,
+2022. However, Lviv still shows higher PM2.5 levels than Dnipro.
+According to AQI categories of PM2.5 levels, Dnipro shows PM2.5 levels
+primarily in the 0 to 50 range. Therefore, Dnipro's PM2.5 AQI categories
+range from ``good'' to ``moderate'' to ``poor''. Lviv shows PM2.5 levels
+primarily in the 50+ values. Therefore, Lviv AQI categories range from
+``poor'' to ``unhealthy''. Interestingly, Lviv shows a peak of
+``unhealthy'' levels in the middle of March, while Dnipro remains
+relatively stable. Overall, there is significantly more variability in
+PM2.5 levels in Lviv, than Dnipro.
 \end{quote}
+
+\begin{quote}
+For the statistical analysis, we ran a linear regression model of PM2.5
+levels by city, to understand if there are significant differences in
+PM2.5 levels between Dnipro and Lviv in March 2022. The linear
+regression showed that the R-squared value of (0.5397), shows that an
+estimated 54\% of variability in PM2.5 levels can be explained by the
+differences in the two observed cities; Dnipro and Lviv. Additionally,
+the statistical significance shows a low p-value of (p = 4.715e-11),
+showing there to be a significant difference in PM2.5 levels between
+Dnipro and Lviv during March 2022.
+\end{quote}
+
+\newpage
 
 \begin{figure}
 \centering
 \includegraphics{Fontanie_Gordon_Weinberg_Project_files/figure-latex/Plotting Lviv vs Dnipro PM25-1.pdf}
 \caption{2022 PM2.5 Levels in Dnipro and Lviv}
 \end{figure}
+
+\newpage
+
+\begin{quote}
+\textbf{PM10 in Dnipro vs.~Lviv}\\
+While plotting PM10 levels in Dnipro and Lviv in March 2022, we observed
+consistently higher PM10 levels in Lviv than Dnipro consistently
+throughout the month. There was just one exception, when on March 9,
+2022, both Dnipro and Lviv appeared to have the same PM10 level.
+Following March 9, 2022, Lviv's PM10 levels skyrocketed, while Dnipro's
+decreased at a relatively slower rate. According to AQI categories of
+PM10 levels, Dnipro shows PM10 levels primarily in the 0 to 40 range.
+Therefore, Dnipro AQI categories for PM10 are technically considered
+``good''. Lviv shows PM10 levels primarily in the 20+ values. Therefore,
+Lviv AQI categories range from ``good'' to ``moderate'' to ``poor''.
+Similarly to our observations for PM2.5 levels as conducted above, Lviv
+shows a steep increase in PM10 levels in the middle of March 2022, while
+Dnipro remains relatively stable. Overall, there is significantly more
+variability in PM10 levels in Lviv, than Dnipro.
+\end{quote}
+
+\begin{quote}
+For the statistical analysis, we ran a linear regression model of PM10
+levels by city, to understand if there are significant differences in
+PM10 levels between Dnipro and Lviv in March 2022. The linear regression
+showed that the R-squared value of (0.4743), shows that an estimated
+47\% of variability in PM10 levels can be explained by the differences
+in the two observed cities; Dnipro and Lviv. Additionally, the
+statistical significance shows a low p-value of (p = 1.929e-09), showing
+there to be a significant difference in PM10 levels between Dnipro and
+Lviv during March 2022.
+\end{quote}
 
 \begin{figure}
 \centering
@@ -558,7 +614,31 @@ levels between affected Ukrainian cities during the Russian
 invasion?}\label{question-1-are-there-significant-differences-in-air-quality-levels-between-affected-ukrainian-cities-during-the-russian-invasion-1}}
 
 \begin{quote}
-{[}Shirley insert results from our analysis{]}
+There were significant differences in both PM2.5 and PM10 levels between
+the two cities of Dnipro and Lviv during the Russian invasion in March
+2022. It is important to note that while look at both levels of
+particulate matter, Lviv had significantly higher PM values than Dnipro
+in both PM2.5 and PM10. Lviv's PM2.5 levels, in particular, veered in
+the ``unhealthy'' category, while Lviv's PM10 levels veered in the
+``poor'' category. Surprisingly, Dnipro's PM10 values remained in the
+``good'' to ``moderate'' range, questioning whether the bombings really
+had any effect on air quality in Dnipro.
+\end{quote}
+
+\begin{quote}
+These are interesting observations to discover, because while the city
+of Lviv is much larger in size than Dnipro, Lviv remains a cultural
+city, while Dnipro is primarily industrial. However, when looking at
+both PM2.5 and PM10 levels it shows that Lviv had significantly higher
+particulate matter values than Dnipro. This is an interesting
+observation, and raises the question of whether the indsutrial activity
+has as much of an effect on air quality as we had previously assumed.
+During the Russian invasion, Ukrainains fled underground, removing all
+emissions that come from daily life such as transportation. In future
+studies, this is an important note to consider, and we can include more
+variables such as area of city, population size, and even weather
+patterns to observe how particulate matter could potentially travel
+across the country.
 \end{quote}
 
 \hypertarget{question-2-are-there-significant-differences-in-air-quality-levels-in-affected-ukrainian-cities-before-and-during-the-russian-attacks-1}{%
