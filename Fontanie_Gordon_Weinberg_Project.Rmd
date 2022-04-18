@@ -51,7 +51,6 @@ theme_set(ourtheme)
 
 UkraineData <- read.csv("./Data/RawData/Ukraine_AQIData.csv", stringsAsFactors = TRUE)
 
-#UkraineMap <- read.csv("./Data/RawData/ukrainelatandlong.csv", stringsAsFactors = TRUE)
 
 
 ```
