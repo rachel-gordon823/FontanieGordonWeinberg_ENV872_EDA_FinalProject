@@ -47,12 +47,3 @@ UkraineData | pm25 | Integer (PM2.5 values)
 UkraineData | pm10 | Integer (PM10 values)
 
 
-
-## Quality assurance/quality control
-
-<describe any relevant QA/QC procedures taken with your data. Some ideas can be found here:>
-<https://www.dataone.org/best-practices/develop-quality-assurance-and-quality-control-plan>
-<https://www.dataone.org/best-practices/ensure-basic-quality-control>
-<https://www.dataone.org/best-practices/communicate-data-quality>
-<https://www.dataone.org/best-practices/identify-outliers>
-<https://www.dataone.org/best-practices/identify-values-are-estimated>
